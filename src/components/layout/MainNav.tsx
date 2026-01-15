@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Artists', href: '#artists' },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Artists', href: '/artists' },
+  { label: 'Gallery', href: '/gallery' },
 ];
 
 export const MainNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,33 +39,39 @@ export const MainNav = () => {
       <div className="container mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <span className="font-display text-2xl font-bold tracking-wide text-foreground">
               GOONJ
             </span>
             <span className="hidden sm:block text-xs text-muted-foreground tracking-luxury uppercase">
               Entertainment
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 underline-sweep relative"
+                to={link.href}
+                className={`text-sm transition-colors duration-300 underline-sweep relative ${
+                  location.pathname === link.href 
+                    ? 'text-gold-light' 
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button variant="hero" size="lg">
-              Book Now
-            </Button>
+            <Link to="/contact">
+              <Button variant="hero" size="lg">
+                Book Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -88,21 +96,31 @@ export const MainNav = () => {
           >
             <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link, index) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </motion.a>
+                <motion.div key={link.label}>
+                  <Link
+                    to={link.href}
+                    className={`text-lg transition-colors ${
+                      location.pathname === link.href 
+                        ? 'text-gold-light' 
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      {link.label}
+                    </motion.span>
+                  </Link>
+                </motion.div>
               ))}
-              <Button variant="heroFilled" size="lg" className="mt-4">
-                Book Now
-              </Button>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="heroFilled" size="lg" className="mt-4 w-full">
+                  Book Now
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
