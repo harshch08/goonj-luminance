@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Instagram, Facebook, Youtube, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -21,6 +21,15 @@ const services = [
 ];
 
 export const Footer = () => {
+  const location = useLocation();
+  
+  // Check if we're on a Bandhan page
+  const isBandhanPage = location.pathname === '/bandhan' || 
+    location.pathname.startsWith('/services/destination-weddings') ||
+    location.pathname.startsWith('/services/catering') ||
+    location.pathname.startsWith('/services/photography') ||
+    location.pathname.startsWith('/services/stage-setup');
+  
   return (
     <footer className="bg-background border-t border-border/30" id="contact">
       <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-20">
@@ -29,15 +38,19 @@ export const Footer = () => {
           <div className="lg:col-span-1">
             <div className="mb-6">
               <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-                GOONJ
+                {isBandhanPage ? 'BANDHAN' : 'GOONJ'}
               </h3>
-              <p className="text-xs uppercase tracking-luxury text-gold-light">
-                Entertainment
-              </p>
+              {!isBandhanPage && (
+                <p className="text-xs uppercase tracking-luxury text-gold-light">
+                  Entertainment
+                </p>
+              )}
             </div>
             <p className="text-body text-sm leading-relaxed mb-6">
-              India's premier event management and live entertainment company, 
-              crafting unforgettable experiences since 2015.
+              {isBandhanPage 
+                ? "Crafting timeless wedding experiences with love and precision. Luxury destination wedding planning celebrating culture and unforgettable moments."
+                : "India's premier event management and live entertainment company, crafting unforgettable experiences since 2015."
+              }
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -136,7 +149,7 @@ export const Footer = () => {
         <div className="mt-16 pt-8 border-t border-border/30">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">
-              © 2024 Goonj Entertainment. All rights reserved.
+              © 2024 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">

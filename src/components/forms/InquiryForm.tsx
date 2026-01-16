@@ -5,11 +5,28 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface InquiryFormProps {
   serviceType?: string;
   compact?: boolean;
 }
+
+const services = [
+  'Live Music',
+  'Events',
+  'Instrumentalists',
+  'Celebrity Concerts',
+  'Open Mics',
+  'Karaoke Nights',
+  'Bandhan (Wedding)',
+];
 
 export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) => {
   const { toast } = useToast();
@@ -25,10 +42,40 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.name || !formData.phone || !formData.eventType) {
+      toast({
+        title: "Missing Required Fields",
+        description: "Please fill in Name, Mobile, and Event Type.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
     
+    // Format message for WhatsApp
+    const whatsappMessage = `
+*New Service Inquiry*
+
+*Name:* ${formData.name}
+*Mobile:* ${formData.phone}
+*Event Type:* ${formData.eventType}
+${formData.email ? `*Email:* ${formData.email}` : ''}
+${formData.message ? `\n*Message:*\n${formData.message}` : ''}
+    `.trim();
+    
+    // Send to WhatsApp
+    const whatsappNumber = '919897642145';
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -45,6 +92,10 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData(prev => ({ ...prev, eventType: value }));
   };
 
   if (isSubmitted) {
@@ -87,10 +138,9 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
             <Input
               name="email"
               type="email"
-              placeholder="Email Address *"
+              placeholder="Email Address"
               value={formData.email}
               onChange={handleChange}
-              required
               className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground placeholder:text-muted-foreground mt-4 md:mt-0"
             />
           )}
@@ -100,10 +150,9 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
           <Input
             name="email"
             type="email"
-            placeholder="Email Address *"
+            placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            required
             className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground placeholder:text-muted-foreground"
           />
         )}
@@ -111,22 +160,50 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
         <div className={compact ? '' : 'md:col-span-2 md:grid md:grid-cols-2 md:gap-4'}>
           <Input
             name="phone"
-            placeholder="Phone Number *"
+            placeholder="Mobile Number *"
             value={formData.phone}
             onChange={handleChange}
             required
             className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground placeholder:text-muted-foreground"
           />
           {!compact && (
-            <Input
-              name="eventType"
-              placeholder="Event Type"
+            <Select
               value={formData.eventType}
-              onChange={handleChange}
-              className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground placeholder:text-muted-foreground mt-4 md:mt-0"
-            />
+              onValueChange={handleSelectChange}
+              required
+            >
+              <SelectTrigger className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground mt-4 md:mt-0">
+                <SelectValue placeholder="Select Event Type *" />
+              </SelectTrigger>
+              <SelectContent>
+                {services.map((service) => (
+                  <SelectItem key={service} value={service}>
+                    {service}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           )}
         </div>
+        
+        {compact && (
+          <Select
+            value={formData.eventType}
+            onValueChange={handleSelectChange}
+            required
+          >
+            <SelectTrigger className="bg-secondary/50 border-border/50 focus:border-gold/50 text-foreground">
+              <SelectValue placeholder="Select Event Type *" />
+            </SelectTrigger>
+            <SelectContent>
+              {services.map((service) => (
+                <SelectItem key={service} value={service}>
+                  {service}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
         
         <div className={compact ? '' : 'md:col-span-2'}>
           <Textarea

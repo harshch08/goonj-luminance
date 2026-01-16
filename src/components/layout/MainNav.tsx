@@ -17,6 +17,13 @@ export const MainNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  
+  // Check if we're on a Bandhan page
+  const isBandhanPage = location.pathname === '/bandhan' || 
+    location.pathname.startsWith('/services/destination-weddings') ||
+    location.pathname.startsWith('/services/catering') ||
+    location.pathname.startsWith('/services/photography') ||
+    location.pathname.startsWith('/services/stage-setup');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,13 +78,15 @@ export const MainNav = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <nav className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
+            <Link to={isBandhanPage ? "/bandhan" : "/"} className="flex items-center gap-3">
               <span className="font-display text-2xl font-bold tracking-wide text-foreground">
-                GOONJ
+                {isBandhanPage ? 'BANDHAN' : 'GOONJ'}
               </span>
-              <span className="hidden sm:block text-xs text-muted-foreground tracking-luxury uppercase">
-                Entertainment
-              </span>
+              {!isBandhanPage && (
+                <span className="hidden sm:block text-xs text-muted-foreground tracking-luxury uppercase">
+                  Entertainment
+                </span>
+              )}
             </Link>
 
             {/* Desktop Navigation */}

@@ -13,6 +13,10 @@ import Artists from "./pages/Artists";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Bandhan from "./pages/Bandhan";
+import DestinationWeddings from "./pages/bandhan/services/DestinationWeddings";
+import Catering from "./pages/bandhan/services/Catering";
+import Photography from "./pages/bandhan/services/Photography";
+import StageSetup from "./pages/bandhan/services/StageSetup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +33,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/destination-weddings" element={<DestinationWeddings />} />
+          <Route path="/services/catering" element={<Catering />} />
+          <Route path="/services/photography" element={<Photography />} />
+          <Route path="/services/stage-setup" element={<StageSetup />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
           <Route path="/artists" element={<Artists />} />
           <Route path="/gallery" element={<Gallery />} />

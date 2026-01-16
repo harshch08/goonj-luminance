@@ -80,55 +80,57 @@ const Services = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid gap-8">
             {services.map((service, index) => (
-              <motion.div
-                key={service.slug}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="glass-card p-8 hover:border-gold/30 transition-all duration-500"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  <div className="flex items-start gap-6 flex-1">
-                    <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center shrink-0">
-                      <service.icon size={28} className="text-gold-light" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-display text-2xl font-semibold text-foreground mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-body mb-4">{service.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {service.features.map((feature) => (
-                          <span
-                            key={feature}
-                            className="px-3 py-1 text-xs uppercase tracking-wide bg-secondary/50 text-muted-foreground rounded-full"
-                          >
-                            {feature}
-                          </span>
-                        ))}
+              <Link key={service.slug} to={`/services/${service.slug}`}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="glass-card p-8 hover:border-gold/30 transition-all duration-500 cursor-pointer"
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                    <div className="flex items-start gap-6 flex-1">
+                      <div className="w-16 h-16 rounded-lg bg-gold/10 flex items-center justify-center shrink-0">
+                        <service.icon size={28} className="text-gold-light" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-display text-2xl font-semibold text-foreground mb-2">
+                          {service.title}
+                        </h3>
+                        <p className="text-body mb-4">{service.description}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {service.features.map((feature) => (
+                            <span
+                              key={feature}
+                              className="px-3 py-1 text-xs uppercase tracking-wide bg-secondary/50 text-muted-foreground rounded-full"
+                            >
+                              {feature}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
-                    <Link to={`/services/${service.slug}`}>
-                      <Button variant="hero" className="w-full sm:w-auto">
+                    
+                    <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
+                      <Button variant="hero" className="w-full sm:w-auto" onClick={(e) => e.preventDefault()}>
                         <span>Learn More</span>
                         <ArrowRight size={16} className="ml-2" />
                       </Button>
-                    </Link>
-                    <Button 
-                      variant="heroFilled" 
-                      className="w-full sm:w-auto"
-                      onClick={scrollToForm}
-                    >
-                      <MessageCircle size={16} className="mr-2" />
-                      <span>Contact</span>
-                    </Button>
+                      <Button 
+                        variant="heroFilled" 
+                        className="w-full sm:w-auto"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          scrollToForm();
+                        }}
+                      >
+                        <MessageCircle size={16} className="mr-2" />
+                        <span>Contact</span>
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

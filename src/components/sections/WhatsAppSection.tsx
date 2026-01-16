@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MessageCircle, Phone, Clock, CheckCircle } from 'lucide-react';
+import { MessageCircle, Phone, Clock, CheckCircle, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const WhatsAppSection = () => {
@@ -15,7 +15,11 @@ export const WhatsAppSection = () => {
   ];
 
   const handleWhatsAppClick = () => {
-    window.open('https://wa.me/919999999999?text=Hi%20Goonj%20Entertainment!%20I%20would%20like%20to%20inquire%20about%20your%20services.', '_blank');
+    window.open('https://wa.me/919897642145?text=Hi%20Goonj%20Entertainment!%20I%20would%20like%20to%20inquire%20about%20your%20services.', '_blank');
+  };
+
+  const handleEmailClick = () => {
+    window.location.href = 'mailto:goonjentertainment3@gmail.com?subject=Inquiry%20about%20Services&body=Hi%20Goonj%20Entertainment,%0D%0A%0D%0AI%20would%20like%20to%20inquire%20about%20your%20services.';
   };
 
   return (
@@ -70,11 +74,12 @@ export const WhatsAppSection = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
+            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             >
               <Button
                 onClick={handleWhatsAppClick}
@@ -83,12 +88,26 @@ export const WhatsAppSection = () => {
                 <MessageCircle size={22} className="mr-3 group-hover:scale-110 transition-transform" />
                 Chat with Us Now
               </Button>
+              
+              <Button
+                onClick={handleEmailClick}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                <Mail size={22} className="mr-3 group-hover:scale-110 transition-transform" />
+                Email Us
+              </Button>
             </motion.div>
 
-            {/* Phone number display */}
-            <p className="text-muted-foreground text-sm mt-6">
-              Or call us at: <span className="text-foreground font-medium">+91 99999 99999</span>
-            </p>
+            {/* Contact info display */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6 text-muted-foreground text-sm">
+              <p>
+                Call us at: <span className="text-foreground font-medium">+91 98976 42145</span>
+              </p>
+              <span className="hidden sm:inline">•</span>
+              <p>
+                Email: <span className="text-foreground font-medium">goonjentertainment3@gmail.com</span>
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

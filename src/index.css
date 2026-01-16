@@ -277,6 +277,19 @@
   animation: scroll 30s linear infinite;
 }
 
+@keyframes partners-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-partners-scroll {
+  animation: partners-scroll 20s linear infinite;
+}
+
 .pause-animation {
   animation-play-state: paused !important;
 }
