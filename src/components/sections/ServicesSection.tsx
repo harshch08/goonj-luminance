@@ -59,8 +59,8 @@ export const ServicesSection = () => {
   };
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-secondary/30" id="services">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section ref={ref} className="py-16 sm:py-24 lg:py-32 bg-secondary/30" id="services">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -80,18 +80,18 @@ export const ServicesSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
         >
           {services.map((service, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group glass-card p-8 hover:border-gold/30 transition-all duration-500"
+              className="group glass-card p-6 sm:p-8 hover:border-gold/30 transition-all duration-500"
             >
-              <div className="w-14 h-14 rounded-lg bg-gold/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 group-hover:shadow-glow transition-all duration-500">
-                <service.icon size={24} className="text-gold-light" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gold/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-gold/20 group-hover:shadow-glow transition-all duration-500">
+                <service.icon size={22} className="text-gold-light sm:w-6 sm:h-6" />
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+              <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3">
                 {service.title}
               </h3>
               <p className="text-body text-sm leading-relaxed">
