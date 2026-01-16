@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 import heroLiveMusic from '@/assets/hero-live-music.jpg';
@@ -72,10 +71,10 @@ export const HeroSlider = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, []);
 
-  const prevSlide = useCallback(() => {
-    setDirection(-1);
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 6000);
@@ -195,21 +194,6 @@ export const HeroSlider = () => {
           ))}
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="absolute bottom-8 right-6 lg:right-12 flex items-center gap-2">
-          <button
-            onClick={prevSlide}
-            className="w-12 h-12 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-gold/50 transition-all duration-300"
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="w-12 h-12 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-gold/50 transition-all duration-300"
-          >
-            <ChevronRight size={20} />
-          </button>
-        </div>
       </div>
     </section>
   );
