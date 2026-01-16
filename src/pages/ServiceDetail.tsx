@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle, MessageCircle } from 'lucide-react';
 import { Music, Calendar, Guitar, Star, Mic, MicVocal, Heart } from 'lucide-react';
@@ -128,6 +129,10 @@ const ServiceDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const service = slug ? serviceData[slug] : null;
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   if (!service) {
     return (
       <PageLayout>
@@ -164,10 +169,10 @@ const ServiceDetail = () => {
       {/* Description Section */}
       <section className="py-12 lg:py-20">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-3xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-4 mb-6">
@@ -186,20 +191,6 @@ const ServiceDetail = () => {
                   </div>
                 ))}
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative rounded-lg overflow-hidden"
-            >
-              <img 
-                src={service.image} 
-                alt={service.title}
-                className="w-full h-[400px] object-cover rounded-lg"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </motion.div>
           </div>
         </div>
