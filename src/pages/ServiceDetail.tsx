@@ -123,6 +123,62 @@ const serviceData: Record<string, {
     ],
     features: ['Multi-event Packages', 'Choreography Services', 'Traditional + Modern', 'Complete Coordination'],
   },
+  'destination-weddings': {
+    icon: Heart,
+    title: 'Destination Weddings',
+    subtitle: 'Create unforgettable experiences in breathtaking locations',
+    description: 'Transform your dream destination into the perfect wedding venue. We handle every detail from venue selection to guest coordination, ensuring your destination wedding is seamless and spectacular.',
+    image: heroWedding,
+    types: [
+      { name: 'Beach Weddings', description: 'Romantic ceremonies on pristine beaches with ocean views' },
+      { name: 'Mountain Retreats', description: 'Majestic celebrations in scenic mountain locations' },
+      { name: 'Palace Weddings', description: 'Royal experiences in heritage palaces and forts' },
+      { name: 'International Destinations', description: 'Exotic locations across the globe for your special day' },
+    ],
+    features: ['Venue Selection', 'Travel Coordination', 'Guest Management', 'Local Vendor Network'],
+  },
+  'catering': {
+    icon: Calendar,
+    title: 'Catering & Decor',
+    subtitle: 'Exquisite cuisine and stunning aesthetics for your event',
+    description: 'Delight your guests with world-class catering and breathtaking decor. Our expert team creates culinary masterpieces and visual spectacles that perfectly complement your celebration.',
+    image: heroEvents,
+    types: [
+      { name: 'Multi-Cuisine Catering', description: 'Diverse menu options from traditional to international' },
+      { name: 'Theme-Based Decor', description: 'Custom decor designs matching your wedding theme' },
+      { name: 'Floral Arrangements', description: 'Stunning floral designs and installations' },
+      { name: 'Lighting Design', description: 'Ambient lighting to create the perfect atmosphere' },
+    ],
+    features: ['Custom Menus', 'Professional Chefs', 'Decor Planning', 'Setup & Breakdown'],
+  },
+  'photography': {
+    icon: Star,
+    title: 'Photography',
+    subtitle: 'Capture every precious moment with professional artistry',
+    description: 'Preserve your special moments forever with our award-winning photography and videography services. We capture the emotions, details, and magic of your celebration.',
+    image: heroCelebrity,
+    types: [
+      { name: 'Wedding Photography', description: 'Comprehensive coverage of all wedding ceremonies' },
+      { name: 'Cinematic Videography', description: 'Film-style videos that tell your love story' },
+      { name: 'Pre-Wedding Shoots', description: 'Creative photo sessions at stunning locations' },
+      { name: 'Drone Coverage', description: 'Aerial photography for breathtaking perspectives' },
+    ],
+    features: ['Professional Equipment', 'Edited Albums', 'Same-Day Edits', 'Online Gallery'],
+  },
+  'stage-setup': {
+    icon: Music,
+    title: 'Stage Setup & Lighting / Sound',
+    subtitle: 'State-of-the-art audio-visual production',
+    description: 'Create an immersive experience with our professional stage, lighting, and sound systems. From intimate gatherings to grand celebrations, we provide technical excellence.',
+    image: heroLiveMusic,
+    types: [
+      { name: 'Stage Design', description: 'Custom stage setups for ceremonies and performances' },
+      { name: 'LED Walls', description: 'High-resolution LED displays for visual impact' },
+      { name: 'Sound Systems', description: 'Crystal-clear audio for speeches and entertainment' },
+      { name: 'Lighting Effects', description: 'Dynamic lighting to enhance ambiance and mood' },
+    ],
+    features: ['Professional Equipment', 'Technical Support', 'Custom Designs', 'Backup Systems'],
+  },
 };
 
 const ServiceDetail = () => {

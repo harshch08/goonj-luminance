@@ -9,14 +9,14 @@ const categories = [
   { label: 'Celebrity Concerts', icon: Star, href: '/services/celebrity' },
   { label: 'Open Mics', icon: Mic, href: '/services/openmic' },
   { label: 'Karaoke Nights', icon: MicVocal, href: '/services/karaoke' },
-  { label: 'Bandhan', icon: Heart, href: '/services/wedding' },
+  { label: 'Bandhan', icon: Heart, href: '/bandhan' },
 ];
 
 export const CategoryNav = () => {
   const location = useLocation();
   
   return (
-    <div className="sticky top-20 z-40 bg-background/80 backdrop-blur-lg border-b border-border/30">
+    <div className="sticky top-20 z-40 bg-transparent backdrop-blur-sm border-b border-border/20">
       <div className="container mx-auto px-6 lg:px-12">
         <nav className="flex items-center gap-1 py-4 overflow-x-auto scrollbar-hide">
           {categories.map((category, index) => {

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Instagram, Facebook, ExternalLink } from 'lucide-react';
+import { InstagramFollowerWidget } from './InstagramFollowerWidget';
 
 // Simulated Instagram posts data
 const instagramPosts = [
@@ -66,17 +67,9 @@ export const SocialProofSection = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="inline-flex items-center gap-4 px-8 py-4 glass-card"
+            className="inline-block"
           >
-            <Instagram className="text-gold" size={28} />
-            <div className="text-left">
-              <p className="font-display text-3xl font-bold text-foreground">
-                <AnimatedCounter target={125000} />+
-              </p>
-              <p className="text-xs uppercase tracking-luxury text-muted-foreground">
-                Instagram Followers
-              </p>
-            </div>
+            <InstagramFollowerWidget showUsername={true} />
           </motion.div>
         </motion.div>
 

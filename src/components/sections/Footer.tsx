@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Youtube, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const quickLinks = [
-  { label: 'Home', href: '#' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Bandhan', href: '/bandhan' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const services = [
@@ -73,12 +75,12 @@ export const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-body text-sm hover:text-gold-light transition-colors duration-300"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
