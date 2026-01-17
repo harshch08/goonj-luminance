@@ -10,6 +10,8 @@ const quickLinks = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Bandhan', href: '/bandhan' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
 ];
 
 const services = [
@@ -147,21 +149,28 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
                 <div className="text-body text-sm">
-                  <div>CEO: Mr. Ayush Gupta</div>
-                  <div>Personal: +91 9760813704</div>
-                  <div>Office: +91 9897642145</div>
+                  <div className="border-b border-gold/50 pb-1 mb-2">
+                    <span className="text-gold font-medium">Mr. Ayush Gupta - CEO</span>
+                  </div>
+                  <div>Personal - +91 9760813704</div>
+                  <div>Office - +91 9897642145</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
                 <div className="text-body text-sm">
-                  <div>Manager: Ms. Sapna Das</div>
+                  <div className="border-b border-gold/50 pb-1 mb-2">
+                    <span className="text-gold font-medium">Ms. Sapna Das - Manager</span>
+                  </div>
                   <div>+91 8923192218</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-body text-sm">goonjentertainment3@gmail.com</span>
+                <div className="text-body text-sm">
+                  <div>goonjentertainment3@gmail.com</div>
+                  <div>ceo@goonjentertainment.com</div>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-1 flex-shrink-0" />
@@ -169,7 +178,12 @@ export const Footer = () => {
               </li>
             </ul>
             
-            <Button variant="gold" size="lg" className="w-full gap-2">
+            <Button 
+              variant="gold" 
+              size="lg" 
+              className="w-full gap-2"
+              onClick={() => window.open('https://wa.me/919897642145?text=Hi%20Goonj%20Entertainment!%20I%20would%20like%20to%20book%20your%20services%20for%20my%20event.', '_blank')}
+            >
               <MessageCircle size={16} />
               Book via WhatsApp
             </Button>
@@ -181,19 +195,19 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-xs text-muted-foreground">
-                © 2025 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
+                © 2026 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
               </p>
               <p className="text-xs text-muted-foreground">
                 MSME: UDYAM-UK-05-0097096
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <Link to="/privacy-policy" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>

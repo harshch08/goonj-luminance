@@ -20,6 +20,7 @@ const slides = [
     subtitle: 'Experience the Power of Live Performance',
     description: 'World-class musicians. Unforgettable nights.',
     type: 'regular',
+    serviceSlug: 'live-music',
   },
   {
     id: 2,
@@ -28,6 +29,7 @@ const slides = [
     subtitle: 'Where Elegance Meets Entertainment',
     description: 'Corporate galas & exclusive celebrations.',
     type: 'regular',
+    serviceSlug: 'events',
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const slides = [
     subtitle: 'Masters of Musical Expression',
     description: 'Curated ensemble of virtuoso performers.',
     type: 'regular',
+    serviceSlug: 'instrumentalists',
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ const slides = [
     subtitle: 'Star-Studded Performances',
     description: 'Bringing icons to your stage.',
     type: 'regular',
+    serviceSlug: 'celebrity',
   },
   {
     id: 5,
@@ -52,6 +56,7 @@ const slides = [
     subtitle: 'Discover Raw Talent',
     description: 'Intimate nights of emerging artistry.',
     type: 'regular',
+    serviceSlug: 'openmic',
   },
   {
     id: 6,
@@ -60,6 +65,7 @@ const slides = [
     subtitle: 'Your Stage Awaits',
     description: 'Upscale entertainment experiences.',
     type: 'regular',
+    serviceSlug: 'karaoke',
   },
   {
     id: 7,
@@ -68,6 +74,7 @@ const slides = [
     subtitle: 'Celebrating Sacred Unions',
     description: 'Luxury wedding & cultural events.',
     type: 'regular',
+    serviceSlug: 'wedding',
   },
   {
     id: 8,
@@ -132,20 +139,20 @@ export const HeroSlider = () => {
   }, [nextSlide]);
 
   const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
+    enter: {
       opacity: 0,
-    }),
+      scale: 1.05,
+    },
     center: {
       zIndex: 1,
-      x: 0,
       opacity: 1,
+      scale: 1,
     },
-    exit: (direction: number) => ({
+    exit: {
       zIndex: 0,
-      x: direction < 0 ? '100%' : '-100%',
       opacity: 0,
-    }),
+      scale: 0.95,
+    },
   };
 
   const slide = slides[currentSlide];
@@ -153,15 +160,19 @@ export const HeroSlider = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden film-grain">
       {/* Background Image */}
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide}
-          custom={direction}
           variants={slideVariants}
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ duration: 0.8, ease: [0.45, 0, 0.55, 1] }}
+          transition={{ 
+            duration: 1.2, 
+            ease: [0.25, 0.46, 0.45, 0.94],
+            opacity: { duration: 0.8 },
+            scale: { duration: 1.2 }
+          }}
           className="absolute inset-0"
         >
           <div
@@ -177,10 +188,14 @@ export const HeroSlider = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 0.3,
+              ease: [0.25, 0.46, 0.45, 0.94]
+            }}
             className="max-w-7xl w-full mx-auto"
           >
             {slide.type === 'artists' ? (
@@ -364,10 +379,18 @@ export const HeroSlider = () => {
                   transition={{ delay: 0.6 }}
                   className="flex flex-wrap gap-4"
                 >
-                  <Button variant="heroFilled" size="xl">
+                  <Button 
+                    variant="heroFilled" 
+                    size="xl"
+                    onClick={() => navigate(`/services/${slide.serviceSlug}`)}
+                  >
                     Book Your Event
                   </Button>
-                  <Button variant="hero" size="xl">
+                  <Button 
+                    variant="hero" 
+                    size="xl"
+                    onClick={() => navigate('/services')}
+                  >
                     Explore Experiences
                   </Button>
                 </motion.div>

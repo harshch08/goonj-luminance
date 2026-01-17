@@ -16,6 +16,7 @@ import {
 interface InquiryFormProps {
   serviceType?: string;
   compact?: boolean;
+  hideEventType?: boolean;
 }
 
 // Service-specific options mapping - using exact options from ServiceDetail page
@@ -104,7 +105,7 @@ const allServices = [
   'Stage Setup & Lighting / Sound'
 ];
 
-export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) => {
+export const InquiryForm = ({ serviceType, compact = false, hideEventType = false }: InquiryFormProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -144,10 +145,10 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
     e.preventDefault();
     
     // Validate required fields
-    if (!formData.name || !formData.phone || !formData.eventType) {
+    if (!formData.name || !formData.phone || (!formData.eventType && !hideEventType)) {
       toast({
         title: "Missing Required Fields",
-        description: "Please fill in Name, Mobile, and Event Type.",
+        description: hideEventType ? "Please fill in Name and Mobile." : "Please fill in Name, Mobile, and Event Type.",
         variant: "destructive",
       });
       return;
@@ -161,7 +162,7 @@ export const InquiryForm = ({ serviceType, compact = false }: InquiryFormProps) 
 
 *Name:* ${formData.name}
 *Mobile:* ${formData.phone}
-*Event Type:* ${formData.eventType}
+${formData.eventType ? `*Event Type:* ${formData.eventType}` : ''}
 ${formData.specificService ? `*Specific Service:* ${formData.specificService}` : ''}
 ${formData.email ? `*Email:* ${formData.email}` : ''}
 ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
@@ -307,7 +308,7 @@ ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
           )}
           
           {/* Phone and Event Type Row */}
-          <div className={compact ? 'space-y-4' : `md:col-span-2 ${serviceType ? 'md:grid md:grid-cols-1' : 'md:grid md:grid-cols-2'} md:gap-6 md:space-y-0 space-y-4`}>
+          <div className={compact ? 'space-y-4' : `md:col-span-2 ${serviceType || hideEventType ? 'md:grid md:grid-cols-1' : 'md:grid md:grid-cols-2'} md:gap-6 md:space-y-0 space-y-4`}>
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
                 Mobile Number *
@@ -321,7 +322,7 @@ ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
                 className="h-12 bg-background/50 border-border/30 focus:border-gold/50 focus:ring-gold/20 text-foreground placeholder:text-muted-foreground/60 transition-all duration-300 hover:border-gold/30"
               />
             </div>
-            {!compact && !serviceType && (
+            {!compact && !serviceType && !hideEventType && (
               <div className="space-y-2">
                 <label className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
                   Event Type *
@@ -350,7 +351,7 @@ ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
             )}
           </div>
           
-          {compact && !serviceType && (
+          {compact && !serviceType && !hideEventType && (
             <div className="space-y-2">
               <label className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
                 Event Type *

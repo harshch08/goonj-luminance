@@ -8,18 +8,18 @@ import { Button } from '@/components/ui/button';
 const contactInfo = [
   {
     icon: Phone,
-    title: 'CEO - Mr. Ayush Gupta',
-    details: ['Personal: +91 9760813704', 'Office: +91 9897642145'],
+    title: 'Mr. Ayush Gupta - CEO',
+    details: ['Personal - +91 9760813704', 'Office - +91 9897642145'],
   },
   {
     icon: Phone,
-    title: 'Manager - Ms. Sapna Das',
+    title: 'Ms. Sapna Das - Manager',
     details: ['+91 8923192218'],
   },
   {
     icon: Mail,
     title: 'Email',
-    details: ['goonjentertainment3@gmail.com'],
+    details: ['goonjentertainment3@gmail.com', 'ceo@goonjentertainment.com'],
   },
   {
     icon: MapPin,
@@ -57,8 +57,8 @@ const Contact = () => {
                 <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
                   <info.icon size={24} className="text-gold-light" />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-3">
-                  {info.title}
+                <h3 className="font-display text-lg font-semibold text-foreground mb-3 border-b border-gold/50 pb-2">
+                  <span className="text-gold">{info.title}</span>
                 </h3>
                 {info.details.map((detail, i) => (
                   <p key={i} className="text-body text-sm">{detail}</p>
@@ -109,7 +109,7 @@ const Contact = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <InquiryForm />
+              <InquiryForm compact hideEventType />
             </motion.div>
           </div>
         </div>
@@ -139,7 +139,7 @@ const Contact = () => {
                 <MapPin size={48} className="text-gold-light mx-auto mb-4" />
                 <p className="text-body">Map integration coming soon</p>
                 <p className="text-muted-foreground text-sm mt-2">
-                  123 Entertainment Avenue, Mumbai, Maharashtra 400001
+                  78/2 Chukhuwala Behind GPO, Near Madhav Niwas, Dehradun, Uttarakhand 248001
                 </p>
               </div>
             </div>
