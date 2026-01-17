@@ -89,7 +89,7 @@ const slides = [
         genre: 'Hip-Hop & Rap',
         followers: '12M+ Followers',
         achievements: ['Chart-topping rapper', 'Bollywood Collaborations'],
-        image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?w=800&h=1000&fit=crop&crop=face',
+        image: '/badshah.png',
         available: true,
       },
       {
@@ -97,7 +97,7 @@ const slides = [
         genre: 'Electronic & EDM',
         followers: '2M+ Followers',
         achievements: ['International DJ', 'Award-Winning Producer'],
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=1000&fit=crop&crop=face',
+        image: '/paradox.png',
         available: true,
       },
       {
@@ -105,7 +105,7 @@ const slides = [
         genre: 'Hip-Hop & Freestyle',
         followers: '1.5M+ Followers',
         achievements: ['MTV Hustle Winner', 'Viral Performances'],
-        image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&h=1000&fit=crop&crop=face',
+        image: '/mcsquare.png',
         available: true,
       },
     ],

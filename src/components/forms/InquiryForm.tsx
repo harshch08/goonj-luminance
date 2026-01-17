@@ -88,6 +88,24 @@ const serviceOptions: Record<string, string[]> = {
     'LED Walls',
     'Sound Systems',
     'Lighting Effects'
+  ],
+  'Artist Booking': [
+    'Khullar G',
+    'Kamakshi',
+    'Ananya Mishra',
+    'Priyanka Mehar',
+    'Sid K',
+    'Vijay Jammer',
+    'Yashraj',
+    'Khushboo Grewal',
+    'Sandeep Batraa',
+    'Charu Semwal',
+    'Jyotica Tangri',
+    'Usha Uthup',
+    'Paradox',
+    'MC Square',
+    'Shaarib & Toshi',
+    'Badshah'
   ]
 };
 
@@ -163,7 +181,7 @@ export const InquiryForm = ({ serviceType, compact = false, hideEventType = fals
 *Name:* ${formData.name}
 *Mobile:* ${formData.phone}
 ${formData.eventType ? `*Event Type:* ${formData.eventType}` : ''}
-${formData.specificService ? `*Specific Service:* ${formData.specificService}` : ''}
+${formData.specificService ? `*${formData.eventType === 'Artist Booking' ? 'Artist Requested' : 'Specific Service'}:* ${formData.specificService}` : ''}
 ${formData.email ? `*Email:* ${formData.email}` : ''}
 ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
     `.trim();
@@ -383,14 +401,18 @@ ${formData.message ? `\n*Message:*\n${formData.message}` : ''}
           {currentServiceOptions.length > 0 && (
             <div className={`space-y-2 ${compact ? '' : 'md:col-span-2'}`}>
               <label className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
-                Specific Service
+                {formData.eventType === 'Artist Booking' ? 'Select Artist' : 'Specific Service'}
               </label>
               <Select
                 value={formData.specificService}
                 onValueChange={(value) => handleSelectChange(value, 'specificService')}
               >
                 <SelectTrigger className="h-12 bg-background/50 border-border/30 focus:border-gold/50 focus:ring-gold/20 text-foreground transition-all duration-300 hover:border-gold/30">
-                  <SelectValue placeholder={`Choose from ${formData.eventType} options`} />
+                  <SelectValue placeholder={
+                    formData.eventType === 'Artist Booking' 
+                      ? 'Choose an artist to book' 
+                      : `Choose from ${formData.eventType} options`
+                  } />
                 </SelectTrigger>
                 <SelectContent className="bg-background/95 backdrop-blur-md border-border/50">
                   {currentServiceOptions.map((option) => (

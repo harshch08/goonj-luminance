@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Music, Calendar, Guitar, Star, Mic, MicVocal, Heart } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const categories = [
   { label: 'Live Music', icon: Music, href: '/services/live-music' },
@@ -12,18 +13,20 @@ const categories = [
   { label: 'Bandhan', icon: Heart, href: '/bandhan' },
 ];
 
-export const CategoryNav = () => {
+export const BandhanCategoryNav = () => {
   const location = useLocation();
-  
-  // Check if we're on a Bandhan page
-  const isBandhanPage = location.pathname === '/bandhan' || 
-    location.pathname.startsWith('/services/destination-weddings') ||
-    location.pathname.startsWith('/services/catering') ||
-    location.pathname.startsWith('/services/photography') ||
-    location.pathname.startsWith('/services/stage-setup');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   return (
-    <div className={`sticky top-20 z-40 ${isBandhanPage ? 'bg-transparent' : 'bg-transparent backdrop-blur-sm'} border-b ${isBandhanPage ? 'border-white/20' : 'border-border/20'}`}>
+    <div className="sticky top-20 z-40 bg-white border-b border-gray-200/50">
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center justify-between py-3 overflow-hidden">
           {categories.map((category, index) => {
@@ -34,14 +37,23 @@ export const CategoryNav = () => {
                   to={category.href}
                   className={`flex items-center justify-center gap-1.5 px-2 py-2 text-[10px] md:text-xs uppercase tracking-wide transition-all duration-300 whitespace-nowrap group ${
                     isActive 
-                      ? (isBandhanPage ? 'text-yellow-300' : 'text-gold-light')
-                      : (isBandhanPage ? 'text-white/80 hover:text-white' : 'text-muted-foreground hover:text-gold-light')
+                      ? 'text-yellow-600'
+                      : 'text-gray-600 hover:text-gray-800'
                   }`}
                 >
-                  <category.icon size={12} className={`${isActive ? (isBandhanPage ? 'text-yellow-300' : 'text-gold') : (isBandhanPage ? 'group-hover:text-white' : 'group-hover:text-gold')} transition-colors`} />
+                  <category.icon 
+                    size={12} 
+                    className={`transition-colors ${
+                      isActive 
+                        ? 'text-yellow-600'
+                        : 'group-hover:text-gray-800'
+                    }`} 
+                  />
                   <span className="hidden sm:inline">{category.label}</span>
                   <span className="sm:hidden">{category.label.split(' ')[0]}</span>
-                  <span className={`block h-px ${isBandhanPage ? 'bg-white' : 'bg-gold'} transition-all duration-300 ${isActive ? 'w-12' : 'w-0 group-hover:w-12'}`} />
+                  <span 
+                    className={`block h-px bg-yellow-600 transition-all duration-300 ${isActive ? 'w-12' : 'w-0 group-hover:w-12'}`} 
+                  />
                 </Link>
               </motion.div>
             );

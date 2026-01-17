@@ -168,9 +168,14 @@
 
 /* Bandhan Theme Body Styles */
 .bandhan-theme {
-  background-color: hsl(var(--background)) !important;
+  background: transparent !important;
   color: hsl(var(--foreground)) !important;
   font-family: 'Poppins', sans-serif !important;
+  transition: background-color 0.5s ease;
+}
+
+.bandhan-theme.scrolled {
+  background-color: hsl(var(--background)) !important;
 }
 
 .bandhan-theme * {
