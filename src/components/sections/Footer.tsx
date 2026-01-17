@@ -37,13 +37,33 @@ export const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-                {isBandhanPage ? 'BANDHAN' : 'GOONJ'}
-              </h3>
-              {!isBandhanPage && (
-                <p className="text-xs uppercase tracking-luxury text-gold-light">
-                  Entertainment
-                </p>
+              {isBandhanPage ? (
+                <div className="flex items-center gap-3 mb-2">
+                  <img 
+                    src="/Bandhan Logo.png" 
+                    alt="Bandhan Logo" 
+                    className="h-20 w-auto"
+                  />
+                  <h3 className="font-display text-2xl font-bold text-foreground">
+                    BANDHAN
+                  </h3>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3 mb-2">
+                  <img 
+                    src="/GOONJ LOGO 2.png" 
+                    alt="Goonj Logo" 
+                    className="h-20 w-auto"
+                  />
+                  <div className="flex flex-col">
+                    <h3 className="font-display text-2xl font-bold text-foreground">
+                      GOONJ
+                    </h3>
+                    <p className="text-xs uppercase tracking-luxury text-gold-light">
+                      Entertainment
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
             <p className="text-body text-sm leading-relaxed mb-6">

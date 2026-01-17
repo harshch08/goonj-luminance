@@ -79,13 +79,33 @@ export const MainNav = () => {
           <nav className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to={isBandhanPage ? "/bandhan" : "/"} className="flex items-center gap-3">
-              <span className="font-display text-2xl font-bold tracking-wide text-foreground">
-                {isBandhanPage ? 'BANDHAN' : 'GOONJ'}
-              </span>
-              {!isBandhanPage && (
-                <span className="hidden sm:block text-xs text-muted-foreground tracking-luxury uppercase">
-                  Entertainment
-                </span>
+              {isBandhanPage ? (
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/Bandhan Logo.png" 
+                    alt="Bandhan Logo" 
+                    className="h-16 w-auto"
+                  />
+                  <span className="font-display text-2xl font-bold tracking-wide text-foreground">
+                    BANDHAN
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <img 
+                    src="/GOONJ LOGO 2.png" 
+                    alt="Goonj Logo" 
+                    className="h-16 w-auto"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-display text-2xl font-bold tracking-wide text-foreground">
+                      GOONJ
+                    </span>
+                    <span className="text-xs text-muted-foreground tracking-luxury uppercase">
+                      Entertainment
+                    </span>
+                  </div>
+                </div>
               )}
             </Link>
 
