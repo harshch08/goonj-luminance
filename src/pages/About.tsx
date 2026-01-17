@@ -6,10 +6,10 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHero } from '@/components/sections/PageHero';
 
 const stats = [
-  { number: '500+', label: 'Events Completed' },
-  { number: '200+', label: 'Artists Network' },
-  { number: '50+', label: 'Cities Covered' },
-  { number: '10+', label: 'Years Experience' },
+  { number: '50+', label: 'Events Completed' },
+  { number: '20+', label: 'Artists Network' },
+  { number: '2+', label: 'Cities Covered' },
+  { number: '1+', label: 'Years Experience' },
 ];
 
 const values = [
@@ -45,7 +45,7 @@ const About = () => {
     <PageLayout>
       <PageHero 
         title="About Us"
-        subtitle="Crafting unforgettable entertainment experiences since 2014"
+        subtitle="Crafting unforgettable entertainment experiences since 2025"
       />
 
       {/* Story Section */}

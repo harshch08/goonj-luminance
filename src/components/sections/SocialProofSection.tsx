@@ -83,7 +83,7 @@ export const SocialProofSection = () => {
           {instagramPosts.map((post, index) => (
             <motion.a
               key={post.id}
-              href="https://instagram.com"
+              href="https://www.instagram.com/goonj_entertainment__?igsh=MTZuYno5eHY5bjJ0"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ export const SocialProofSection = () => {
           className="flex items-center justify-center gap-6"
         >
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/goonj_entertainment__?igsh=MTZuYno5eHY5bjJ0"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-muted-foreground hover:text-gold-light transition-colors duration-300"

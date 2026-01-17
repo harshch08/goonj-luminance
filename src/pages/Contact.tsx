@@ -8,18 +8,23 @@ import { Button } from '@/components/ui/button';
 const contactInfo = [
   {
     icon: Phone,
-    title: 'Phone',
-    details: ['+91 98765 43210', '+91 98765 43211'],
+    title: 'CEO - Mr. Ayush Gupta',
+    details: ['Personal: +91 9760813704', 'Office: +91 9897642145'],
+  },
+  {
+    icon: Phone,
+    title: 'Manager - Ms. Sapna Das',
+    details: ['+91 8923192218'],
   },
   {
     icon: Mail,
     title: 'Email',
-    details: ['info@goonjentertainment.com', 'bookings@goonjentertainment.com'],
+    details: ['goonjentertainment3@gmail.com'],
   },
   {
     icon: MapPin,
     title: 'Office',
-    details: ['123 Entertainment Avenue', 'Mumbai, Maharashtra 400001'],
+    details: ['78/2 Chukhuwala Behind GPO', 'Near Madhav Niwas Dehradun', 'Uttarakhand 248001'],
   },
   {
     icon: Clock,
@@ -86,7 +91,7 @@ const Contact = () => {
               <div className="glass-card p-6 inline-block">
                 <p className="text-body text-sm mb-4">For quick inquiries, reach us on WhatsApp:</p>
                 <a 
-                  href="https://wa.me/919876543210" 
+                  href="https://wa.me/919897642145" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >

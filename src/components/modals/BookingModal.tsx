@@ -74,7 +74,7 @@ ${formData.additionalRequirements || 'None specified'}
 
     // Encode message for WhatsApp URL
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = '+919876543210'; // Replace with actual WhatsApp number
+    const whatsappNumber = '+919897642145';
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
     // Open WhatsApp
@@ -204,7 +204,7 @@ ${formData.additionalRequirements || 'None specified'}
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 bg-secondary/30 border border-border rounded-lg focus:outline-none focus:border-gold transition-colors text-foreground"
-                      placeholder="your.email@example.com"
+                      placeholder="goonjentertainment3@gmail.com"
                     />
                   </div>
                 </div>

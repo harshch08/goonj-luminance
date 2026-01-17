@@ -69,12 +69,12 @@ export const Footer = () => {
             <p className="text-body text-sm leading-relaxed mb-6">
               {isBandhanPage 
                 ? "Crafting timeless wedding experiences with love and precision. Luxury destination wedding planning celebrating culture and unforgettable moments."
-                : "India's premier event management and live entertainment company, crafting unforgettable experiences since 2015."
+                : "India's premier event management and live entertainment company, crafting unforgettable experiences since 2025."
               }
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/goonj_entertainment__?igsh=MTZuYno5eHY5bjJ0"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 border border-border/50 flex items-center justify-center text-muted-foreground hover:text-gold hover:border-gold/50 transition-all duration-300"
@@ -146,15 +146,26 @@ export const Footer = () => {
             <ul className="space-y-4 mb-6">
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-body text-sm">+91 98765 43210</span>
+                <div className="text-body text-sm">
+                  <div>CEO: Mr. Ayush Gupta</div>
+                  <div>Personal: +91 9760813704</div>
+                  <div>Office: +91 9897642145</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
+                <div className="text-body text-sm">
+                  <div>Manager: Ms. Sapna Das</div>
+                  <div>+91 8923192218</div>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-body text-sm">hello@goonjentertainment.com</span>
+                <span className="text-body text-sm">goonjentertainment3@gmail.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-body text-sm">Mumbai, Maharashtra, India</span>
+                <span className="text-body text-sm">78/2 Chukhuwala Behind GPO, Near Madhav Niwas, Dehradun, Uttarakhand 248001</span>
               </li>
             </ul>
             
@@ -170,7 +181,7 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-xs text-muted-foreground">
-                © 2024 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
+                © 2025 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
               </p>
               <p className="text-xs text-muted-foreground">
                 MSME: UDYAM-UK-05-0097096

@@ -81,7 +81,7 @@ export const MainNav = () => {
                   <img 
                     src="/Bandhan Logo.png" 
                     alt="Bandhan Logo" 
-                    className="h-16 w-auto"
+                    className="h-24 w-auto"
                   />
                   <span className="font-display text-2xl font-bold tracking-wide text-foreground">
                     BANDHAN
@@ -92,7 +92,7 @@ export const MainNav = () => {
                   <img 
                     src="/GOONJ LOGO 2.png" 
                     alt="Goonj Logo" 
-                    className="h-16 w-auto"
+                    className="h-24 w-auto"
                   />
                   <div className="flex flex-col">
                     <span className="font-display text-2xl font-bold tracking-wide text-foreground">
