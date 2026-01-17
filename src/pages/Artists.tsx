@@ -346,7 +346,7 @@ const Artists = () => {
                       {artist.name}
                     </h3>
                     
-                    <div className="flex items-center gap-2 mb-1">
+                    <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-xs uppercase tracking-luxury text-gold-light">
                         {artist.category}
                       </span>

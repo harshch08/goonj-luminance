@@ -65,10 +65,7 @@ export const MainNav = () => {
         )}
       </AnimatePresence>
 
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled 
             ? 'bg-background/95 backdrop-blur-md border-b border-border/50' 
@@ -101,7 +98,7 @@ export const MainNav = () => {
                     <span className="font-display text-2xl font-bold tracking-wide text-foreground">
                       GOONJ
                     </span>
-                    <span className="text-xs text-muted-foreground tracking-luxury uppercase">
+                    <span className="text-xs text-gold-light tracking-luxury uppercase">
                       Entertainment
                     </span>
                   </div>
@@ -160,8 +157,8 @@ export const MainNav = () => {
               className="lg:hidden bg-background/98 backdrop-blur-xl border-t border-border/50"
             >
               <div className="container mx-auto px-6 py-8 flex flex-col gap-6">
-                {navLinks.map((link, index) => (
-                  <motion.div key={link.label}>
+                {navLinks.map((link) => (
+                  <div key={link.label}>
                     <Link
                       to={link.href}
                       className={`text-lg transition-colors ${
@@ -171,15 +168,9 @@ export const MainNav = () => {
                       }`}
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <motion.span
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        {link.label}
-                      </motion.span>
+                      {link.label}
                     </Link>
-                  </motion.div>
+                  </div>
                 ))}
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button variant="heroFilled" size="lg" className="mt-4 w-full">
@@ -190,7 +181,7 @@ export const MainNav = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
     </>
   );
 };
