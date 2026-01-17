@@ -16,63 +16,163 @@ import heroKaraoke from '@/assets/hero-karaoke.jpg';
 const featuredArtists = [
   {
     id: 1,
-    name: 'Rahul Sharma',
-    category: 'Vocalist',
-    genre: 'Bollywood & Classical',
+    name: 'Khullar G',
+    category: 'Singer & Rapper',
+    genre: 'Punjabi Rapper & Singer',
     image: heroLiveMusic,
-    bio: 'Award-winning vocalist with 15+ years of experience. Specializes in Bollywood hits and classical fusion.',
-    performances: '500+',
-    rating: 4.9,
-  },
-  {
-    id: 2,
-    name: 'The Groove Collective',
-    category: 'Band',
-    genre: 'Rock & Pop',
-    image: heroEvents,
-    bio: 'High-energy band known for electrifying performances. Perfect for corporate events and weddings.',
-    performances: '300+',
+    bio: 'Dynamic Punjabi rapper and singer known for his energetic performances and contemporary style. Brings the perfect blend of traditional Punjabi music with modern rap elements.',
+    performances: '200+',
     rating: 4.8,
   },
   {
+    id: 2,
+    name: 'Kamakshi',
+    category: 'Singer',
+    genre: 'Bollywood & Punjabi',
+    image: heroEvents,
+    bio: 'Versatile vocalist specializing in Bollywood and Punjabi music. Known for her soulful voice and captivating stage presence that mesmerizes audiences.',
+    performances: '300+',
+    rating: 4.9,
+  },
+  {
     id: 3,
-    name: 'DJ Arjun',
-    category: 'DJ',
-    genre: 'EDM & Bollywood',
+    name: 'Ananya Mishra',
+    category: 'Singer & Performer',
+    genre: 'Multi-Genre Performer',
     image: heroInstrumentalists,
-    bio: 'Top-rated DJ specializing in EDM and Bollywood remixes. Known for reading the crowd perfectly.',
+    bio: 'Talented singer and performer leading a 4-artist ensemble. Delivers powerful performances across multiple genres with exceptional vocal range and stage charisma.',
+    performances: '250+',
+    rating: 4.7,
+  },
+  {
+    id: 4,
+    name: 'Priyanka Mehar',
+    category: 'Singer',
+    genre: 'Folk & Bollywood',
+    image: heroCelebrity,
+    bio: 'Accomplished folk and Bollywood singer with deep roots in traditional Indian music. Her performances beautifully blend classical folk traditions with contemporary Bollywood hits.',
+    performances: '350+',
+    rating: 4.8,
+  },
+  {
+    id: 5,
+    name: 'Sid K',
+    category: 'Singer',
+    genre: 'Punjabi & Bollywood',
+    image: heroOpenmic,
+    bio: 'Popular Punjabi and Bollywood singer known for his versatile voice and crowd-pleasing performances. Brings high energy and authentic musical experience to every event.',
     performances: '400+',
     rating: 4.9,
   },
   {
-    id: 4,
-    name: 'Priya Mehta',
-    category: 'Celebrity Singer',
-    genre: 'Playback & Live',
-    image: heroCelebrity,
-    bio: 'Renowned playback singer with multiple hit songs. Available for exclusive performances.',
-    performances: '200+',
-    rating: 5.0,
+    id: 6,
+    name: 'Vijay Jammer',
+    category: 'Singer',
+    genre: 'Sufi & Bollywood',
+    image: heroKaraoke,
+    bio: 'Soulful Sufi and Bollywood singer with a mesmerizing voice that touches hearts. Specializes in creating intimate, spiritual musical experiences through his performances.',
+    performances: '300+',
+    rating: 4.8,
   },
   {
-    id: 5,
-    name: 'Tabla Maestro Vikram',
-    category: 'Instrumentalist',
-    genre: 'Classical & Fusion',
-    image: heroOpenmic,
-    bio: 'Master tabla player trained in classical tradition. Creates magical fusion performances.',
-    performances: '600+',
+    id: 7,
+    name: 'Yashraj',
+    category: 'Rapper',
+    genre: 'Hip-Hop & Rap',
+    image: heroLiveMusic,
+    bio: 'Rising star in the Indian rap scene known for his lyrical prowess and dynamic stage presence. Delivers high-energy performances that resonate with young audiences.',
+    performances: '150+',
+    rating: 4.7,
+  },
+  {
+    id: 8,
+    name: 'Khushboo Grewal',
+    category: 'Singer',
+    genre: 'Bollywood Singer',
+    image: heroEvents,
+    bio: 'Renowned Bollywood playback singer with numerous hit songs to her credit. Her melodious voice and professional stage presence make her a favorite for premium events.',
+    performances: '500+',
     rating: 4.9,
   },
   {
-    id: 6,
-    name: 'Amit Kumar',
-    category: 'Comedian',
-    genre: 'Stand-up Comedy',
+    id: 9,
+    name: 'Sandeep Batraa',
+    category: 'Singer & Performer',
+    genre: 'Bollywood Singer & Performer',
+    image: heroInstrumentalists,
+    bio: 'Versatile Bollywood singer and performer with extensive experience in live entertainment. Known for his engaging performances and ability to connect with diverse audiences.',
+    performances: '600+',
+    rating: 4.8,
+  },
+  {
+    id: 10,
+    name: 'Charu Semwal',
+    category: 'Singer & Performer',
+    genre: 'Bollywood Singer & Performer',
+    image: heroCelebrity,
+    bio: 'Accomplished Bollywood singer and performer available both as solo artist and with ensemble. Delivers captivating performances with professional excellence.',
+    performances: '450+',
+    rating: 4.9,
+  },
+  {
+    id: 11,
+    name: 'Jyotica Tangri',
+    category: 'Playback Singer',
+    genre: 'Bollywood Singer',
+    image: heroOpenmic,
+    bio: 'Popular Bollywood playback singer known for hit songs in major films. Her powerful voice and stage charisma make her performances unforgettable experiences.',
+    performances: '300+',
+    rating: 5.0,
+  },
+  {
+    id: 12,
+    name: 'Usha Uthup',
+    category: 'Legendary Singer',
+    genre: 'Traditional Indian Melodies',
     image: heroKaraoke,
-    bio: 'Popular stand-up comedian with sharp wit and clean humor. Perfect for corporate events.',
-    performances: '250+',
-    rating: 4.7,
+    bio: 'Iconic Indian singer and cultural legend known for her distinctive voice and timeless melodies. A true treasure of Indian music with decades of memorable performances.',
+    performances: '1000+',
+    rating: 5.0,
+  },
+  {
+    id: 13,
+    name: 'Paradox',
+    category: 'Music Group',
+    genre: 'Bollywood Mix',
+    image: heroLiveMusic,
+    bio: 'Dynamic music group specializing in Bollywood remixes and contemporary sounds. Known for their innovative approach to popular music and electrifying live performances.',
+    performances: '200+',
+    rating: 4.8,
+  },
+  {
+    id: 14,
+    name: 'MC Square',
+    category: 'Rapper',
+    genre: 'Hip-Hop Rapper',
+    image: heroEvents,
+    bio: 'Rising hip-hop sensation and winner of MTV Hustle. Known for his unique style, powerful lyrics, and ability to energize crowds with his dynamic rap performances.',
+    performances: '100+',
+    rating: 4.9,
+  },
+  {
+    id: 15,
+    name: 'Shaarib & Toshi',
+    category: 'Music Directors',
+    genre: 'Bollywood Music Directors & Performers',
+    image: heroInstrumentalists,
+    bio: 'Acclaimed Bollywood music director duo known for composing hit songs for major films. Available as 2-artist or 4-artist ensemble for exclusive performances.',
+    performances: '150+',
+    rating: 5.0,
+  },
+  {
+    id: 16,
+    name: 'Badshah',
+    category: 'Celebrity Artist',
+    genre: 'Bollywood Singer & Punjabi Rapper',
+    image: heroCelebrity,
+    bio: 'Bollywood superstar and one of India\'s most popular rappers. Known for chart-topping hits and electrifying performances that guarantee unforgettable entertainment experiences.',
+    performances: '500+',
+    rating: 5.0,
   },
 ];
 
@@ -185,7 +285,7 @@ const Artists = () => {
             <div className="section-divider" />
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredArtists.map((artist, index) => (
               <motion.div
                 key={artist.id}
@@ -253,19 +353,6 @@ const Artists = () => {
               </motion.div>
             ))}
           </div>
-
-          {/* View More Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Button variant="hero" size="lg">
-              View Full Artist Roster
-            </Button>
-          </motion.div>
         </div>
       </section>
 

@@ -148,9 +148,14 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-border/30">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground">
-              © 2024 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <p className="text-xs text-muted-foreground">
+                © 2024 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                MSME: UDYAM-UK-05-0097096
+              </p>
+            </div>
             <div className="flex items-center gap-6">
               <a href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                 Privacy Policy
