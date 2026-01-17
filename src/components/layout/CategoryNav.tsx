@@ -34,7 +34,7 @@ export const CategoryNav = () => {
                   <category.icon size={12} className={isActive ? 'text-gold' : 'group-hover:text-gold transition-colors'} />
                   <span className="hidden sm:inline">{category.label}</span>
                   <span className="sm:hidden">{category.label.split(' ')[0]}</span>
-                  <span className={`block h-px bg-gold transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  <span className={`block h-px bg-gold transition-all duration-300 ${isActive ? 'w-12' : 'w-0 group-hover:w-12'}`} />
                 </Link>
               </motion.div>
             );

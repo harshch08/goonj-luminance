@@ -18,9 +18,9 @@ const Index = () => {
         <HeroSlider />
         <IntroSection />
         <ServicesSection />
-        <SocialProofSection />
         <TestimonialsSection />
         <PartnersSection />
+        <SocialProofSection />
         <WhatsAppSection />
       </main>
       <Footer />
