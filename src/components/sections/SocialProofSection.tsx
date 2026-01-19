@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { Instagram, Facebook, ExternalLink } from 'lucide-react';
+import { Instagram, ExternalLink } from 'lucide-react';
 import { InstagramFollowerWidget } from './InstagramFollowerWidget';
 
 // Simulated Instagram posts data
@@ -120,15 +120,6 @@ export const SocialProofSection = () => {
           >
             <Instagram size={20} />
             <span className="text-sm">@goonjentertainment</span>
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-muted-foreground hover:text-gold-light transition-colors duration-300"
-          >
-            <Facebook size={20} />
-            <span className="text-sm">Goonj Entertainment</span>
           </a>
         </motion.div>
       </div>

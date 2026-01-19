@@ -18,6 +18,9 @@ export const MainNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   
+  // Check if we're on the homepage
+  const isHomePage = location.pathname === '/';
+  
   // Check if we're on a Bandhan page
   const isBandhanPage = location.pathname === '/bandhan' || 
     location.pathname.startsWith('/services/destination-weddings') ||
@@ -69,7 +72,9 @@ export const MainNav = () => {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isBandhanPage 
             ? (isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-200/50' : 'bg-transparent')
-            : (isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border/50' : 'bg-transparent')
+            : isHomePage 
+              ? 'bg-background/95 backdrop-blur-md border-b border-border/50'
+              : (isScrolled ? 'bg-background/95 backdrop-blur-md border-b border-border/50' : 'bg-transparent')
         }`}
         style={isBandhanPage && !isScrolled ? { backgroundColor: 'transparent !important' } : {}}
       >

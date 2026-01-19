@@ -4,11 +4,6 @@ import { useRef } from 'react';
 import { Star, Play, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Using placeholder images - you can replace these with actual artist images
-import heroLiveMusic from '@/assets/hero-live-music.jpg';
-import heroEvents from '@/assets/hero-events.jpg';
-import heroCelebrity from '@/assets/hero-celebrity.jpg';
-
 const topArtists = [
   {
     id: 1,
@@ -66,9 +61,6 @@ export const TopArtistsSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-xs uppercase tracking-luxury text-gold-light mb-4">
-            Featured Talent
-          </span>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
             Top Artists at Your Service
           </h2>
@@ -105,13 +97,6 @@ export const TopArtistsSection = () => {
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="w-16 h-16 rounded-full bg-gold/20 backdrop-blur-sm border border-gold/30 flex items-center justify-center">
                       <Play size={24} className="text-gold ml-1" />
-                    </div>
-                  </div>
-
-                  {/* Top Badge */}
-                  <div className="absolute top-4 right-4">
-                    <div className="px-3 py-1 bg-gold/20 backdrop-blur-sm rounded-full border border-gold/30">
-                      <span className="text-xs font-semibold text-gold-light">Featured</span>
                     </div>
                   </div>
                 </div>

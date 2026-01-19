@@ -19,8 +19,50 @@ const slides = [
     title: 'Live Music',
     subtitle: 'Experience the Power of Live Performance',
     description: 'World-class musicians. Unforgettable nights.',
-    type: 'regular',
+    type: 'artists',
     serviceSlug: 'live-music',
+    artists: [
+      {
+        name: 'Rahul',
+        genre: 'Western, Bollywood & Retro',
+        followers: 'Singer & Performer',
+        achievements: ['Versatile Artist', 'Multi-Genre Expert'],
+        image: '/Rahul_Thapa_Ryan.jpeg',
+        available: true,
+      },
+      {
+        name: 'Manisha',
+        genre: 'Bolly Mix',
+        followers: 'Singer & Performer',
+        achievements: ['Soulful Renditions', 'Dynamic Performances'],
+        image: '/manisha.jpeg',
+        available: true,
+      },
+      {
+        name: 'Shreya',
+        genre: 'Bolly Mix',
+        followers: 'Singer & Performer',
+        achievements: ['Melodious Voice', 'Contemporary Music'],
+        image: '/shreya.jpeg',
+        available: true,
+      },
+      {
+        name: 'Ranjan',
+        genre: 'Bolly Mix',
+        followers: 'Singer & Performer',
+        achievements: ['Traditional & Modern', 'Unique Blend'],
+        image: '/ranjan.jpeg',
+        available: true,
+      },
+      {
+        name: 'Abhishek',
+        genre: 'Bolly Mix',
+        followers: 'Singer & Performer',
+        achievements: ['Versatile Range', 'Engaging Performances'],
+        image: '/abhishek.jpeg',
+        available: true,
+      },
+    ],
   },
   {
     id: 2,
@@ -115,6 +157,7 @@ const slides = [
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const navigate = useNavigate();
 
   const nextSlide = useCallback(() => {
@@ -134,9 +177,11 @@ export const HeroSlider = () => {
 
   // Auto-advance slides
   useEffect(() => {
+    if (isPaused) return;
+    
     const interval = setInterval(nextSlide, 6000);
     return () => clearInterval(interval);
-  }, [nextSlide]);
+  }, [nextSlide, isPaused]);
 
   const slideVariants = {
     enter: {
@@ -208,26 +253,29 @@ export const HeroSlider = () => {
                   transition={{ delay: 0.3 }}
                   className="flex-1 max-w-2xl text-center lg:text-left"
                 >
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="inline-block text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-6 px-4 py-2 border border-gold/30 rounded-full bg-gold/10 backdrop-blur-sm"
-                  >
-                    ✨ Featured Talent
-                  </motion.span>
-                  
                   <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                     className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-tight"
                   >
-                    India's Premier
-                    <span className="block text-gold">Artists</span>
-                    <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
-                      At Your Service
-                    </span>
+                    {slide.serviceSlug === 'live-music' ? (
+                      <>
+                        Live Music
+                        <span className="block text-gold">Artists</span>
+                        <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
+                          At Your Service
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        India's Premier
+                        <span className="block text-gold">Artists</span>
+                        <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
+                          At Your Service
+                        </span>
+                      </>
+                    )}
                   </motion.h1>
                   
                   <motion.p
@@ -236,7 +284,10 @@ export const HeroSlider = () => {
                     transition={{ delay: 0.6 }}
                     className="text-lg md:text-xl text-body mb-10 max-w-lg leading-relaxed"
                   >
-                    From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances that will elevate your event.
+                    {slide.serviceSlug === 'live-music' 
+                      ? 'Experience electrifying live performances with our talented musicians. From soulful acoustic sessions to high-energy shows that create unforgettable moments.'
+                      : 'From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances that will elevate your event.'
+                    }
                   </motion.p>
 
                   <motion.div
@@ -277,69 +328,178 @@ export const HeroSlider = () => {
                   transition={{ delay: 0.5 }}
                   className="flex-1 flex justify-center lg:justify-end"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
-                    {slide.artists?.map((artist, index) => (
-                      <motion.div
-                        key={artist.name}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ 
-                          delay: 0.6 + index * 0.2,
-                          duration: 0.6,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }}
-                        className="relative group cursor-pointer"
-                        onClick={() => navigate('/artists')}
-                      >
-                        {/* Premium Artist Card */}
-                        <div className="relative w-80 h-[480px] bg-background border-2 border-gold/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden group-hover:border-gold/60 transition-all duration-500">
-                          
-                          {/* Artist Image Section */}
-                          <div className="relative h-80 overflow-hidden">
-                            <div
-                              className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                              style={{ backgroundImage: `url(${artist.image})` }}
-                            />
+                  <div className="flex flex-col gap-6 max-w-4xl">
+                    {/* First row - 3 artists */}
+                    <div className="flex gap-6 justify-center">
+                      {slide.artists?.slice(0, 3).map((artist, index) => (
+                        <motion.div
+                          key={artist.name}
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            delay: 0.6 + index * 0.1,
+                            duration: 0.6,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                          className="relative group cursor-pointer flex-shrink-0"
+                          onMouseEnter={() => setIsPaused(true)}
+                          onMouseLeave={() => setIsPaused(false)}
+                          onClick={() => {
+                            if (slide.serviceSlug === 'live-music') {
+                              navigate('/services/live-music');
+                              // Scroll to artists section after navigation
+                              setTimeout(() => {
+                                const artistsSection = document.querySelector('#our-artists');
+                                artistsSection?.scrollIntoView({ behavior: 'smooth' });
+                              }, 100);
+                            } else {
+                              navigate('/artists');
+                            }
+                          }}
+                        >
+                          {/* Compact Artist Card */}
+                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
                             
-                            {/* Elegant overlay gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                            {/* Artist Image Section */}
+                            <div className="relative h-48 overflow-hidden">
+                              <div
+                                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style={{ backgroundImage: `url(${artist.image})` }}
+                              />
+                              
+                              {/* Elegant overlay gradient */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                              
+                              {/* Hover play icon */}
+                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gold/30">
+                                  <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Artist Information Section */}
+                            <div className="relative h-24 p-4 bg-background/20 backdrop-blur-sm">
+                              <motion.h3
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8 + index * 0.05 }}
+                                className="font-display text-lg font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300 text-center"
+                              >
+                                {artist.name}
+                              </motion.h3>
+                              
+                              <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.9 + index * 0.05 }}
+                                className="text-xs text-white/80 font-medium uppercase tracking-wider text-center"
+                              >
+                                {artist.followers}
+                              </motion.p>
+                            </div>
+                            
+                            {/* Subtle hover effect */}
+                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                            
+                            {/* Premium corner accents */}
+                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-lg" />
+                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-lg" />
+                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-lg" />
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-lg" />
                           </div>
                           
-                          {/* Artist Information Section */}
-                          <div className="relative h-24 p-6 bg-background border-t border-gold/20">
-                            <motion.h3
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.8 + index * 0.1 }}
-                              className="font-display text-2xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors duration-300"
-                            >
-                              {artist.name}
-                            </motion.h3>
+                          {/* Elegant shadow enhancement on hover */}
+                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-2xl" />
+                        </motion.div>
+                      ))}
+                    </div>
+                    
+                    {/* Second row - 2 artists */}
+                    <div className="flex gap-6 justify-center">
+                      {slide.artists?.slice(3, 5).map((artist, index) => (
+                        <motion.div
+                          key={artist.name}
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            delay: 0.9 + index * 0.1,
+                            duration: 0.6,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                          className="relative group cursor-pointer flex-shrink-0"
+                          onMouseEnter={() => setIsPaused(true)}
+                          onMouseLeave={() => setIsPaused(false)}
+                          onClick={() => {
+                            if (slide.serviceSlug === 'live-music') {
+                              navigate('/services/live-music');
+                              // Scroll to artists section after navigation
+                              setTimeout(() => {
+                                const artistsSection = document.querySelector('#our-artists');
+                                artistsSection?.scrollIntoView({ behavior: 'smooth' });
+                              }, 100);
+                            } else {
+                              navigate('/artists');
+                            }
+                          }}
+                        >
+                          {/* Compact Artist Card */}
+                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
                             
-                            <motion.p
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.9 + index * 0.1 }}
-                              className="text-sm text-body/80 font-medium uppercase tracking-wider"
-                            >
-                              {artist.genre}
-                            </motion.p>
+                            {/* Artist Image Section */}
+                            <div className="relative h-48 overflow-hidden">
+                              <div
+                                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style={{ backgroundImage: `url(${artist.image})` }}
+                              />
+                              
+                              {/* Elegant overlay gradient */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                              
+                              {/* Hover play icon */}
+                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gold/30">
+                                  <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Artist Information Section */}
+                            <div className="relative h-24 p-4 bg-background/20 backdrop-blur-sm">
+                              <motion.h3
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1.1 + index * 0.05 }}
+                                className="font-display text-lg font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300 text-center"
+                              >
+                                {artist.name}
+                              </motion.h3>
+                              
+                              <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1.2 + index * 0.05 }}
+                                className="text-xs text-white/80 font-medium uppercase tracking-wider text-center"
+                              >
+                                {artist.followers}
+                              </motion.p>
+                            </div>
+                            
+                            {/* Subtle hover effect */}
+                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                            
+                            {/* Premium corner accents */}
+                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-lg" />
+                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-lg" />
+                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-lg" />
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-lg" />
                           </div>
                           
-                          {/* Subtle hover effect */}
-                          <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          
-                          {/* Premium corner accents */}
-                          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
-                        
-                        {/* Elegant shadow enhancement on hover */}
-                        <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-                      </motion.div>
-                    ))}
+                          {/* Elegant shadow enhancement on hover */}
+                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-2xl" />
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               </div>

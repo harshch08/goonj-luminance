@@ -5,6 +5,7 @@ import { ArrowLeft, CheckCircle, MessageCircle } from 'lucide-react';
 import { Music, Calendar, Guitar, Star, Mic, MicVocal, Heart } from 'lucide-react';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { PageHero } from '@/components/sections/PageHero';
+import { LiveMusicHero } from '@/components/sections/LiveMusicHero';
 import { InquiryForm } from '@/components/forms/InquiryForm';
 import { Button } from '@/components/ui/button';
 
@@ -208,11 +209,16 @@ const ServiceDetail = () => {
 
   return (
     <PageLayout>
-      <PageHero 
-        title={service.title}
-        subtitle={service.subtitle}
-        backgroundImage={service.image}
-      />
+      {/* Conditional Hero - Custom for Live Music, Regular for Others */}
+      {slug === 'live-music' ? (
+        <LiveMusicHero />
+      ) : (
+        <PageHero 
+          title={service.title}
+          subtitle={service.subtitle}
+          backgroundImage={service.image}
+        />
+      )}
 
       {/* Back Button */}
       <div className="container mx-auto px-6 lg:px-12 py-6">
@@ -251,6 +257,278 @@ const ServiceDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Our Artists Section - Only for Live Music */}
+      {slug === 'live-music' && (
+        <section id="our-artists" className="py-20 lg:py-28">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <span className="text-xs uppercase tracking-luxury text-gold-light mb-4 block">
+                Meet Our Talent
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
+                Our Artists
+              </h2>
+              <div className="section-divider" />
+            </motion.div>
+
+            {/* Solo Artists */}
+            <div className="mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Solo
+                </h3>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    name: 'Rahul',
+                    genre: 'Western, Bollywood & Retro',
+                    tag: 'Singer & Performer',
+                    bio: 'A versatile artist with a powerful voice, Rahul brings energy and emotion to every performance.',
+                    image: '/Rahul_Thapa_Ryan.jpeg'
+                  },
+                  {
+                    name: 'Shreya',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'With her melodious voice and captivating stage presence, Shreya specializes in contemporary Bollywood music.',
+                    image: '/shreya.jpeg'
+                  },
+                  {
+                    name: 'Manisha',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'Manisha\'s soulful renditions and dynamic performances make her a crowd favorite.',
+                    image: '/manisha.jpeg'
+                  },
+                  {
+                    name: 'Ranjan',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'A talented musician and vocalist, Ranjan brings a unique blend of traditional and modern sounds.',
+                    image: '/ranjan.jpeg'
+                  },
+                  {
+                    name: 'Abhishek',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'Known for his versatile vocal range and engaging performances, Abhishek connects with audiences.',
+                    image: '/abhishek.jpeg'
+                  },
+                  {
+                    name: 'Krish',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'Krish combines technical excellence with emotional depth, delivering memorable performances.',
+                    image: '/krish.jpeg'
+                  },
+                  {
+                    name: 'Ajay',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'A dynamic performer with a charismatic stage presence, Ajay specializes in high-energy performances.',
+                    image: '/Ajay.jpeg'
+                  }
+                ].map((artist, index) => (
+                  <motion.div
+                    key={artist.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="glass-card overflow-hidden group hover:border-gold/30 transition-all duration-500"
+                  >
+                    <div className="aspect-[3/4] bg-gradient-to-br from-gold/20 to-gold-light/20 relative overflow-hidden">
+                      <img
+                        src={artist.image}
+                        alt={artist.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="hidden absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/20 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="w-12 h-12 bg-gold/30 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <Music size={20} className="text-gold" />
+                          </div>
+                          <p className="text-gold font-medium text-sm">{artist.name}</p>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <span className="inline-block px-2 py-1 bg-gold/20 backdrop-blur-sm rounded text-xs text-gold-light mb-2">
+                          {artist.tag}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-display text-lg font-bold text-foreground mb-1">
+                        {artist.name}
+                      </h3>
+                      <p className="text-gold-light text-xs font-medium mb-2">
+                        {artist.genre}
+                      </p>
+                      <p className="text-body text-xs leading-relaxed mb-3">
+                        {artist.bio}
+                      </p>
+                      <Button 
+                        variant="heroFilled" 
+                        size="sm"
+                        onClick={() => {
+                          const message = `Hi! I would like to book ${artist.name} (${artist.tag}) for my event. Please provide more details about availability and pricing.`;
+                          const whatsappUrl = `https://wa.me/919897642145?text=${encodeURIComponent(message)}`;
+                          window.open(whatsappUrl, '_blank');
+                        }}
+                        className="w-full text-xs"
+                      >
+                        Book Now
+                      </Button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Duo Artists */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="text-center mb-12"
+              >
+                <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Duo
+                </h3>
+              </motion.div>
+
+              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    name: 'Rahul & Pianist',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'A perfect harmony of vocals and piano, this duo creates an intimate and sophisticated musical experience.',
+                    image: '/Rahul_Thapa_Ryan.jpeg'
+                  },
+                  {
+                    name: 'Ranjan & Ranjan Duo (Pianist)',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'This unique duo combines vocal excellence with masterful piano accompaniment.',
+                    image: '/ranjan duo.jpeg'
+                  },
+                  {
+                    name: 'Manisha & Guitarist',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'The combination of Manisha\'s melodious voice with skilled guitar work creates a captivating experience.',
+                    image: '/manisha.jpeg'
+                  },
+                  {
+                    name: 'Shreya & Guitarist',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'This dynamic duo blends contemporary vocals with guitar melodies for modern interpretations.',
+                    image: '/shreya.jpeg'
+                  },
+                  {
+                    name: 'Abhishek & Guitarist',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'A powerful combination of strong vocals and guitar expertise that engages and entertains crowds.',
+                    image: '/abhishek.jpeg'
+                  },
+                  {
+                    name: 'Krish & Pianist',
+                    genre: 'Bolly Mix',
+                    tag: 'Singer & Performer',
+                    bio: 'The elegant pairing of Krish\'s vocals with piano creates a refined musical experience.',
+                    image: '/krish.jpeg'
+                  }
+                ].map((artist, index) => (
+                  <motion.div
+                    key={artist.name}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="glass-card overflow-hidden group hover:border-gold/30 transition-all duration-500"
+                  >
+                    <div className="aspect-[3/4] bg-gradient-to-br from-gold/20 to-gold-light/20 relative overflow-hidden">
+                      <img
+                        src={artist.image}
+                        alt={artist.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="hidden absolute inset-0 bg-gradient-to-br from-gold/20 to-gold-light/20 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="w-12 h-12 bg-gold/30 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <Music size={20} className="text-gold" />
+                          </div>
+                          <p className="text-gold font-medium text-sm">{artist.name}</p>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                      <div className="absolute bottom-3 left-3 right-3">
+                        <span className="inline-block px-2 py-1 bg-gold/20 backdrop-blur-sm rounded text-xs text-gold-light mb-2">
+                          {artist.tag}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-display text-base font-bold text-foreground mb-1">
+                        {artist.name}
+                      </h3>
+                      <p className="text-gold-light text-xs font-medium mb-2">
+                        {artist.genre}
+                      </p>
+                      <p className="text-body text-xs leading-relaxed mb-3">
+                        {artist.bio}
+                      </p>
+                      <Button 
+                        variant="heroFilled" 
+                        size="sm"
+                        onClick={() => {
+                          const message = `Hi! I would like to book ${artist.name} (${artist.tag}) for my event. Please provide more details about availability and pricing.`;
+                          const whatsappUrl = `https://wa.me/919897642145?text=${encodeURIComponent(message)}`;
+                          window.open(whatsappUrl, '_blank');
+                        }}
+                        className="w-full text-xs"
+                      >
+                        Book Now
+                      </Button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Service Types */}
       <section className="py-20 lg:py-28 bg-secondary/30">
