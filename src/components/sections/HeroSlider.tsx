@@ -156,24 +156,20 @@ const slides = [
 
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const navigate = useNavigate();
 
   const nextSlide = useCallback(() => {
-    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % slides.length);
   }, []);
 
   const prevSlide = useCallback(() => {
-    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   }, []);
 
   const goToSlide = useCallback((index: number) => {
-    setDirection(index > currentSlide ? 1 : -1);
     setCurrentSlide(index);
-  }, [currentSlide]);
+  }, []);
 
   // Auto-advance slides
   useEffect(() => {
@@ -358,7 +354,7 @@ export const HeroSlider = () => {
                           }}
                         >
                           {/* Compact Artist Card */}
-                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
+                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
                             
                             {/* Artist Image Section */}
                             <div className="relative h-48 overflow-hidden">
@@ -372,7 +368,7 @@ export const HeroSlider = () => {
                               
                               {/* Hover play icon */}
                               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gold/30">
+                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm flex items-center justify-center border border-gold/30">
                                   <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
                                 </div>
                               </div>
@@ -400,17 +396,17 @@ export const HeroSlider = () => {
                             </div>
                             
                             {/* Subtle hover effect */}
-                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             
                             {/* Premium corner accents */}
-                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-lg" />
-                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-lg" />
-                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-lg" />
-                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-lg" />
+                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
                           
                           {/* Elegant shadow enhancement on hover */}
-                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-2xl" />
+                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                         </motion.div>
                       ))}
                     </div>
@@ -444,7 +440,7 @@ export const HeroSlider = () => {
                           }}
                         >
                           {/* Compact Artist Card */}
-                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
+                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
                             
                             {/* Artist Image Section */}
                             <div className="relative h-48 overflow-hidden">
@@ -458,7 +454,7 @@ export const HeroSlider = () => {
                               
                               {/* Hover play icon */}
                               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-gold/30">
+                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm flex items-center justify-center border border-gold/30">
                                   <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
                                 </div>
                               </div>
@@ -486,17 +482,17 @@ export const HeroSlider = () => {
                             </div>
                             
                             {/* Subtle hover effect */}
-                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             
                             {/* Premium corner accents */}
-                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-lg" />
-                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tr-lg" />
-                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-bl-lg" />
-                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-lg" />
+                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
                           
                           {/* Elegant shadow enhancement on hover */}
-                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-2xl" />
+                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                         </motion.div>
                       ))}
                     </div>
@@ -591,8 +587,6 @@ export const HeroSlider = () => {
           </button>
         </div>
       </div>
-
-
     </section>
   );
 };

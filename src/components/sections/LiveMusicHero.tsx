@@ -131,7 +131,7 @@ export const LiveMusicHero = () => {
                   const artistsSection = document.querySelector('#our-artists');
                   artistsSection?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="bg-gold hover:bg-gold-light text-background px-8 py-3 font-semibold transition-all duration-300 hover:scale-105"
+                className="bg-gold hover:bg-gold-light text-background px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
               >
                 Meet Our Artists
               </button>
@@ -140,7 +140,7 @@ export const LiveMusicHero = () => {
                   const formSection = document.getElementById('inquiry-form');
                   formSection?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 font-semibold transition-all duration-300"
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm px-8 py-3 rounded-lg font-semibold transition-all duration-300"
               >
                 Book Now
               </button>
