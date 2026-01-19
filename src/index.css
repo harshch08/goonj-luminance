@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Utility: hide scrollbars (used for mobile horizontal category filter) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 @layer base {
   :root {
     /* Core Luxury Dark Theme */

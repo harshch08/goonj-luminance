@@ -199,150 +199,264 @@ export const HeroSlider = () => {
             className="max-w-7xl w-full mx-auto"
           >
             {slide.type === 'artists' ? (
-              // Artists banner layout - enhanced design
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-16 h-full">
-                {/* Left side - Enhanced text content */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex-1 max-w-2xl text-center lg:text-left"
-                >
-                  <motion.span
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="inline-block text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-6 px-4 py-2 border border-gold/30 rounded-full bg-gold/10 backdrop-blur-sm"
-                  >
-                    ✨ Featured Talent
-                  </motion.span>
-                  
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-tight"
-                  >
-                    India's Premier
-                    <span className="block text-gold">Artists</span>
-                    <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
-                      At Your Service
-                    </span>
-                  </motion.h1>
-                  
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-lg md:text-xl text-body mb-10 max-w-lg leading-relaxed"
-                  >
-                    From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances that will elevate your event.
-                  </motion.p>
-
+              <>
+                {/* Mobile Layout - Only visible on small screens */}
+                <div className="lg:hidden w-full">
+                  {/* Mobile Title Section */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                    transition={{ delay: 0.3 }}
+                    className="text-center mb-8"
                   >
-                    <Button 
-                      variant="heroFilled" 
-                      size="xl"
-                      onClick={() => navigate('/artists')}
-                      className="group"
+                    <motion.span
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="inline-block text-xs uppercase tracking-[0.2em] text-gold font-semibold mb-4 px-3 py-1.5 border border-gold/30 rounded-full bg-gold/10 backdrop-blur-sm"
                     >
-                      View All Artists
-                      <motion.span
-                        className="ml-2 inline-block"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        →
-                      </motion.span>
-                    </Button>
-                    <Button 
-                      variant="hero" 
-                      size="xl"
-                      onClick={() => navigate('/contact')}
+                      ✨ Featured Talent
+                    </motion.span>
+                    
+                    <motion.h1
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="font-display text-3xl font-bold text-foreground mb-3 leading-tight"
                     >
-                      Book Now
-                    </Button>
-                  </motion.div>
-                </motion.div>
+                      India's Premier
+                      <span className="block text-gold">Artists</span>
+                      <span className="block text-xl font-normal text-body mt-1">
+                        At Your Service
+                      </span>
+                    </motion.h1>
+                    
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                      className="text-sm text-body/90 mb-6 px-2 leading-relaxed"
+                    >
+                      From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances.
+                    </motion.p>
 
-                {/* Right side - Premium artist display */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex-1 flex justify-center lg:justify-end"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl">
-                    {slide.artists?.map((artist, index) => (
-                      <motion.div
-                        key={artist.name}
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ 
-                          delay: 0.6 + index * 0.2,
-                          duration: 0.6,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }}
-                        className="relative group cursor-pointer"
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7 }}
+                      className="flex flex-col gap-3 px-4"
+                    >
+                      <Button 
+                        variant="heroFilled" 
+                        size="lg"
                         onClick={() => navigate('/artists')}
+                        className="w-full"
                       >
-                        {/* Premium Artist Card */}
-                        <div className="relative w-80 h-[480px] bg-background border-2 border-gold/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden group-hover:border-gold/60 transition-all duration-500">
-                          
-                          {/* Artist Image Section */}
-                          <div className="relative h-80 overflow-hidden">
-                            <div
-                              className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                              style={{ backgroundImage: `url(${artist.image})` }}
-                            />
+                        View All Artists
+                      </Button>
+                      <Button 
+                        variant="hero" 
+                        size="lg"
+                        onClick={() => navigate('/contact')}
+                        className="w-full"
+                      >
+                        Book Now
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Mobile Artist Cards - Horizontal Scroll */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="overflow-x-auto pb-4 -mx-4 px-4 no-scrollbar"
+                  >
+                    <div className="flex gap-4 min-w-max">
+                      {slide.artists?.map((artist, index) => (
+                        <motion.div
+                          key={artist.name}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ 
+                            delay: 0.9 + index * 0.1,
+                            duration: 0.5
+                          }}
+                          className="relative group cursor-pointer flex-shrink-0"
+                          onClick={() => navigate('/artists')}
+                        >
+                          {/* Compact Mobile Artist Card */}
+                          <div className="relative w-40 bg-background border border-gold/30 shadow-lg overflow-hidden rounded-lg">
+                            {/* Artist Image */}
+                            <div className="relative h-48 overflow-hidden">
+                              <div
+                                className="w-full h-full bg-cover bg-center"
+                                style={{ backgroundImage: `url(${artist.image})` }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                            </div>
                             
-                            {/* Elegant overlay gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                            {/* Artist Info */}
+                            <div className="p-3 bg-background">
+                              <h3 className="font-display text-base font-bold text-foreground mb-0.5">
+                                {artist.name}
+                              </h3>
+                              <p className="text-xs text-body/70 font-medium uppercase tracking-wide">
+                                {artist.genre}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Desktop Layout - Only visible on large screens (unchanged) */}
+                <div className="hidden lg:flex flex-row items-center justify-between gap-16 h-full w-full">
+                  {/* Left side - Enhanced text content */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex-1 max-w-2xl text-left"
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="inline-block text-sm uppercase tracking-[0.2em] text-gold font-semibold mb-6 px-4 py-2 border border-gold/30 rounded-full bg-gold/10 backdrop-blur-sm"
+                    >
+                      ✨ Featured Talent
+                    </motion.span>
+                    
+                    <motion.h1
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="font-display text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-tight"
+                    >
+                      India's Premier
+                      <span className="block text-gold">Artists</span>
+                      <span className="block text-4xl lg:text-5xl font-normal text-body mt-2">
+                        At Your Service
+                      </span>
+                    </motion.h1>
+                    
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                      className="text-lg md:text-xl text-body mb-10 max-w-lg leading-relaxed"
+                    >
+                      From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances that will elevate your event.
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7 }}
+                      className="flex flex-row gap-4 justify-start"
+                    >
+                      <Button 
+                        variant="heroFilled" 
+                        size="xl"
+                        onClick={() => navigate('/artists')}
+                        className="group"
+                      >
+                        View All Artists
+                        <motion.span
+                          className="ml-2 inline-block"
+                          animate={{ x: [0, 5, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          →
+                        </motion.span>
+                      </Button>
+                      <Button 
+                        variant="hero" 
+                        size="xl"
+                        onClick={() => navigate('/contact')}
+                      >
+                        Book Now
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Right side - Premium artist display */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="flex-1 flex justify-end"
+                  >
+                    <div className="grid grid-cols-3 gap-10 max-w-6xl">
+                      {slide.artists?.map((artist, index) => (
+                        <motion.div
+                          key={artist.name}
+                          initial={{ opacity: 0, y: 40 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ 
+                            delay: 0.6 + index * 0.2,
+                            duration: 0.6,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                          className="relative group cursor-pointer flex justify-center"
+                          onClick={() => navigate('/artists')}
+                        >
+                          {/* Premium Artist Card */}
+                          <div className="relative w-72 xl:w-80 h-[460px] bg-background border-2 border-gold/30 shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden group-hover:border-gold/60 transition-all duration-500">
+                            
+                            {/* Artist Image Section */}
+                            <div className="relative h-80 overflow-hidden">
+                              <div
+                                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style={{ backgroundImage: `url(${artist.image})` }}
+                              />
+                              
+                              {/* Elegant overlay gradient */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                            </div>
+                            
+                            {/* Artist Information Section */}
+                            <div className="relative h-24 p-6 bg-background border-t border-gold/20">
+                              <motion.h3
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8 + index * 0.1 }}
+                                className="font-display text-2xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors duration-300"
+                              >
+                                {artist.name}
+                              </motion.h3>
+                              
+                              <motion.p
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.9 + index * 0.1 }}
+                                className="text-sm text-body/80 font-medium uppercase tracking-wider"
+                              >
+                                {artist.genre}
+                              </motion.p>
+                            </div>
+                            
+                            {/* Subtle hover effect */}
+                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            
+                            {/* Premium corner accents */}
+                            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
                           
-                          {/* Artist Information Section */}
-                          <div className="relative h-24 p-6 bg-background border-t border-gold/20">
-                            <motion.h3
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.8 + index * 0.1 }}
-                              className="font-display text-2xl font-bold text-foreground mb-1 group-hover:text-gold transition-colors duration-300"
-                            >
-                              {artist.name}
-                            </motion.h3>
-                            
-                            <motion.p
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.9 + index * 0.1 }}
-                              className="text-sm text-body/80 font-medium uppercase tracking-wider"
-                            >
-                              {artist.genre}
-                            </motion.p>
-                          </div>
-                          
-                          {/* Subtle hover effect */}
-                          <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                          
-                          {/* Premium corner accents */}
-                          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
-                        
-                        {/* Elegant shadow enhancement on hover */}
-                        <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
+                          {/* Elegant shadow enhancement on hover */}
+                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+              </>
             ) : (
               // Regular slide layout
               <div className="max-w-4xl">
