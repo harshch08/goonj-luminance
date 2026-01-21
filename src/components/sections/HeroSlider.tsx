@@ -367,8 +367,8 @@ export const HeroSlider = () => {
                     transition={{ delay: 0.2 }}
                     className="flex-1 w-full max-w-2xl"
                   >
-                    {/* Mobile: Horizontal scroll, Desktop: Grid */}
-                    <div className="flex lg:grid lg:grid-cols-3 gap-3 lg:gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 px-4 lg:px-0 no-scrollbar">
+                    {/* Mobile: Horizontal scroll */}
+                    <div className="flex lg:hidden gap-3 overflow-x-auto pb-4 px-4 no-scrollbar">
                       {slide.artists?.map((artist, index) => (
                         <motion.div
                           key={artist.name}
@@ -385,10 +385,10 @@ export const HeroSlider = () => {
                           onClick={() => navigate('/artists')}
                         >
                           {/* Compact Artist Card */}
-                          <div className="relative w-32 h-44 sm:w-36 sm:h-48 lg:w-40 lg:h-52 bg-amber-50/20 backdrop-blur-md border border-amber-200/30 shadow-xl overflow-hidden group-hover:border-amber-400/60 transition-all duration-300 hover:scale-105">
+                          <div className="relative w-32 h-44 sm:w-36 sm:h-48 bg-amber-50/20 backdrop-blur-md border border-amber-200/30 shadow-xl overflow-hidden group-hover:border-amber-400/60 transition-all duration-300 hover:scale-105">
                             
                             {/* Artist Image */}
-                            <div className="relative h-24 sm:h-28 lg:h-32 overflow-hidden">
+                            <div className="relative h-24 sm:h-28 overflow-hidden">
                               <div
                                 className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                                 style={{ backgroundImage: `url(${artist.image})` }}
@@ -404,12 +404,12 @@ export const HeroSlider = () => {
                             </div>
                             
                             {/* Artist Info */}
-                            <div className="relative h-20 p-2 lg:p-3 bg-gradient-to-t from-amber-50/95 via-amber-50/90 to-amber-50/80 backdrop-blur-sm">
+                            <div className="relative h-20 p-2 bg-gradient-to-t from-amber-50/95 via-amber-50/90 to-amber-50/80 backdrop-blur-sm">
                               <motion.h3
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.35 + index * 0.02 }}
-                                className="font-display text-xs sm:text-sm lg:text-base font-bold text-amber-900 mb-1 group-hover:text-amber-600 transition-colors duration-300 text-center leading-tight"
+                                className="font-display text-xs sm:text-sm font-bold text-amber-900 mb-1 group-hover:text-amber-600 transition-colors duration-300 text-center leading-tight"
                               >
                                 {artist.name}
                               </motion.h3>
@@ -429,6 +429,137 @@ export const HeroSlider = () => {
                           </div>
                         </motion.div>
                       ))}
+                    </div>
+
+                    {/* Desktop: Custom Grid with centered bottom row */}
+                    <div className="hidden lg:block">
+                      {/* First row - 3 artists */}
+                      <div className="grid grid-cols-3 gap-4 mb-4">
+                        {slide.artists?.slice(0, 3).map((artist, index) => (
+                          <motion.div
+                            key={artist.name}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ 
+                              delay: 0.3 + index * 0.05,
+                              duration: 0.3,
+                              ease: "easeOut"
+                            }}
+                            className="relative group cursor-pointer"
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)}
+                            onClick={() => navigate('/artists')}
+                          >
+                            {/* Compact Artist Card */}
+                            <div className="relative w-40 h-52 bg-amber-50/20 backdrop-blur-md border border-amber-200/30 shadow-xl overflow-hidden group-hover:border-amber-400/60 transition-all duration-300 hover:scale-105">
+                              
+                              {/* Artist Image */}
+                              <div className="relative h-32 overflow-hidden">
+                                <div
+                                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                  style={{ backgroundImage: `url(${artist.image})` }}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent" />
+                                
+                                {/* Play icon */}
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  <div className="w-8 h-8 bg-amber-100/30 backdrop-blur-sm flex items-center justify-center border border-amber-400/40 rounded-full">
+                                    <div className="w-0 h-0 border-l-[5px] border-l-amber-600 border-y-[3px] border-y-transparent ml-0.5"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Artist Info */}
+                              <div className="relative h-20 p-3 bg-gradient-to-t from-amber-50/95 via-amber-50/90 to-amber-50/80 backdrop-blur-sm">
+                                <motion.h3
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.35 + index * 0.02 }}
+                                  className="font-display text-base font-bold text-amber-900 mb-1 group-hover:text-amber-600 transition-colors duration-300 text-center leading-tight"
+                                >
+                                  {artist.name}
+                                </motion.h3>
+                                
+                                <motion.p
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.4 + index * 0.02 }}
+                                  className="text-xs text-amber-700/80 font-medium text-center leading-tight"
+                                >
+                                  {artist.followers}
+                                </motion.p>
+                              </div>
+                              
+                              {/* Hover effect */}
+                              <div className="absolute inset-0 bg-amber-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                      
+                      {/* Second row - 2 artists centered */}
+                      <div className="flex justify-center gap-4">
+                        {slide.artists?.slice(3, 5).map((artist, index) => (
+                          <motion.div
+                            key={artist.name}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ 
+                              delay: 0.3 + (index + 3) * 0.05,
+                              duration: 0.3,
+                              ease: "easeOut"
+                            }}
+                            className="relative group cursor-pointer"
+                            onMouseEnter={() => setIsPaused(true)}
+                            onMouseLeave={() => setIsPaused(false)}
+                            onClick={() => navigate('/artists')}
+                          >
+                            {/* Compact Artist Card */}
+                            <div className="relative w-40 h-52 bg-amber-50/20 backdrop-blur-md border border-amber-200/30 shadow-xl overflow-hidden group-hover:border-amber-400/60 transition-all duration-300 hover:scale-105">
+                              
+                              {/* Artist Image */}
+                              <div className="relative h-32 overflow-hidden">
+                                <div
+                                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                                  style={{ backgroundImage: `url(${artist.image})` }}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent" />
+                                
+                                {/* Play icon */}
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  <div className="w-8 h-8 bg-amber-100/30 backdrop-blur-sm flex items-center justify-center border border-amber-400/40 rounded-full">
+                                    <div className="w-0 h-0 border-l-[5px] border-l-amber-600 border-y-[3px] border-y-transparent ml-0.5"></div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              {/* Artist Info */}
+                              <div className="relative h-20 p-3 bg-gradient-to-t from-amber-50/95 via-amber-50/90 to-amber-50/80 backdrop-blur-sm">
+                                <motion.h3
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.35 + (index + 3) * 0.02 }}
+                                  className="font-display text-base font-bold text-amber-900 mb-1 group-hover:text-amber-600 transition-colors duration-300 text-center leading-tight"
+                                >
+                                  {artist.name}
+                                </motion.h3>
+                                
+                                <motion.p
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 0.4 + (index + 3) * 0.02 }}
+                                  className="text-xs text-amber-700/80 font-medium text-center leading-tight"
+                                >
+                                  {artist.followers}
+                                </motion.p>
+                              </div>
+                              
+                              {/* Hover effect */}
+                              <div className="absolute inset-0 bg-amber-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   </motion.div>
                 </div>
@@ -525,23 +656,6 @@ export const HeroSlider = () => {
             className="w-12 h-12 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
           >
             <ChevronRight size={20} className="group-hover:scale-110 transition-transform duration-200" />
-          </button>
-        </div>
-
-        {/* Mobile Navigation Arrows - Side positioned */}
-        <div className="lg:hidden">
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
-          >
-            <ChevronLeft size={16} className="group-hover:scale-110 transition-transform duration-200" />
-          </button>
-          
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
-          >
-            <ChevronRight size={16} className="group-hover:scale-110 transition-transform duration-200" />
           </button>
         </div>
       </div>

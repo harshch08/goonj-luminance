@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { Instagram, ExternalLink } from 'lucide-react';
-import { InstagramFollowerWidget } from './InstagramFollowerWidget';
 
 // Simulated Instagram posts data
 const instagramPosts = [
@@ -13,33 +12,6 @@ const instagramPosts = [
   { id: 5, likes: '4.5K', type: 'Celebrity' },
   { id: 6, likes: '1.9K', type: 'Karaoke' },
 ];
-
-const AnimatedCounter = ({ target, duration = 2 }: { target: number; duration?: number }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!isInView) return;
-    
-    let startTime: number;
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = (timestamp - startTime) / (duration * 1000);
-      
-      if (progress < 1) {
-        setCount(Math.floor(target * progress));
-        requestAnimationFrame(animate);
-      } else {
-        setCount(target);
-      }
-    };
-    
-    requestAnimationFrame(animate);
-  }, [isInView, target, duration]);
-
-  return <span ref={ref}>{count.toLocaleString()}</span>;
-};
 
 export const SocialProofSection = () => {
   const ref = useRef(null);
@@ -61,16 +33,6 @@ export const SocialProofSection = () => {
             Connect With Us
           </h2>
           <div className="section-divider mb-8" />
-
-          {/* Follower Count */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="inline-block"
-          >
-            <InstagramFollowerWidget showUsername={true} />
-          </motion.div>
         </motion.div>
 
         {/* Instagram Grid */}
@@ -119,7 +81,7 @@ export const SocialProofSection = () => {
             className="flex items-center gap-2 text-muted-foreground hover:text-gold-light transition-colors duration-300"
           >
             <Instagram size={20} />
-            <span className="text-sm">@goonjentertainment</span>
+            <span className="text-sm">@goonj_entertainment__</span>
           </a>
         </motion.div>
       </div>

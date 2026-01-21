@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { InstagramFollowerWidget } from '@/components/sections/InstagramFollowerWidget';
 
 export const IntroSection = () => {
   const ref = useRef(null);
@@ -58,20 +57,11 @@ export const IntroSection = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.7 }}
-            className="text-body leading-relaxed mb-8"
+            className="text-body leading-relaxed"
           >
             From intimate gatherings to grand celebrations, celebrity concerts 
             to corporate galas — we transform your vision into unforgettable reality.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8 }}
-            className="flex justify-center"
-          >
-            <InstagramFollowerWidget className="max-w-sm" />
-          </motion.div>
         </motion.div>
       </div>
     </section>
