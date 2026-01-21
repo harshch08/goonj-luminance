@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Music2, Users, Mic2, Star, Crown, Calendar, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Music2, Users, Star, Crown, Calendar, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const services = [
   {
@@ -38,39 +40,40 @@ const services = [
 
 export const ServicesSection = () => {
   const ref = useRef(null);
+  const navigate = useNavigate();
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+      transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
     },
   };
 
   return (
-    <section ref={ref} className="py-16 sm:py-24 lg:py-32 bg-secondary/30" id="services">
+    <section ref={ref} className="py-12 sm:py-16 lg:py-24 bg-secondary/30" id="services">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.4 }}
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <span className="inline-block text-xs uppercase tracking-luxury text-gold-light mb-4">
+          <span className="inline-block text-xs uppercase tracking-luxury text-gold-light mb-3 sm:mb-4">
             What We Offer
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 px-4">
             Why Choose Goonj
           </h2>
           <div className="section-divider" />
@@ -80,25 +83,60 @@ export const ServicesSection = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
         >
           {services.map((service, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group glass-card p-6 sm:p-8 hover:border-gold/30 transition-all duration-500"
+              className="group glass-card p-4 sm:p-6 lg:p-8 hover:border-gold/30 transition-all duration-300 rounded-xl"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gold/10 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-gold/20 group-hover:shadow-glow transition-all duration-500">
-                <service.icon size={22} className="text-gold-light sm:w-6 sm:h-6" />
+              {/* Icon Container - Mobile Optimized */}
+              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg bg-gold/10 flex items-center justify-center mb-3 sm:mb-4 lg:mb-6 group-hover:bg-gold/20 group-hover:shadow-glow transition-all duration-300">
+                <service.icon size={18} className="text-gold-light sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
-              <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3">
+              
+              {/* Title - Mobile Optimized */}
+              <h3 className="font-display text-base sm:text-lg lg:text-xl font-semibold text-foreground mb-2 sm:mb-3 leading-tight">
                 {service.title}
               </h3>
-              <p className="text-body text-sm leading-relaxed">
+              
+              {/* Description - Mobile Optimized */}
+              <p className="text-body text-xs sm:text-sm leading-relaxed">
                 {service.description}
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Mobile CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="text-center mt-8 sm:mt-12 lg:mt-16"
+        >
+          <p className="text-body text-sm sm:text-base mb-4 sm:mb-6 px-4">
+            Ready to create something extraordinary?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4">
+            <Button 
+              variant="heroFilled" 
+              size="lg"
+              onClick={() => navigate('/contact')}
+              className="w-full sm:w-auto text-sm sm:text-base"
+            >
+              Get Started
+            </Button>
+            <Button 
+              variant="hero" 
+              size="lg"
+              onClick={() => navigate('/services')}
+              className="w-full sm:w-auto text-sm sm:text-base"
+            >
+              View Services
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>

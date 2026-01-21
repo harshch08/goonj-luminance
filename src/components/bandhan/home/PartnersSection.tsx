@@ -30,23 +30,23 @@ const PartnersSection = () => {
         </div>
 
         {/* Scrolling Logos */}
-        <div className="relative">
-          {/* Gradient overlays for smooth edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10"></div>
+        <div className="relative -mx-4 overflow-hidden">
+          {/* Gradient overlays for smooth edges - properly positioned with stronger fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-r from-background via-background/90 via-background/60 to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 md:w-40 bg-gradient-to-l from-background via-background/90 via-background/60 to-transparent z-10"></div>
 
-          {/* Scrolling container */}
-          <div className="flex animate-scroll hover:pause-animation">
+          {/* Scrolling container with proper masking */}
+          <div className="flex animate-scroll hover:pause-animation pl-4 pr-4">
             {duplicatedPartners.map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
-                className="flex-shrink-0 mx-8 md:mx-12"
+                className="flex-shrink-0 mx-6 sm:mx-8 md:mx-12"
               >
-                <div className="w-32 h-32 md:w-40 md:h-40 flex items-center justify-center group">
+                <div className="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 flex items-center justify-center group">
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100"
+                    className="max-w-[85%] max-h-[85%] object-contain grayscale-0 sm:grayscale sm:group-hover:grayscale-0 transition-all duration-500 opacity-95 sm:opacity-70 sm:group-hover:opacity-100"
                   />
                 </div>
               </div>

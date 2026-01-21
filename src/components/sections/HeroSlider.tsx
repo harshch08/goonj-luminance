@@ -116,7 +116,7 @@ const slides = [
     subtitle: 'Celebrating Sacred Unions',
     description: 'Luxury wedding & cultural events.',
     type: 'regular',
-    serviceSlug: 'wedding',
+    serviceSlug: 'bandhan',
   },
   {
     id: 8,
@@ -135,19 +135,19 @@ const slides = [
         available: true,
       },
       {
+        name: 'Priyanka Meher',
+        genre: 'Bollywood & Pop',
+        followers: '5M+ Followers',
+        achievements: ['Versatile Singer', 'Award-Winning Artist'],
+        image: '/priyanka-meher.png',
+        available: true,
+      },
+      {
         name: 'Paradox',
         genre: 'Electronic & EDM',
         followers: '2M+ Followers',
         achievements: ['International DJ', 'Award-Winning Producer'],
         image: '/paradox.png',
-        available: true,
-      },
-      {
-        name: 'MC Square',
-        genre: 'Hip-Hop & Freestyle',
-        followers: '1.5M+ Followers',
-        achievements: ['MTV Hustle Winner', 'Viral Performances'],
-        image: '/mcsquare.png',
         available: true,
       },
     ],
@@ -157,6 +157,9 @@ const slides = [
 export const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [isSwipingActive, setIsSwipingActive] = useState(false);
   const navigate = useNavigate();
 
   const nextSlide = useCallback(() => {
@@ -171,6 +174,42 @@ export const HeroSlider = () => {
     setCurrentSlide(index);
   }, []);
 
+  // Swipe detection
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsPaused(true); // Pause auto-advance during touch
+    setIsSwipingActive(true);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    setIsSwipingActive(false);
+    
+    if (!touchStart || !touchEnd) {
+      setIsPaused(false);
+      return;
+    }
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+    
+    // Resume auto-advance after a delay
+    setTimeout(() => setIsPaused(false), 1000);
+  };
+
   // Auto-advance slides
   useEffect(() => {
     if (isPaused) return;
@@ -182,24 +221,26 @@ export const HeroSlider = () => {
   const slideVariants = {
     enter: {
       opacity: 0,
-      scale: 1.05,
     },
     center: {
       zIndex: 1,
       opacity: 1,
-      scale: 1,
     },
     exit: {
       zIndex: 0,
       opacity: 0,
-      scale: 0.95,
     },
   };
 
   const slide = slides[currentSlide];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden film-grain">
+    <section 
+      className="relative h-screen w-full overflow-hidden film-grain"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Background Image */}
       <AnimatePresence initial={false}>
         <motion.div
@@ -210,9 +251,7 @@ export const HeroSlider = () => {
           exit="exit"
           transition={{ 
             duration: 1.2, 
-            ease: [0.25, 0.46, 0.45, 0.94],
-            opacity: { duration: 0.8 },
-            scale: { duration: 1.2 }
+            ease: "easeInOut"
           }}
           className="absolute inset-0"
         >
@@ -225,248 +264,152 @@ export const HeroSlider = () => {
       </AnimatePresence>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 lg:px-8 h-full flex flex-col justify-center pt-24 lg:pt-32">
+      <div className="relative z-10 container mx-auto px-4 lg:px-8 h-full flex items-center justify-center py-20 lg:py-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -5 }}
             transition={{ 
-              duration: 0.8, 
-              delay: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94]
+              duration: 0.3, 
+              delay: 0.1,
+              ease: "easeOut"
             }}
-            className="max-w-7xl w-full mx-auto"
+            className="w-full max-w-7xl mx-auto"
           >
             {slide.type === 'artists' ? (
-              // Artists banner layout - enhanced design
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-16 h-full">
-                {/* Left side - Enhanced text content */}
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex-1 max-w-2xl text-center lg:text-left"
-                >
-                  <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8 leading-tight"
-                  >
-                    {slide.serviceSlug === 'live-music' ? (
-                      <>
-                        Live Music
-                        <span className="block text-gold">Artists</span>
-                        <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
-                          At Your Service
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        India's Premier
-                        <span className="block text-gold">Artists</span>
-                        <span className="block text-3xl md:text-4xl lg:text-5xl font-normal text-body mt-2">
-                          At Your Service
-                        </span>
-                      </>
-                    )}
-                  </motion.h1>
+              // Artists banner layout - mobile-first responsive design
+              <div className="flex flex-col items-center justify-center min-h-0 py-8 lg:py-0">
+                {/* Mobile: Stack everything vertically, Desktop: Side by side */}
+                <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
                   
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-lg md:text-xl text-body mb-10 max-w-lg leading-relaxed"
-                  >
-                    {slide.serviceSlug === 'live-music' 
-                      ? 'Experience electrifying live performances with our talented musicians. From soulful acoustic sessions to high-energy shows that create unforgettable moments.'
-                      : 'From chart-topping sensations to underground legends, book the most celebrated artists for unforgettable performances that will elevate your event.'
-                    }
-                  </motion.p>
-
+                  {/* Text Content */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                    transition={{ delay: 0.1 }}
+                    className="flex-1 text-left max-w-xl lg:max-w-2xl"
                   >
-                    <Button 
-                      variant="heroFilled" 
-                      size="xl"
-                      onClick={() => navigate('/artists')}
-                      className="group"
+                    <motion.h1
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                      className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-4 lg:mb-6 leading-tight"
                     >
-                      View All Artists
-                      <motion.span
-                        className="ml-2 inline-block"
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        →
-                      </motion.span>
-                    </Button>
-                    <Button 
-                      variant="hero" 
-                      size="xl"
-                      onClick={() => navigate('/contact')}
-                    >
-                      Book Now
-                    </Button>
-                  </motion.div>
-                </motion.div>
-
-                {/* Right side - Premium artist display */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex-1 flex justify-center lg:justify-end"
-                >
-                  <div className="flex flex-col gap-6 max-w-4xl">
-                    {/* First row - 3 artists */}
-                    <div className="flex gap-6 justify-center">
-                      {slide.artists?.slice(0, 3).map((artist, index) => (
-                        <motion.div
-                          key={artist.name}
-                          initial={{ opacity: 0, y: 40 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ 
-                            delay: 0.6 + index * 0.1,
-                            duration: 0.6,
-                            ease: [0.25, 0.46, 0.45, 0.94]
-                          }}
-                          className="relative group cursor-pointer flex-shrink-0"
-                          onMouseEnter={() => setIsPaused(true)}
-                          onMouseLeave={() => setIsPaused(false)}
-                          onClick={() => {
-                            if (slide.serviceSlug === 'live-music') {
-                              navigate('/services/live-music');
-                              // Scroll to artists section after navigation
-                              setTimeout(() => {
-                                const artistsSection = document.querySelector('#our-artists');
-                                artistsSection?.scrollIntoView({ behavior: 'smooth' });
-                              }, 100);
-                            } else {
-                              navigate('/artists');
-                            }
-                          }}
-                        >
-                          {/* Compact Artist Card */}
-                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
-                            
-                            {/* Artist Image Section */}
-                            <div className="relative h-48 overflow-hidden">
-                              <div
-                                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                                style={{ backgroundImage: `url(${artist.image})` }}
-                              />
-                              
-                              {/* Elegant overlay gradient */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                              
-                              {/* Hover play icon */}
-                              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm flex items-center justify-center border border-gold/30">
-                                  <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                            {/* Artist Information Section */}
-                            <div className="relative h-24 p-4 bg-background/20 backdrop-blur-sm">
-                              <motion.h3
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.8 + index * 0.05 }}
-                                className="font-display text-lg font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300 text-center"
-                              >
-                                {artist.name}
-                              </motion.h3>
-                              
-                              <motion.p
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.9 + index * 0.05 }}
-                                className="text-xs text-white/80 font-medium uppercase tracking-wider text-center"
-                              >
-                                {artist.followers}
-                              </motion.p>
-                            </div>
-                            
-                            {/* Subtle hover effect */}
-                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
-                            {/* Premium corner accents */}
-                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          </div>
-                          
-                          {/* Elegant shadow enhancement on hover */}
-                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-                        </motion.div>
-                      ))}
-                    </div>
+                      {slide.serviceSlug === 'live-music' ? (
+                        <>
+                          Live Music
+                          <span className="block text-amber-500">Artists</span>
+                          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal text-body mt-1 lg:mt-2">
+                            At Your Service
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          India's Premier
+                          <span className="block text-amber-500">Artists</span>
+                          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal text-body mt-1 lg:mt-2">
+                            At Your Service
+                          </span>
+                        </>
+                      )}
+                    </motion.h1>
                     
-                    {/* Second row - 2 artists */}
-                    <div className="flex gap-6 justify-center">
-                      {slide.artists?.slice(3, 5).map((artist, index) => (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-sm sm:text-base lg:text-lg text-body mb-6 lg:mb-8 leading-relaxed"
+                    >
+                      {slide.serviceSlug === 'live-music' 
+                        ? 'Experience electrifying live performances with our talented musicians.'
+                        : 'From chart-toppers to underground legends, book celebrated artists for unforgettable performances.'
+                      }
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.25 }}
+                      className="flex flex-col sm:flex-row gap-3 justify-start"
+                    >
+                      <Button 
+                        variant="heroFilled" 
+                        size="lg"
+                        onClick={() => navigate('/artists')}
+                        className="group text-sm lg:text-base"
+                      >
+                        View All Artists
+                        <motion.span
+                          className="ml-2 inline-block"
+                          animate={{ x: [0, 2, 0] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          →
+                        </motion.span>
+                      </Button>
+                      <Button 
+                        variant="hero" 
+                        size="lg"
+                        onClick={() => navigate('/contact')}
+                        className="text-sm lg:text-base"
+                      >
+                        Book Now
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Artists Display */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex-1 w-full max-w-2xl"
+                  >
+                    {/* Mobile: Horizontal scroll, Desktop: Grid */}
+                    <div className="flex lg:grid lg:grid-cols-3 gap-3 lg:gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 px-4 lg:px-0 no-scrollbar">
+                      {slide.artists?.map((artist, index) => (
                         <motion.div
                           key={artist.name}
-                          initial={{ opacity: 0, y: 40 }}
-                          animate={{ opacity: 1, y: 0 }}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
                           transition={{ 
-                            delay: 0.9 + index * 0.1,
-                            duration: 0.6,
-                            ease: [0.25, 0.46, 0.45, 0.94]
+                            delay: 0.3 + index * 0.05,
+                            duration: 0.3,
+                            ease: "easeOut"
                           }}
                           className="relative group cursor-pointer flex-shrink-0"
                           onMouseEnter={() => setIsPaused(true)}
                           onMouseLeave={() => setIsPaused(false)}
-                          onClick={() => {
-                            if (slide.serviceSlug === 'live-music') {
-                              navigate('/services/live-music');
-                              // Scroll to artists section after navigation
-                              setTimeout(() => {
-                                const artistsSection = document.querySelector('#our-artists');
-                                artistsSection?.scrollIntoView({ behavior: 'smooth' });
-                              }, 100);
-                            } else {
-                              navigate('/artists');
-                            }
-                          }}
+                          onClick={() => navigate('/artists')}
                         >
                           {/* Compact Artist Card */}
-                          <div className="relative w-48 h-72 bg-background/10 backdrop-blur-md border border-white/20 shadow-2xl overflow-hidden group-hover:border-gold/50 transition-all duration-500 hover:scale-105">
+                          <div className="relative w-32 h-44 sm:w-36 sm:h-48 lg:w-40 lg:h-52 bg-amber-50/20 backdrop-blur-md border border-amber-200/30 shadow-xl overflow-hidden group-hover:border-amber-400/60 transition-all duration-300 hover:scale-105">
                             
-                            {/* Artist Image Section */}
-                            <div className="relative h-48 overflow-hidden">
+                            {/* Artist Image */}
+                            <div className="relative h-24 sm:h-28 lg:h-32 overflow-hidden">
                               <div
-                                className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                                 style={{ backgroundImage: `url(${artist.image})` }}
                               />
+                              <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-transparent to-transparent" />
                               
-                              {/* Elegant overlay gradient */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                              
-                              {/* Hover play icon */}
+                              {/* Play icon */}
                               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="w-12 h-12 bg-gold/20 backdrop-blur-sm flex items-center justify-center border border-gold/30">
-                                  <div className="w-0 h-0 border-l-[8px] border-l-gold border-y-[6px] border-y-transparent ml-1"></div>
+                                <div className="w-8 h-8 bg-amber-100/30 backdrop-blur-sm flex items-center justify-center border border-amber-400/40 rounded-full">
+                                  <div className="w-0 h-0 border-l-[5px] border-l-amber-600 border-y-[3px] border-y-transparent ml-0.5"></div>
                                 </div>
                               </div>
                             </div>
                             
-                            {/* Artist Information Section */}
-                            <div className="relative h-24 p-4 bg-background/20 backdrop-blur-sm">
+                            {/* Artist Info */}
+                            <div className="relative h-20 p-2 lg:p-3 bg-gradient-to-t from-amber-50/95 via-amber-50/90 to-amber-50/80 backdrop-blur-sm">
                               <motion.h3
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ delay: 1.1 + index * 0.05 }}
-                                className="font-display text-lg font-bold text-white mb-1 group-hover:text-gold transition-colors duration-300 text-center"
+                                transition={{ delay: 0.35 + index * 0.02 }}
+                                className="font-display text-xs sm:text-sm lg:text-base font-bold text-amber-900 mb-1 group-hover:text-amber-600 transition-colors duration-300 text-center leading-tight"
                               >
                                 {artist.name}
                               </motion.h3>
@@ -474,30 +417,21 @@ export const HeroSlider = () => {
                               <motion.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ delay: 1.2 + index * 0.05 }}
-                                className="text-xs text-white/80 font-medium uppercase tracking-wider text-center"
+                                transition={{ delay: 0.4 + index * 0.02 }}
+                                className="text-[10px] sm:text-xs text-amber-700/80 font-medium text-center leading-tight"
                               >
                                 {artist.followers}
                               </motion.p>
                             </div>
                             
-                            {/* Subtle hover effect */}
-                            <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
-                            {/* Premium corner accents */}
-                            <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gold/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {/* Hover effect */}
+                            <div className="absolute inset-0 bg-amber-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
-                          
-                          {/* Elegant shadow enhancement on hover */}
-                          <div className="absolute inset-0 shadow-[0_16px_64px_rgba(212,175,55,0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
                         </motion.div>
                       ))}
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
               </div>
             ) : (
               // Regular slide layout
@@ -505,16 +439,16 @@ export const HeroSlider = () => {
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="inline-block text-xs uppercase tracking-luxury text-gold-light mb-4"
+                  transition={{ delay: 0.1 }}
+                  className="inline-block text-xs uppercase tracking-luxury text-amber-400 mb-4"
                 >
                   {slide.title}
                 </motion.span>
                 
                 <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
+                  transition={{ delay: 0.15 }}
                   className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
                 >
                   {slide.subtitle}
@@ -523,22 +457,22 @@ export const HeroSlider = () => {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
+                  transition={{ delay: 0.2 }}
                   className="text-lg md:text-xl text-body mb-10 max-w-2xl"
                 >
                   {slide.description}
                 </motion.p>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+                  transition={{ delay: 0.25 }}
                   className="flex flex-wrap gap-4"
                 >
                   <Button 
                     variant="heroFilled" 
                     size="xl"
-                    onClick={() => navigate(`/services/${slide.serviceSlug}`)}
+                    onClick={() => navigate(slide.serviceSlug === 'bandhan' ? '/bandhan' : `/services/${slide.serviceSlug}`)}
                   >
                     Book Your Event
                   </Button>
@@ -563,27 +497,51 @@ export const HeroSlider = () => {
               onClick={() => goToSlide(index)}
               className={`h-1 transition-all duration-500 ${
                 index === currentSlide 
-                  ? 'w-12 bg-gold' 
-                  : 'w-4 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                  ? 'w-12 bg-amber-500' 
+                  : 'w-4 bg-amber-200/40 hover:bg-amber-300/60'
               }`}
             />
           ))}
+        </div>
+
+        {/* Mobile Swipe Hint */}
+        <div className="lg:hidden absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-amber-600/50 animate-pulse">
+          <span>←</span>
+          <span>Swipe to navigate</span>
+          <span>→</span>
         </div>
 
         {/* Desktop Navigation Arrows - Bottom Right */}
         <div className="hidden lg:flex absolute bottom-8 right-6 lg:right-12 items-center gap-3">
           <button
             onClick={prevSlide}
-            className="w-12 h-12 bg-background/20 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground/60 hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300 group"
+            className="w-12 h-12 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
           >
             <ChevronLeft size={20} className="group-hover:scale-110 transition-transform duration-200" />
           </button>
           
           <button
             onClick={nextSlide}
-            className="w-12 h-12 bg-background/20 backdrop-blur-sm border border-border/30 flex items-center justify-center text-foreground/60 hover:bg-gold/20 hover:border-gold/50 hover:text-gold transition-all duration-300 group"
+            className="w-12 h-12 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
           >
             <ChevronRight size={20} className="group-hover:scale-110 transition-transform duration-200" />
+          </button>
+        </div>
+
+        {/* Mobile Navigation Arrows - Side positioned */}
+        <div className="lg:hidden">
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
+          >
+            <ChevronLeft size={16} className="group-hover:scale-110 transition-transform duration-200" />
+          </button>
+          
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-amber-50/20 backdrop-blur-sm border border-amber-200/30 flex items-center justify-center text-amber-700/70 hover:bg-amber-100/30 hover:border-amber-400/60 hover:text-amber-600 transition-all duration-300 group"
+          >
+            <ChevronRight size={16} className="group-hover:scale-110 transition-transform duration-200" />
           </button>
         </div>
       </div>

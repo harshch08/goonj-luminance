@@ -318,7 +318,7 @@ const Artists = () => {
             <div className="section-divider" />
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {featuredArtists.map((artist, index) => (
               <motion.div
                 key={artist.id}
@@ -426,7 +426,7 @@ const Artists = () => {
             <div className="section-divider" />
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -434,15 +434,15 @@ const Artists = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="text-center"
+                className="text-center p-4 sm:p-6"
               >
-                <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-4">
-                  <feature.icon size={28} className="text-gold-light" />
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <feature.icon size={20} className="text-gold-light sm:w-7 sm:h-7" />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-display text-sm sm:text-lg font-semibold text-foreground mb-1 sm:mb-2 leading-tight">
                   {feature.title}
                 </h3>
-                <p className="text-body text-sm">{feature.description}</p>
+                <p className="text-body text-xs sm:text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -465,12 +465,12 @@ const Artists = () => {
               <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Looking for the Perfect Artist?
               </h2>
-              <p className="text-body mb-6">
+              <p className="text-body mb-6 text-justify sm:text-left">
                 Tell us about your event and we'll recommend the ideal artists from our 
                 extensive network. Whether you need a solo performer or a full band, 
                 we'll find the perfect match for your occasion.
               </p>
-              <p className="text-body">
+              <p className="text-body text-justify sm:text-left">
                 Our team handles everything from artist selection to coordination, 
                 ensuring a seamless experience for you and a stellar performance for your guests.
               </p>

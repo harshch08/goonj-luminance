@@ -1,5 +1,5 @@
-import { MainNav } from '@/components/layout/MainNav';
-import { CategoryNav } from '@/components/layout/CategoryNav';
+import { BandhanNav } from '@/components/layout/BandhanNav';
+import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { Footer } from '@/components/sections/Footer';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
@@ -14,8 +14,8 @@ const StageSetup = () => {
 
   return (
     <div className="min-h-screen bandhan-theme">
-      <MainNav />
-      <CategoryNav />
+      <BandhanNav />
+      <BandhanCategoryNav />
       <FloatingFlowers />
       
       <main className="relative -mt-[140px] pt-[140px]">

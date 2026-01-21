@@ -110,20 +110,6 @@ const serviceData: Record<string, {
     ],
     features: ['Professional Equipment', 'Extensive Song Library', 'Party Lights', 'Expert Hosts'],
   },
-  'wedding': {
-    icon: Heart,
-    title: 'Bandhan',
-    subtitle: 'Complete wedding entertainment solutions',
-    description: 'Make your wedding celebrations unforgettable with our comprehensive entertainment services covering every ceremony from sangeet to reception.',
-    image: heroWedding,
-    types: [
-      { name: 'Sangeet Night', description: 'Choreographed performances and live entertainment' },
-      { name: 'Wedding Bands', description: 'Traditional and contemporary wedding music' },
-      { name: 'Mehendi Artists', description: 'Entertainment and artists for mehendi ceremonies' },
-      { name: 'Reception Entertainment', description: 'Grand reception entertainment packages' },
-    ],
-    features: ['Multi-event Packages', 'Choreography Services', 'Traditional + Modern', 'Complete Coordination'],
-  },
   'destination-weddings': {
     icon: Heart,
     title: 'Destination Weddings',
@@ -243,7 +229,7 @@ const ServiceDetail = () => {
                 </div>
                 <span className="text-xs uppercase tracking-luxury text-gold-light">Our Expertise</span>
               </div>
-              <p className="text-body text-lg leading-relaxed mb-8">{service.description}</p>
+              <p className="text-body text-lg leading-relaxed mb-8 text-justify sm:text-left">{service.description}</p>
               
               <div className="grid grid-cols-2 gap-4">
                 {service.features.map((feature) => (
@@ -292,7 +278,7 @@ const ServiceDetail = () => {
                 </h3>
               </motion.div>
 
-              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 {[
                   {
                     name: 'Rahul',
@@ -420,7 +406,7 @@ const ServiceDetail = () => {
                 </h3>
               </motion.div>
 
-              <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
                 {[
                   {
                     name: 'Rahul & Pianist',

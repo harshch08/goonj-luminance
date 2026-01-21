@@ -15,11 +15,11 @@ const quickLinks = [
 ];
 
 const services = [
-  { label: 'Live Music', href: '#' },
-  { label: 'Celebrity Concerts', href: '#' },
-  { label: 'Wedding Events', href: '#' },
-  { label: 'Corporate Events', href: '#' },
-  { label: 'Open Mics', href: '#' },
+  { label: 'Live Music', href: '/services/live-music' },
+  { label: 'Celebrity Concerts', href: '/services/celebrity' },
+  { label: 'Wedding Events', href: '/bandhan' },
+  { label: 'Corporate Events', href: '/services/events' },
+  { label: 'Open Mics', href: '/services/openmic' },
 ];
 
 export const Footer = () => {
@@ -35,9 +35,9 @@ export const Footer = () => {
   return (
     <footer className="bg-background border-t border-border/30" id="contact">
       <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
           {/* Brand Column */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-1">
             <div className="mb-6">
               {isBandhanPage ? (
                 <div className="flex items-center gap-3 mb-2">
@@ -94,8 +94,50 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Mobile: Two Column Layout for Quick Links and Services */}
+          <div className="md:hidden grid grid-cols-2 gap-6 order-2">
+            {/* Quick Links - Left Column on Mobile */}
+            <div>
+              <h4 className="text-xs uppercase tracking-luxury text-foreground mb-4">
+                Quick Links
+              </h4>
+              <ul className="space-y-2">
+                {quickLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      to={link.href}
+                      className="text-body text-sm hover:text-gold-light transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Our Services - Right Column on Mobile */}
+            <div>
+              <h4 className="text-xs uppercase tracking-luxury text-foreground mb-4">
+                Our Services
+              </h4>
+              <ul className="space-y-2">
+                {services.map((service) => (
+                  <li key={service.label}>
+                    <Link
+                      to={service.href}
+                      className="text-body text-sm hover:text-gold-light transition-colors duration-300"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Desktop: Separate Columns for Quick Links and Services */}
+          {/* Quick Links - Desktop */}
+          <div className="hidden md:block order-2 lg:order-2">
             <h4 className="text-xs uppercase tracking-luxury text-foreground mb-6">
               Quick Links
             </h4>
@@ -113,27 +155,27 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
+          {/* Services - Desktop */}
+          <div className="hidden md:block order-3 lg:order-3">
             <h4 className="text-xs uppercase tracking-luxury text-foreground mb-6">
               Our Services
             </h4>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.label}>
-                  <a
-                    href={service.href}
+                  <Link
+                    to={service.href}
                     className="text-body text-sm hover:text-gold-light transition-colors duration-300"
                   >
                     {service.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="order-4 lg:order-4">
             <h4 className="text-xs uppercase tracking-luxury text-foreground mb-6">
               Get in Touch
             </h4>

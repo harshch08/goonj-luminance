@@ -21,7 +21,7 @@ const searchableContent = [
   { title: 'Celebrity Concerts', keywords: ['celebrity', 'bollywood', 'playback singers', 'comedians', 'international artists', 'stars'], route: '/services/celebrity' },
   { title: 'Open Mics', keywords: ['open mic', 'comedy', 'poetry', 'talent show', 'emerging talent'], route: '/services/openmic' },
   { title: 'Karaoke Nights', keywords: ['karaoke', 'singing', 'fun', 'team building', 'birthday'], route: '/services/karaoke' },
-  { title: 'Bandhan (Wedding)', keywords: ['wedding', 'bandhan', 'sangeet', 'mehendi', 'reception', 'marriage', 'shaadi'], route: '/services/wedding' },
+  { title: 'Bandhan (Wedding)', keywords: ['wedding', 'bandhan', 'sangeet', 'mehendi', 'reception', 'marriage', 'shaadi'], route: '/bandhan' },
 ];
 
 interface NavSearchProps {

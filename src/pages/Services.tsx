@@ -54,7 +54,7 @@ const services = [
   {
     icon: Heart,
     title: 'Bandhan',
-    slug: 'wedding',
+    slug: 'bandhan',
     description: 'Comprehensive wedding entertainment including sangeet, mehendi, and reception performances.',
     features: ['Sangeet Night', 'Wedding Bands', 'Mehendi Artists', 'Reception Entertainment'],
   },
@@ -80,7 +80,7 @@ const Services = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid gap-8">
             {services.map((service, index) => (
-              <Link key={service.slug} to={`/services/${service.slug}`}>
+              <Link key={service.slug} to={service.slug === 'bandhan' ? '/bandhan' : `/services/${service.slug}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}

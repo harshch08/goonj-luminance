@@ -43,31 +43,31 @@ export const PartnersSection = () => {
         </motion.div>
 
         {/* Premium Partner Slider */}
-        <div className="relative">
-          {/* Elegant gradient overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
+        <div className="relative -mx-6 lg:-mx-12 overflow-hidden">
+          {/* Elegant gradient overlays - properly positioned */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-r from-background via-background/90 via-background/60 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-l from-background via-background/90 via-background/60 to-transparent z-10 pointer-events-none"></div>
 
-          {/* Enhanced scrolling container */}
-          <div className="flex animate-partners-scroll-fast hover:[animation-play-state:paused] items-center">
+          {/* Enhanced scrolling container with proper masking */}
+          <div className="flex animate-partners-scroll-fast hover:[animation-play-state:paused] items-center pl-6 lg:pl-12 pr-6 lg:pr-12">
             {duplicatedPartners.map((partner, index) => (
               <div
                 key={`${partner.name}-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-10"
+                className="flex-shrink-0 mx-4 sm:mx-6 md:mx-10"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
-                  className="w-28 h-28 md:w-36 md:h-36 flex items-center justify-center group relative"
+                  className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center group relative"
                 >
                   {/* Premium card background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-background/50 to-secondary/20 rounded-lg border border-gold/10 group-hover:border-gold/30 transition-all duration-500 backdrop-blur-sm"></div>
                   
-                  {/* Logo */}
+                  {/* Logo - Improved mobile visibility */}
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="relative z-10 max-w-[70%] max-h-[70%] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100"
+                    className="relative z-10 max-w-[80%] max-h-[80%] object-contain filter grayscale-0 sm:grayscale sm:group-hover:grayscale-0 transition-all duration-500 opacity-90 sm:opacity-60 sm:group-hover:opacity-100"
                   />
                   
                   {/* Subtle glow effect on hover */}
