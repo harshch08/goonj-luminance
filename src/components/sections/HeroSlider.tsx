@@ -295,13 +295,13 @@ export const HeroSlider = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 }}
-                      className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-4 lg:mb-6 leading-tight"
+                      className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 lg:mb-6 leading-tight"
                     >
                       {slide.serviceSlug === 'live-music' ? (
                         <>
                           Live Music
                           <span className="block text-amber-500">Artists</span>
-                          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal text-body mt-1 lg:mt-2">
+                          <span className="block text-sm sm:text-lg md:text-xl font-normal text-body mt-1 lg:mt-2">
                             At Your Service
                           </span>
                         </>
@@ -309,7 +309,7 @@ export const HeroSlider = () => {
                         <>
                           India's Premier
                           <span className="block text-amber-500">Artists</span>
-                          <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-normal text-body mt-1 lg:mt-2">
+                          <span className="block text-sm sm:text-lg md:text-xl font-normal text-body mt-1 lg:mt-2">
                             At Your Service
                           </span>
                         </>
@@ -320,7 +320,7 @@ export const HeroSlider = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.2 }}
-                      className="text-sm sm:text-base lg:text-lg text-body mb-6 lg:mb-8 leading-relaxed"
+                      className="text-sm sm:text-lg md:text-xl text-body mb-6 lg:mb-10 max-w-2xl"
                     >
                       {slide.serviceSlug === 'live-music' 
                         ? 'Experience electrifying live performances with our talented musicians.'
@@ -332,7 +332,7 @@ export const HeroSlider = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
-                      className="flex flex-col sm:flex-row gap-3 justify-start"
+                      className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                     >
                       <Button 
                         variant="heroFilled" 
@@ -580,7 +580,7 @@ export const HeroSlider = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.15 }}
-                  className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
+                  className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 >
                   {slide.subtitle}
                 </motion.h1>
