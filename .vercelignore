@@ -1,0 +1,27 @@
+# Documentation
+*.md
+!README.md
+COMMENTS_SYSTEM.md
+INSTAGRAM_SETUP_GUIDE.md
+QUICK_INSTAGRAM_CHANGE.md
+
+# Test files
+src/test/
+*.test.ts
+*.test.tsx
+
+# Scripts
+scripts/
+debug-*.js
+test-*.js
+
+# Development files
+.vscode/
+.kiro/
+.github/
+
+# Supabase (not needed in frontend deployment)
+supabase/
+
+# Lock files
+bun.lockb

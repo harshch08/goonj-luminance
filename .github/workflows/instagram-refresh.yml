@@ -1,0 +1,219 @@
+name: Instagram Data Refresh
+
+on:
+  schedule:
+    # Run every 4 hours at minute 0
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Allow manual triggering
+    inputs:
+      force_refresh:
+        description: 'Force refresh even if recent data exists'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+jobs:
+  refresh-instagram-data:
+    runs-on: ubuntu-latest
+    name: Refresh Instagram Data
+    
+    steps:
+      - name: 🔧 Validate Environment
+        id: validate
+        run: |
+          echo "🔍 Validating GitHub Actions environment..."
+          
+          # Check required environment variables
+          MISSING_VARS=()
+          
+          if [ -z "$SUPABASE_URL" ]; then
+            MISSING_VARS+=("SUPABASE_URL")
+          fi
+          
+          if [ -z "$SUPABASE_ANON_KEY" ]; then
+            MISSING_VARS+=("SUPABASE_ANON_KEY")
+          fi
+          
+          if [ ${#MISSING_VARS[@]} -gt 0 ]; then
+            echo "❌ Missing required environment variables: ${MISSING_VARS[*]}"
+            exit 1
+          fi
+          
+          # Validate Supabase URL format
+          if [[ ! "$SUPABASE_URL" =~ ^https://[a-zA-Z0-9-]+\.supabase\.co$ ]]; then
+            echo "❌ Invalid SUPABASE_URL format: $SUPABASE_URL"
+            echo "   Expected format: https://your-project.supabase.co"
+            exit 1
+          fi
+          
+          # Check if jq is available (needed for JSON parsing)
+          if ! command -v jq &> /dev/null; then
+            echo "❌ jq command not found - installing..."
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+          
+          echo "✅ Environment validation passed"
+          echo "🌐 Supabase URL: $SUPABASE_URL"
+          echo "🔑 Supabase key: ${SUPABASE_ANON_KEY:0:10}..."
+          echo "📅 Node.js version: $(node --version)"
+          echo "🐧 OS: $(uname -a)"
+
+      - name: 📊 Trigger Instagram Data Refresh
+        id: refresh
+        run: |
+          echo "🚀 Starting Instagram data refresh..."
+          
+          # Prepare request headers
+          HEADERS=(
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY"
+            -H "Content-Type: application/json"
+            -H "User-Agent: GitHub-Actions-Instagram-Refresh/1.0"
+          )
+          
+          # Add force refresh parameter if specified
+          BODY="{}"
+          if [ "${{ github.event.inputs.force_refresh }}" = "true" ]; then
+            BODY='{"force_refresh": true}'
+            echo "🔄 Force refresh enabled"
+          fi
+          
+          # Make the request with timeout and retry logic
+          echo "🌐 Making request to: ${SUPABASE_URL}/functions/v1/fetch-instagram-data"
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" \
+            --max-time 300 \
+            --retry 3 \
+            --retry-delay 10 \
+            --retry-max-time 600 \
+            --retry-connrefused \
+            -X POST \
+            "${SUPABASE_URL}/functions/v1/fetch-instagram-data" \
+            "${HEADERS[@]}" \
+            -d "$BODY" 2>&1)
+          
+          CURL_EXIT_CODE=$?
+          
+          # Check if curl command itself failed
+          if [ $CURL_EXIT_CODE -ne 0 ]; then
+            echo "❌ Curl command failed with exit code: $CURL_EXIT_CODE"
+            case $CURL_EXIT_CODE in
+              6) echo "   Error: Couldn't resolve host" ;;
+              7) echo "   Error: Failed to connect to host" ;;
+              28) echo "   Error: Operation timeout" ;;
+              35) echo "   Error: SSL connect error" ;;
+              *) echo "   Error: Unknown curl error" ;;
+            esac
+            echo "🔍 Response: $RESPONSE"
+            exit 1
+          fi
+          
+          # Extract response body and status code
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
+          
+          echo "📡 HTTP Status: $HTTP_CODE"
+          echo "📄 Response: $RESPONSE_BODY"
+          
+          # Check if request was successful
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "✅ Instagram data refresh successful!"
+            
+            # Extract data from response for summary
+            FOLLOWERS=$(echo "$RESPONSE_BODY" | jq -r '.data.followers_count // "N/A"')
+            POSTS=$(echo "$RESPONSE_BODY" | jq -r '.data.posts_count // "N/A"')
+            EXECUTION_TIME=$(echo "$RESPONSE_BODY" | jq -r '.data.execution_time_ms // "N/A"')
+            IS_FALLBACK=$(echo "$RESPONSE_BODY" | jq -r '.data.is_fallback // false')
+            
+            echo "👥 Followers: $FOLLOWERS"
+            echo "📸 Posts: $POSTS"
+            echo "⏱️  Execution Time: ${EXECUTION_TIME}ms"
+            
+            if [ "$IS_FALLBACK" = "true" ]; then
+              echo "⚠️  Using fallback data due to API issues"
+            fi
+            
+            # Set outputs for potential use in other steps
+            echo "success=true" >> $GITHUB_OUTPUT
+            echo "followers_count=$FOLLOWERS" >> $GITHUB_OUTPUT
+            echo "posts_count=$POSTS" >> $GITHUB_OUTPUT
+            echo "execution_time=$EXECUTION_TIME" >> $GITHUB_OUTPUT
+            echo "is_fallback=$IS_FALLBACK" >> $GITHUB_OUTPUT
+            
+          else
+            echo "❌ Instagram data refresh failed!"
+            echo "🔍 HTTP Status Code: $HTTP_CODE"
+            echo "🔍 Response body: $RESPONSE_BODY"
+            
+            # Provide specific error guidance based on status code
+            case $HTTP_CODE in
+              400) echo "   Error: Bad Request - Check request format and parameters" ;;
+              401) echo "   Error: Unauthorized - Check SUPABASE_ANON_KEY secret" ;;
+              403) echo "   Error: Forbidden - Check permissions and RLS policies" ;;
+              404) echo "   Error: Not Found - Check SUPABASE_URL and function name" ;;
+              429) echo "   Error: Rate Limited - Instagram API or Supabase rate limit exceeded" ;;
+              500) echo "   Error: Internal Server Error - Check Supabase function logs" ;;
+              502) echo "   Error: Bad Gateway - Supabase service issue" ;;
+              503) echo "   Error: Service Unavailable - Supabase or Instagram API temporarily unavailable" ;;
+              504) echo "   Error: Gateway Timeout - Function execution timeout" ;;
+              *) echo "   Error: Unexpected HTTP status code" ;;
+            esac
+            
+            # Try to extract error message from response
+            ERROR_MESSAGE=$(echo "$RESPONSE_BODY" | jq -r '.error // .message // "No error message available"' 2>/dev/null || echo "Could not parse error message")
+            echo "📄 Error message: $ERROR_MESSAGE"
+            
+            # Set failure output
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error_code=$HTTP_CODE" >> $GITHUB_OUTPUT
+            echo "error_message=$ERROR_MESSAGE" >> $GITHUB_OUTPUT
+            
+            # Exit with error to mark the job as failed
+            exit 1
+          fi
+
+      - name: 📈 Log Refresh Summary
+        if: always()
+        run: |
+          echo "## Instagram Data Refresh Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ steps.refresh.outputs.success }}" = "true" ]; then
+            echo "✅ **Status**: Success" >> $GITHUB_STEP_SUMMARY
+            echo "👥 **Followers**: ${{ steps.refresh.outputs.followers_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "📸 **Posts**: ${{ steps.refresh.outputs.posts_count }}" >> $GITHUB_STEP_SUMMARY
+            echo "⏱️ **Execution Time**: ${{ steps.refresh.outputs.execution_time }}ms" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "${{ steps.refresh.outputs.is_fallback }}" = "true" ]; then
+              echo "⚠️ **Note**: Using fallback data due to API issues" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ **Status**: Failed" >> $GITHUB_STEP_SUMMARY
+            echo "🔍 **Error Code**: ${{ steps.refresh.outputs.error_code }}" >> $GITHUB_STEP_SUMMARY
+            echo "📄 **Error Message**: ${{ steps.refresh.outputs.error_message }}" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🕐 **Triggered**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "🔄 **Trigger**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "⏰ **Schedule**: Every 4 hours (0 */4 * * *)" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "👤 **Triggered by**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: 🚨 Notify on Failure
+        if: failure()
+        run: |
+          echo "🚨 Instagram data refresh failed!"
+          echo "This failure has been logged and should be investigated."
+          echo "Check the function logs in Supabase dashboard for more details."
+          
+          # You can add additional notification logic here, such as:
+          # - Sending to Slack/Discord webhook
+          # - Creating GitHub issue
+          # - Sending email notification
+          # - Updating status page

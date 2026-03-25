@@ -1,0 +1,46 @@
+import { useEffect } from 'react';
+import { BandhanNav } from '@/components/layout/BandhanNav';
+import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
+import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import HeroSection from '@/components/bandhan/home/HeroSection';
+import IntroSection from '@/components/bandhan/home/IntroSection';
+import TestimonialSection from '@/components/bandhan/home/TestimonialSection';
+import PartnersSection from '@/components/bandhan/home/PartnersSection';
+import BandhanWhatsAppSection from '@/components/bandhan/home/WhatsAppSection';
+import '@/components/bandhan/bandhan-theme.css';
+
+const Bandhan = () => {
+  useEffect(() => {
+    const handleScroll = () => {
+      const bandhanElement = document.querySelector('.bandhan-theme');
+      if (bandhanElement) {
+        if (window.scrollY > 100) {
+          bandhanElement.classList.add('scrolled');
+        } else {
+          bandhanElement.classList.remove('scrolled');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+      <BandhanNav />
+      <BandhanCategoryNav />
+      <main>
+        <HeroSection />
+        <IntroSection />
+        <TestimonialSection />
+        <PartnersSection />
+        <BandhanWhatsAppSection />
+      </main>
+      <BandhanFooter />
+    </div>
+  );
+};
+
+export default Bandhan;
+

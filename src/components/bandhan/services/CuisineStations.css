@@ -1,0 +1,188 @@
+/* Slider Container */
+.cuisine-slider-container {
+  position: relative;
+  padding: 0 60px;
+}
+
+/* Navigation Buttons */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: white;
+  border: 2px solid #D4AF37;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slider-nav:hover:not(:disabled) {
+  background: #D4AF37;
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.slider-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.slider-nav-left {
+  left: 0;
+}
+
+.slider-nav-right {
+  right: 0;
+}
+
+/* Slider Track */
+.slider-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 32px;
+  width: 100%;
+}
+
+.cuisine-card-slide {
+  flex: 0 0 calc((100% - 64px) / 3);
+  min-width: 0;
+}
+
+.cuisine-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Slider Dots */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #E5E5E5;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot:hover {
+  background: #D4AF37;
+  transform: scale(1.2);
+}
+
+.slider-dot.active {
+  background: #D4AF37;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cuisine-card-slide {
+    flex: 0 0 calc((100% - 32px) / 2);
+  }
+
+  .cuisine-slider-container {
+    padding: 0 50px;
+  }
+
+  .slider-nav {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cuisine-card-slide {
+    flex: 0 0 100%;
+  }
+
+  .slider-track {
+    gap: 24px;
+  }
+
+  .cuisine-slider-container {
+    padding: 0 40px;
+  }
+
+  .slider-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slider-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Torn edge effect */
+.torn-edge::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: white;
+  clip-path: polygon(
+    0% 0%,
+    5% 100%,
+    10% 0%,
+    15% 100%,
+    20% 0%,
+    25% 100%,
+    30% 0%,
+    35% 100%,
+    40% 0%,
+    45% 100%,
+    50% 0%,
+    55% 100%,
+    60% 0%,
+    65% 100%,
+    70% 0%,
+    75% 100%,
+    80% 0%,
+    85% 100%,
+    90% 0%,
+    95% 100%,
+    100% 0%
+  );
+}
