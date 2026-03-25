@@ -18,7 +18,7 @@ UPDATE celebrity_artists SET bio = 'Khusboo Grewal is a renowned Bollywood playb
 
 UPDATE celebrity_artists SET bio = 'Sandeep Batraa is a celebrated Bollywood singer and performer with a dynamic stage presence and a vast musical repertoire. His ability to connect with audiences of all ages makes him a sought-after artist for weddings, corporate galas, and concerts.' WHERE name = 'Sandeep Batraa';
 
-UPDATE celebrity_artists SET bio = 'Oabu Samwal is a dynamic Bollywood performer known for his versatility and crowd engagement. His live sets are a perfect blend of energy, emotion, and entertainment — guaranteed to keep your guests on their feet all night long.' WHERE name = 'Oabu Samwal';
+UPDATE celebrity_artists SET bio = 'Charu Semwal is a dynamic Bollywood singer and performer known for her versatility and crowd engagement. Her live sets are a perfect blend of energy, emotion, and entertainment — guaranteed to keep your guests on their feet all night long.' WHERE name = 'Oabu Samwal';
 
 UPDATE celebrity_artists SET bio = 'Jyotica Tangri is a celebrated Bollywood playback singer best known for her iconic tracks that have topped charts across India. Her live performances are a blend of grace, power, and pure musical brilliance — a truly special experience for any event.' WHERE name = 'Jyotica Tangri';
 

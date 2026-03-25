@@ -193,9 +193,9 @@ const ServiceDetail = () => {
     {
       id: 201, // Using 200+ IDs to avoid conflicts
       name: 'Rahul Thapa Ryan',
-      genre: 'Western, Bollywood & Retro',
+      genre: 'Western Country Pop Indie',
       tag: 'Singer & Performer',
-      bio: 'A versatile artist with a powerful voice, Rahul brings energy and emotion to every performance.',
+      bio: 'A Western Country Pop Indie Musician with a stage experience of 15+ years. An experienced judge, a music teacher, and a Guitar + Piano grade & degree holder with mastery in western vocals.',
       image: '/Rahul_Thapa_Ryan.jpeg'
     },
     {
@@ -203,7 +203,7 @@ const ServiceDetail = () => {
       name: 'Ranjan',
       genre: 'Bolly Mix',
       tag: 'Singer & Performer',
-      bio: 'A talented musician and vocalist, Ranjan brings a unique blend of traditional and modern sounds.',
+      bio: 'A Bollywood Mix Musician experienced in gigs, bringing energy and versatility to every performance.',
       image: '/ranjan.jpeg'
     },
     {
@@ -211,35 +211,59 @@ const ServiceDetail = () => {
       name: 'Ajay',
       genre: 'Bolly Mix',
       tag: 'Singer & Performer',
-      bio: 'A dynamic performer with a charismatic stage presence, Ajay specializes in high-energy performances.',
+      bio: 'A Bollywood Mix Musician and new beginner artist with a fresh and enthusiastic approach to every performance.',
       image: '/Ajay.jpeg'
+    },
+    {
+      id: 208,
+      name: 'Vansh',
+      genre: 'Bolly Mix',
+      tag: 'Singer & Performer',
+      bio: 'A Bollywood Mix Musician and a regular gigs performer, delivering consistent and engaging live performances.',
+      image: '/Vansh.png'
+    },
+    {
+      id: 209,
+      name: 'Manisha',
+      genre: 'Bolly Mix',
+      tag: 'Singer & Performer',
+      bio: 'A Bollywood Mix Musician trained in classical music, bringing depth and finesse to every performance.',
+      image: '/manisha.jpeg'
+    },
+    {
+      id: 210,
+      name: 'Krrish',
+      genre: 'Bolly Mix',
+      tag: 'Singer & Performer',
+      bio: 'A Bollywood Mix Musician and new beginner artist with a fresh and enthusiastic approach to every performance.',
+      image: '/krish.jpeg'
     }
   ];
 
   const duoArtists: LiveArtist[] = [
     {
       id: 301, // Using 300+ IDs for duo artists
-      name: 'Rahul Thapa Ryan Duo',
-      genre: 'Bolly Mix',
+      name: 'Rahul Thapa Ryan + Pianist',
+      genre: 'Western Country Pop Indie',
       tag: 'Singer & Performer',
-      bio: 'A perfect harmony of vocals and piano, this duo creates an intimate and sophisticated musical experience.',
+      bio: 'A Western Country Pop Indie Musician with a stage experience of 15+ years. An experienced judge, a music teacher, and a Guitar + Piano grade & degree holder with mastery in western vocals.',
       image: '/Rahul_Thapa_Ryan.jpeg'
     },
     {
       id: 302,
-      name: 'Ranjan & Vansh Duo',
+      name: 'Manisha + Guitarist',
       genre: 'Bolly Mix',
       tag: 'Singer & Performer',
-      bio: 'This unique duo combines vocal excellence with masterful piano accompaniment.',
-      image: '/ranjan duo.jpeg'
+      bio: 'A Bollywood Mix Musician trained in classical music, bringing depth and finesse to every performance.',
+      image: '/manisha.jpeg'
     },
     {
       id: 303,
-      name: 'Manisha & Aditya Duo',
+      name: 'Ranjan + Pianist',
       genre: 'Bolly Mix',
       tag: 'Singer & Performer',
-      bio: 'The combination of Manisha\'s melodious voice with skilled guitar work creates a captivating experience.',
-      image: '/manisha.jpeg'
+      bio: 'A Bollywood Mix Musician experienced in gigs, bringing energy and versatility to every performance.',
+      image: '/ranjan.jpeg'
     },
     {
       id: 305,
