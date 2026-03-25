@@ -50,28 +50,19 @@ export class LikesService {
    */
   static async getLikeCount(artistId: number): Promise<number> {
     try {
-      const { data, error } = await supabase
-        .from('artist_like_counts')
-        .select('like_count')
+      const { count, error } = await supabase
+        .from('artist_likes')
+        .select('*', { count: 'exact', head: true })
         .eq('artist_id', artistId)
-        .single()
 
       if (error) {
-        // If no likes found, return 0
-        if (error.code === 'PGRST116') {
-          return 0
-        }
-        
         const supabaseError = handleSupabaseError(error)
         throw new SupabaseServiceError(supabaseError?.message || 'Failed to get like count')
       }
 
-      return data?.like_count || 0
+      return count || 0
     } catch (error) {
-      if (error instanceof SupabaseServiceError) {
-        throw error
-      }
-      // Return 0 as fallback for any unexpected errors
+      if (error instanceof SupabaseServiceError) throw error
       console.warn('Error getting like count, returning 0:', error)
       return 0
     }
@@ -116,26 +107,23 @@ export class LikesService {
   static async getAllLikeCounts(): Promise<Record<number, number>> {
     try {
       const { data, error } = await supabase
-        .from('artist_like_counts')
-        .select('artist_id, like_count')
+        .from('artist_likes')
+        .select('artist_id')
 
       if (error) {
         const supabaseError = handleSupabaseError(error)
         throw new SupabaseServiceError(supabaseError?.message || 'Failed to get all like counts')
       }
 
-      // Convert array to object for easy lookup
+      // Count manually from raw rows
       const likeCounts: Record<number, number> = {}
-      data?.forEach((item: ArtistLikeCount) => {
-        likeCounts[item.artist_id] = item.like_count
+      data?.forEach((item: { artist_id: number }) => {
+        likeCounts[item.artist_id] = (likeCounts[item.artist_id] || 0) + 1
       })
 
       return likeCounts
     } catch (error) {
-      if (error instanceof SupabaseServiceError) {
-        throw error
-      }
-      // Return empty object as fallback
+      if (error instanceof SupabaseServiceError) throw error
       console.warn('Error getting all like counts, returning empty object:', error)
       return {}
     }
@@ -146,13 +134,11 @@ export class LikesService {
    */
   static async getLikeCountsForArtists(artistIds: number[]): Promise<Record<number, number>> {
     try {
-      if (artistIds.length === 0) {
-        return {}
-      }
+      if (artistIds.length === 0) return {}
 
       const { data, error } = await supabase
-        .from('artist_like_counts')
-        .select('artist_id, like_count')
+        .from('artist_likes')
+        .select('artist_id')
         .in('artist_id', artistIds)
 
       if (error) {
@@ -160,30 +146,18 @@ export class LikesService {
         throw new SupabaseServiceError(supabaseError?.message || 'Failed to get like counts for artists')
       }
 
-      // Convert array to object and ensure all requested artists have a count
       const likeCounts: Record<number, number> = {}
-      
-      // Initialize all requested artists with 0
-      artistIds.forEach(id => {
-        likeCounts[id] = 0
-      })
-
-      // Update with actual counts
-      data?.forEach((item: ArtistLikeCount) => {
-        likeCounts[item.artist_id] = item.like_count
+      artistIds.forEach(id => { likeCounts[id] = 0 })
+      data?.forEach((item: { artist_id: number }) => {
+        likeCounts[item.artist_id] = (likeCounts[item.artist_id] || 0) + 1
       })
 
       return likeCounts
     } catch (error) {
-      if (error instanceof SupabaseServiceError) {
-        throw error
-      }
-      // Return object with all zeros as fallback
+      if (error instanceof SupabaseServiceError) throw error
       console.warn('Error getting like counts for artists, returning zeros:', error)
       const fallback: Record<number, number> = {}
-      artistIds.forEach(id => {
-        fallback[id] = 0
-      })
+      artistIds.forEach(id => { fallback[id] = 0 })
       return fallback
     }
   }
