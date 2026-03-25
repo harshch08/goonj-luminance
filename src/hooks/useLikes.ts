@@ -9,6 +9,7 @@ export interface UseLikesOptions {
   enableToasts?: boolean
   retryAttempts?: number
   cacheEnabled?: boolean
+  skipInitialLoad?: boolean
 }
 
 export interface UseLikesReturn {
@@ -33,7 +34,8 @@ export const useLikes = (
     enableOptimisticUpdates = true,
     enableToasts = true,
     retryAttempts = 3,
-    cacheEnabled = true
+    cacheEnabled = true,
+    skipInitialLoad = false
   } = options
 
   // State management
@@ -46,7 +48,7 @@ export const useLikes = (
     // Initialize from cache if available
     return LikesCacheService.hasUserLiked(artistId)
   })
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(!skipInitialLoad)
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
@@ -291,10 +293,10 @@ export const useLikes = (
 
   // Load initial data when session is ready
   useEffect(() => {
-    if (sessionReady) {
+    if (sessionReady && !skipInitialLoad) {
       loadLikeData()
     }
-  }, [sessionReady, loadLikeData])
+  }, [sessionReady, loadLikeData, skipInitialLoad])
 
   // Update liked status when session changes
   useEffect(() => {

@@ -1,34 +1,29 @@
 import { motion } from 'framer-motion';
 
 const partners = [
-  { name: "Brand Partner 1", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53.jpeg" },
-  { name: "Brand Partner 2", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (1).jpeg" },
-  { name: "Brand Partner 3", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (2).jpeg" },
-  { name: "Brand Partner 4", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (3).jpeg" },
-  { name: "Brand Partner 5", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (4).jpeg" },
-  { name: "Brand Partner 6", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (5).jpeg" },
-  { name: "Brand Partner 7", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (6).jpeg" },
-  { name: "Brand Partner 8", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (7).jpeg" },
-  { name: "Brand Partner 9", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (8).jpeg" },
-  { name: "Brand Partner 10", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (9).jpeg" },
-  { name: "Brand Partner 11", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (10).jpeg" },
-  { name: "Brand Partner 12", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (11).jpeg" },
-  { name: "Brand Partner 13", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (12).jpeg" },
-  { name: "Brand Partner 14", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (13).jpeg" },
-  { name: "Brand Partner 15", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (14).jpeg" },
-  { name: "Brand Partner 16", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (15).jpeg" },
-  { name: "Brand Partner 17", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.53 (16).jpeg" },
-  { name: "Brand Partner 18", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.54.jpeg" },
-  { name: "Brand Partner 19", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.54 (1).jpeg" },
-  { name: "Brand Partner 20", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.55.jpeg" },
-  { name: "Brand Partner 21", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.55 (1).jpeg" },
-  { name: "Brand Partner 22", logo: "/Brands/WhatsApp Image 2026-02-23 at 01.05.55 (2).jpeg" },
+  { name: "Brand Partner A", logo: "/Brands/a.png" },
+  { name: "Brand Partner B", logo: "/Brands/b.jpeg" },
+  { name: "Brand Partner C", logo: "/Brands/c.png" },
+  { name: "Brand Partner D", logo: "/Brands/d.png" },
+  { name: "Brand Partner E", logo: "/Brands/e.png" },
+  { name: "Brand Partner F", logo: "/Brands/f.png" },
+  { name: "Brand Partner G", logo: "/Brands/g.png" },
+  { name: "Brand Partner H", logo: "/Brands/h.png" },
+  { name: "Brand Partner I", logo: "/Brands/i.png" },
+  { name: "Brand Partner J", logo: "/Brands/j.png" },
+  { name: "Brand Partner K", logo: "/Brands/k.png" },
+  { name: "Brand Partner L", logo: "/Brands/l.png" },
+  { name: "Brand Partner M", logo: "/Brands/m.png" },
+  { name: "Brand Partner N", logo: "/Brands/n.png" },
+  { name: "Brand Partner O", logo: "/Brands/o.png" },
+  { name: "Brand Partner P", logo: "/Brands/p.png" },
+  { name: "Brand Partner Q", logo: "/Brands/q.png" },
+  { name: "Brand Partner R", logo: "/Brands/r.png" },
+  { name: "Brand Partner S", logo: "/Brands/s.png" },
+  { name: "Brand Partner T", logo: "/Brands/t.png" },
 ];
 
 export const PartnersSection = () => {
-  // Triple duplication for ultra-smooth infinite scroll
-  const duplicatedPartners = [...partners, ...partners, ...partners, ...partners];
-
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-b from-secondary/5 to-background overflow-hidden">
       <div className="container mx-auto px-6 lg:px-12">
@@ -52,37 +47,44 @@ export const PartnersSection = () => {
           </p>
         </motion.div>
 
-        {/* Premium Partner Slider */}
+        {/* Infinite Partner Slider */}
         <div className="relative -mx-6 lg:-mx-12 overflow-hidden">
-          {/* Elegant gradient overlays - properly positioned */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-r from-background via-background/90 via-background/60 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-l from-background via-background/90 via-background/60 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-r from-background via-background/90 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-28 md:w-36 bg-gradient-to-l from-background via-background/90 to-transparent z-10 pointer-events-none"></div>
 
-          {/* Enhanced scrolling container with proper masking */}
-          <div className="flex animate-partners-scroll-fast hover:[animation-play-state:paused] items-center pl-6 lg:pl-12 pr-6 lg:pr-12">
-            {duplicatedPartners.map((partner, index) => (
-              <div
-                key={`${partner.name}-${index}`}
-                className="flex-shrink-0 mx-4 sm:mx-6 md:mx-10"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center group relative"
-                >
-                  {/* Premium card background */}
+          {/* Two identical tracks — animation scrolls exactly one track width */}
+          <div
+            style={{
+              display: 'flex',
+              width: 'max-content',
+              animation: 'partners-infinite 60s linear infinite',
+            }}
+            className="items-center hover:[animation-play-state:paused]"
+          >
+            {/* Track 1 */}
+            {partners.map((partner, index) => (
+              <div key={`a-${index}`} className="flex-shrink-0 mx-4 sm:mx-6 md:mx-8">
+                <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center group relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-background/50 to-secondary/20 rounded-lg border border-gold/10 group-hover:border-gold/30 transition-all duration-500 backdrop-blur-sm"></div>
-                  
-                  {/* Logo - Colorful display */}
                   <img
                     src={partner.logo}
                     alt={`${partner.name} logo`}
-                    className="relative z-10 max-w-[80%] max-h-[80%] object-contain transition-all duration-500 opacity-90 group-hover:opacity-100 group-hover:scale-105"
+                    className="relative z-10 max-w-[80%] max-h-[80%] object-contain opacity-90 group-hover:opacity-100 transition-all duration-500"
                   />
-                  
-                  {/* Subtle glow effect on hover */}
-                  <div className="absolute inset-0 bg-gold/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </motion.div>
+                </div>
+              </div>
+            ))}
+            {/* Track 2 — identical copy for seamless loop */}
+            {partners.map((partner, index) => (
+              <div key={`b-${index}`} className="flex-shrink-0 mx-4 sm:mx-6 md:mx-8">
+                <div className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 flex items-center justify-center group relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-background/50 to-secondary/20 rounded-lg border border-gold/10 group-hover:border-gold/30 transition-all duration-500 backdrop-blur-sm"></div>
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    className="relative z-10 max-w-[80%] max-h-[80%] object-contain opacity-90 group-hover:opacity-100 transition-all duration-500"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -104,6 +106,13 @@ export const PartnersSection = () => {
           </div>
         </motion.div>
       </div>
+
+      <style>{`
+        @keyframes partners-infinite {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 };

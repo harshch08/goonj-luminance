@@ -55,6 +55,8 @@ const allImages: GalleryImage[] = [
   { src: '/gallery/Fest/Fest-design-2.png', category: 'Fest', title: 'Fest Design' },
   { src: '/gallery/Fest/Fest-design.png', category: 'Fest', title: 'Fest Setup' },
   // Live Music
+  { src: '/gallery/Live Music/ryan.png', category: 'Live Music', title: 'Live Solo Performance' },
+  { src: '/gallery/Live Music/sirat-band.png', category: 'Live Music', title: 'Live Band' },
   { src: '/gallery/Live Music/Concert.png', category: 'Live Music', title: 'Concert Night' },
   { src: '/gallery/Live Music/live-band.png', category: 'Live Music', title: 'Live Band' },
   { src: '/gallery/Live Music/live-duet.png', category: 'Live Music', title: 'Live Duet' },
@@ -103,14 +105,14 @@ const BandhanGallery = () => {
         </section>
 
         {/* ── Filter Bar ── */}
-        <section className="py-10 bg-gradient-to-b from-background to-secondary/10 sticky top-[140px] z-30 border-b border-accent/20">
+        <section className="py-4 bg-gradient-to-b from-background to-secondary/10 sticky top-[140px] z-30 border-b border-accent/20">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex overflow-x-auto no-scrollbar gap-2 md:flex-wrap md:justify-center">
               {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setActive(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-widest transition-all duration-300 border ${
+                  className={`flex-shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wider md:tracking-widest transition-all duration-300 border ${
                     active === cat
                       ? 'bg-accent text-white border-accent shadow-md'
                       : 'bg-background/60 text-muted-foreground border-accent/20 hover:border-accent/60 hover:text-primary'

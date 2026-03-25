@@ -84,10 +84,12 @@ const Services = () => {
                     </div>
                     
                     <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
-                      <Button variant="hero" className="w-full sm:w-auto" onClick={(e) => e.preventDefault()}>
-                        <span>Learn More</span>
-                        <ArrowRight size={16} className="ml-2" />
-                      </Button>
+                      <Link to={service.slug === 'bandhan' ? '/bandhan' : `/services/${service.slug}`}>
+                        <Button variant="hero" className="w-full sm:w-auto">
+                          <span>Learn More</span>
+                          <ArrowRight size={16} className="ml-2" />
+                        </Button>
+                      </Link>
                       <Button 
                         variant="heroFilled" 
                         className="w-full sm:w-auto"

@@ -25,6 +25,7 @@ export interface LiveArtistCardProps {
   variant?: 'solo' | 'duo'
   forceOpenModal?: boolean
   onModalClose?: () => void
+  onLiked?: (artistId: number) => void
 }
 
 export const LiveArtistCard: React.FC<LiveArtistCardProps> = ({
@@ -34,16 +35,21 @@ export const LiveArtistCard: React.FC<LiveArtistCardProps> = ({
   isLoading = false,
   variant = 'solo',
   forceOpenModal = false,
-  onModalClose
+  onModalClose,
+  onLiked
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   
-  // Use individual hook for like actions, but display bulk data for counts
-  const { isLiked: individualIsLiked, handleLike, isLoading: actionLoading } = useLikes(
+  const { isLiked: individualIsLiked, handleLike: rawHandleLike, isLoading: actionLoading } = useLikes(
     artist.id, 
     artist.name,
-    { enableOptimisticUpdates: true, enableToasts: true }
+    { enableOptimisticUpdates: true, enableToasts: true, skipInitialLoad: !!bulkData }
   )
+
+  const handleLike = async () => {
+    await rawHandleLike()
+    onLiked?.(artist.id)
+  }
 
   // Comments hook - only load when modal is open
   const { 
@@ -111,9 +117,9 @@ export const LiveArtistCard: React.FC<LiveArtistCardProps> = ({
     <>
       {/* Regular Card View */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: index * 0.1 }}
+        transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.3) }}
         viewport={{ once: true }}
         className="glass-card overflow-hidden group hover:border-gold/30 transition-all duration-500 relative flex flex-col cursor-pointer"
         onClick={handleCardClick}
@@ -123,6 +129,7 @@ export const LiveArtistCard: React.FC<LiveArtistCardProps> = ({
         <img
           src={artist.image}
           alt={artist.name}
+          loading={index < 4 ? 'eager' : 'lazy'}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           onError={(e) => {
             const target = e.target as HTMLImageElement

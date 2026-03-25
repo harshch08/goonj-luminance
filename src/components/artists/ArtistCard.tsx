@@ -23,6 +23,7 @@ export interface ArtistCardProps {
   bulkData?: ArtistLikeData | null
   isLoading?: boolean
   onBookingClick: (artist: Artist) => void
+  onLiked?: (artistId: number) => void
 }
 
 export const ArtistCard: React.FC<ArtistCardProps> = ({
@@ -30,14 +31,19 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
   index,
   bulkData,
   isLoading = false,
-  onBookingClick
+  onBookingClick,
+  onLiked
 }) => {
-  // Use individual hook for like actions, but display bulk data for counts
-  const { isLiked: individualIsLiked, handleLike, isLoading: actionLoading } = useLikes(
+  const { isLiked: individualIsLiked, handleLike: rawHandleLike, isLoading: actionLoading } = useLikes(
     artist.id, 
     artist.name,
-    { enableOptimisticUpdates: true, enableToasts: true }
+    { enableOptimisticUpdates: true, enableToasts: true, skipInitialLoad: !!bulkData }
   )
+
+  const handleLike = async () => {
+    await rawHandleLike()
+    onLiked?.(artist.id)
+  }
 
   // Determine display values - prefer bulk data when available
   const displayLikeCount = bulkData?.likeCount ?? 0
@@ -46,9 +52,9 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.3) }}
       viewport={{ once: true }}
       className="group relative overflow-hidden rounded-lg aspect-[3/4] cursor-pointer"
     >
@@ -56,6 +62,7 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
       <img 
         src={artist.image} 
         alt={artist.name}
+        loading={index < 4 ? 'eager' : 'lazy'}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
       

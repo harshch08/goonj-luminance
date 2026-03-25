@@ -77,6 +77,7 @@ const Artists = () => {
     isLoading: bulkLoading,
     error: bulkError,
     loadArtists,
+    refreshArtist,
     getArtistData,
     clearError
   } = useBulkLikes({
@@ -300,6 +301,7 @@ const Artists = () => {
                       bulkData={getArtistData(artist.id)}
                       isLoading={bulkLoading}
                       variant="solo"
+                      onLiked={(id) => refreshArtist(id)}
                       forceOpenModal={openModalArtistId === artist.id}
                       onModalClose={() => setOpenModalArtistId(null)}
                     />
@@ -377,6 +379,7 @@ const Artists = () => {
                     index={index}
                     bulkData={getArtistData(artist.id)}
                     isLoading={bulkLoading}
+                    onLiked={(id) => refreshArtist(id)}
                     onBookingClick={(artist) => {
                       setBookingModal({
                         isOpen: true,
