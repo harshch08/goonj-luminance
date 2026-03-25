@@ -2,12 +2,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { ThemeTransition } from "@/components/layout/ThemeTransition";
 import { QuotationCartProvider } from "@/context/QuotationCartContext";
 import { QuotationCart } from "@/components/quotation/QuotationCart";
 import { lazy, Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
 
 // Lazy load all pages — only downloaded when navigated to
 const Index = lazy(() => import("./pages/Index"));
@@ -61,34 +62,45 @@ const App = () => (
           <ThemeTransition />
           <QuotationCart />
           <Suspense fallback={null}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/bandhan" element={<Bandhan />} />
-              <Route path="/bandhan/about" element={<BandhanAbout />} />
-              <Route path="/bandhan/services" element={<BandhanServices />} />
-              <Route path="/bandhan/contact" element={<BandhanContact />} />
-              <Route path="/bandhan/gallery" element={<BandhanGallery />} />
-              <Route path="/bandhan/corporate-events" element={<CorporateEvents />} />
-              <Route path="/bandhan/talent-fashion" element={<TalentFashion />} />
-              <Route path="/bandhan/destination-weddings" element={<DestinationWeddings />} />
-              <Route path="/bandhan/catering" element={<Catering />} />
-              <Route path="/bandhan/photography" element={<Photography />} />
-              <Route path="/bandhan/stage-setup" element={<StageSetup />} />
-              <Route path="/services/:slug" element={<ServiceDetail />} />
-              <Route path="/artists" element={<Artists />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/quotation" element={<Quotation />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <AnimatedRoutes />
           </Suspense>
         </BrowserRouter>
       </QuotationCartProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  const isBandhan = location.pathname.startsWith('/bandhan');
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={isBandhan ? location.pathname : 'non-bandhan'}>
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/bandhan" element={<Bandhan />} />
+        <Route path="/bandhan/about" element={<BandhanAbout />} />
+        <Route path="/bandhan/services" element={<BandhanServices />} />
+        <Route path="/bandhan/contact" element={<BandhanContact />} />
+        <Route path="/bandhan/gallery" element={<BandhanGallery />} />
+        <Route path="/bandhan/corporate-events" element={<CorporateEvents />} />
+        <Route path="/bandhan/talent-fashion" element={<TalentFashion />} />
+        <Route path="/bandhan/destination-weddings" element={<DestinationWeddings />} />
+        <Route path="/bandhan/catering" element={<Catering />} />
+        <Route path="/bandhan/photography" element={<Photography />} />
+        <Route path="/bandhan/stage-setup" element={<StageSetup />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/artists" element={<Artists />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/quotation" element={<Quotation />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 export default App;

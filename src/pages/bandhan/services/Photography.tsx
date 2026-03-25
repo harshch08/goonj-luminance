@@ -1,6 +1,7 @@
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
 import PhotographyServices from '@/components/bandhan/services/PhotographyServices';
@@ -12,9 +13,8 @@ import '@/components/bandhan/bandhan-theme.css';
 
 const Photography = () => {
   const service = servicesData.photography;
-
   return (
-    <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+    <BandhanPageTransition><div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
       <FloatingFlowers />
@@ -26,9 +26,7 @@ const Photography = () => {
           description={service.description}
           images={service.heroImages}
         />
-
         <PhotographyServices />
-
         <PhotographyInclusions />
         <ServiceEnquiryForm
           serviceName="Photography & Videography"
@@ -41,8 +39,7 @@ const Photography = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
-
 export default Photography;
-

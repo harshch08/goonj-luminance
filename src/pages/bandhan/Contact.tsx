@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import FloralDecor from '@/components/bandhan/services/FloralDecor';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from 'lucide-react';
@@ -48,6 +49,7 @@ const BandhanContact = () => {
   const inputClass = "w-full bg-background/50 backdrop-blur-sm border border-border/40 hover:border-accent/40 focus:border-accent focus:outline-none rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground transition-all duration-300 text-sm";
 
   return (
+    <BandhanPageTransition>
     <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
@@ -210,6 +212,7 @@ const BandhanContact = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
 

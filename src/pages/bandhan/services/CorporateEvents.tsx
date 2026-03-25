@@ -1,6 +1,7 @@
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
 import ServiceDetails from '@/components/bandhan/services/ServiceDetails';
@@ -49,13 +50,11 @@ const service = {
     ],
   },
 };
-
 const CorporateEvents = () => (
-  <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+  <BandhanPageTransition><div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
     <BandhanNav />
     <BandhanCategoryNav />
     <FloatingFlowers />
-
     <main className="relative -mt-[140px] pt-[140px]">
       <ServiceHero
         title={service.title}
@@ -63,13 +62,11 @@ const CorporateEvents = () => (
         description={service.description}
         images={service.heroImages}
       />
-
       <ConceptShowcase
         title={service.conceptShowcase.title}
         subtitle={service.conceptShowcase.subtitle}
         images={service.conceptShowcase.images}
       />
-
       <ServiceDetails features={service.features} benefits={service.benefits} />
       <ServiceEnquiryForm
         serviceName="Corporate Events & Conferences"
@@ -83,6 +80,6 @@ const CorporateEvents = () => (
     </main>
     <BandhanFooter />
   </div>
+  </BandhanPageTransition>
 );
-
 export default CorporateEvents;

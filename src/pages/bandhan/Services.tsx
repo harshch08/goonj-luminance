@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import FloralDecor from '@/components/bandhan/services/FloralDecor';
 import { Heart, Camera, Utensils, Mic2, ArrowRight } from 'lucide-react';
@@ -50,6 +51,7 @@ const services = [
 
 const BandhanServices = () => {
   return (
+    <BandhanPageTransition>
     <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
@@ -223,6 +225,7 @@ const BandhanServices = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
 

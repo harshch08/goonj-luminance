@@ -1,6 +1,7 @@
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
 import ConceptShowcase from '@/components/bandhan/services/ConceptShowcase';
@@ -12,9 +13,8 @@ import '@/components/bandhan/bandhan-theme.css';
 
 const StageSetup = () => {
   const service = servicesData.stageSetup;
-
   return (
-    <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+    <BandhanPageTransition><div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
       <FloatingFlowers />
@@ -26,7 +26,6 @@ const StageSetup = () => {
           description={service.description}
           images={service.heroImages}
         />
-
         {service.conceptShowcase && (
           <ConceptShowcase
             title={service.conceptShowcase.title}
@@ -35,7 +34,6 @@ const StageSetup = () => {
             layout={service.conceptShowcase.layout}
           />
         )}
-
         <ServiceDetails features={service.features} benefits={service.benefits} />
         <ServiceEnquiryForm
           serviceName="Stage Setup & Lighting / Sound"
@@ -49,8 +47,7 @@ const StageSetup = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
-
 export default StageSetup;
-

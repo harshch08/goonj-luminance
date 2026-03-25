@@ -54,9 +54,9 @@ export const CategoryNav = () => {
     <div className={`sticky top-20 z-40 bg-transparent backdrop-blur-sm border-b ${isBandhanPage ? 'border-white/20' : 'border-border/20'}`}>
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center py-2 overflow-x-auto overflow-y-hidden no-scrollbar scroll-smooth">
-          <div className="flex items-center w-full gap-1 md:gap-0">
+          <div className="flex items-center w-full gap-1 md:gap-0 justify-center">
             {/* Left categories */}
-            <div className="flex items-center md:flex-1 md:justify-around gap-1 md:gap-0">
+            <div className="flex items-center justify-end gap-1 md:gap-0 pr-2 md:pr-4">
               {leftCategories.map(renderLink)}
             </div>
 
@@ -81,7 +81,7 @@ export const CategoryNav = () => {
             </div>
 
             {/* Right categories */}
-            <div className="flex items-center md:flex-1 md:justify-around gap-1 md:gap-0">
+            <div className="flex items-center justify-start gap-1 md:gap-0 pl-2 md:pl-4">
               {rightCategories.map(renderLink)}
             </div>
           </div>

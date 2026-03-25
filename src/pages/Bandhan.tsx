@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import HeroSection from '@/components/bandhan/home/HeroSection';
 import IntroSection from '@/components/bandhan/home/IntroSection';
 import TestimonialSection from '@/components/bandhan/home/TestimonialSection';
@@ -27,6 +28,7 @@ const Bandhan = () => {
   }, []);
 
   return (
+    <BandhanPageTransition>
     <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
@@ -39,6 +41,7 @@ const Bandhan = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
 

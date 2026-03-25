@@ -151,7 +151,7 @@ export const MainNav = () => {
                   }`}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  <img src="/Bandhan Logo.png" alt="Bandhan" className="w-5 h-5 relative z-10 object-contain" />
+                  <img src="/bandhanlogo.png" alt="Bandhan" className="w-5 h-5 relative z-10 object-contain" />
                   <div className="flex flex-col items-center relative z-10">
                     <span className="text-sm font-bold tracking-widest font-serif leading-tight">BANDHAN</span>
                     <span className="text-[9px] font-light tracking-wider opacity-90 -mt-0.5">Weddings</span>
@@ -239,7 +239,7 @@ export const MainNav = () => {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    <img src="/Bandhan Logo.png" alt="Bandhan" className="w-6 h-6 relative z-10 object-contain" />
+                    <img src="/bandhanlogo.png" alt="Bandhan" className="w-6 h-6 relative z-10 object-contain" />
                     <div className="flex flex-col items-center relative z-10">
                       <span className="text-lg font-bold tracking-widest font-serif leading-tight">BANDHAN</span>
                       <span className="text-[10px] font-light tracking-wider opacity-90 -mt-0.5">Weddings</span>

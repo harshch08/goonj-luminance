@@ -66,7 +66,7 @@ export const BandhanNav = () => {
             <Link to="/bandhan" className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <img 
-                  src="/public/bandhanlogo.png" 
+                  src="/bandhanlogo.png" 
                   alt="Bandhan Logo" 
                   className="h-28 w-auto object-contain drop-shadow-md"
                 />

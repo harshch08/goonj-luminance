@@ -26,7 +26,7 @@ export const BandhanFooter = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img src="/Bandhan Logo.png" alt="Bandhan Logo" className="h-20 w-auto" />
+              <img src="/bandhanlogo.png" alt="Bandhan Logo" className="h-20 w-auto" />
               <div className="flex flex-col">
                 <h3 className="font-display text-2xl font-bold text-[hsl(25,30%,20%)]">BANDHAN</h3>
                 <p className="text-xs uppercase tracking-widest text-yellow-700 font-medium">Weddings</p>

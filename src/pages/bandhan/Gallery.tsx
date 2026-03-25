@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import '@/components/bandhan/bandhan-theme.css';
 
@@ -74,6 +75,7 @@ const BandhanGallery = () => {
   const next = () => setLightbox(i => i === null ? null : (i + 1) % filtered.length);
 
   return (
+    <BandhanPageTransition>
     <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
@@ -230,6 +232,7 @@ const BandhanGallery = () => {
 
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
 

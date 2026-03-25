@@ -1,6 +1,7 @@
 import { BandhanNav } from '@/components/layout/BandhanNav';
 import { BandhanCategoryNav } from '@/components/layout/BandhanCategoryNav';
 import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
+import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
 import ServiceGrid from '@/components/bandhan/services/ServiceGrid';
@@ -14,9 +15,8 @@ import '@/components/bandhan/bandhan-theme.css';
 
 const DestinationWeddings = () => {
   const service = servicesData.destinationWeddings;
-
   return (
-    <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+    <BandhanPageTransition><div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
       <BandhanNav />
       <BandhanCategoryNav />
       <FloatingFlowers />
@@ -28,16 +28,13 @@ const DestinationWeddings = () => {
           description={service.description}
           images={service.heroImages}
         />
-
         {service.options && (
           <ServiceGrid
             title="TYPES OF WEDDINGS AVAILABLE"
             options={service.options}
           />
         )}
-
         {service.portfolio && <ServicePortfolio portfolio={service.portfolio} />}
-
         {service.conceptShowcase && (
           <ConceptShowcase
             title={service.conceptShowcase.title}
@@ -46,7 +43,6 @@ const DestinationWeddings = () => {
             layout={service.conceptShowcase.layout}
           />
         )}
-
         <ServiceDetails features={service.features} benefits={service.benefits} />
         <ServiceEnquiryForm
           serviceName="Destination Weddings"
@@ -59,8 +55,7 @@ const DestinationWeddings = () => {
       </main>
       <BandhanFooter />
     </div>
+    </BandhanPageTransition>
   );
 };
-
 export default DestinationWeddings;
-
