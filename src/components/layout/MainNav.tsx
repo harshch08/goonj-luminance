@@ -108,7 +108,7 @@ export const MainNav = () => {
               ) : (
                 <div className="flex items-center gap-3">
                   <img 
-                    src="/goonj_entertainment.png" 
+                    src="/logo.png" 
                     alt="Goonj Logo" 
                     className="h-28 w-auto"
                   />

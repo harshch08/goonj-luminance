@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/goonj_entertainment.png" alt="Goonj Entertainment" width="180" />
+<img src="public/logo.png" alt="Goonj Entertainment" width="180" />
 
 # Goonj Entertainment
 

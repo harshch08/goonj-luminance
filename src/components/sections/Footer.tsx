@@ -47,7 +47,7 @@ export const Footer = () => {
               ) : (
                 <div className="flex items-center gap-3 mb-2">
                   <img 
-                    src="/goonj_entertainment.png" 
+                    src="/logo.png" 
                     alt="Goonj Logo" 
                     className="h-20 w-auto"
                   />

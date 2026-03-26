@@ -70,11 +70,11 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
       
       {/* Artist Info - Repositioned to Bottom Left */}
-      <div className="absolute bottom-0 left-0 right-0 p-6">
+      <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
         {/* Basic Info - Always at Bottom Left */}
-        <div className="absolute bottom-6 left-6 right-6 transform transition-all duration-500 group-hover:relative group-hover:bottom-auto group-hover:left-auto group-hover:right-auto group-hover:-translate-y-20">
-          <div className="flex items-center justify-between gap-3 mb-2">
-            <h3 className="font-display text-2xl font-bold text-foreground">
+        <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 transform transition-all duration-500 group-hover:relative group-hover:bottom-auto group-hover:left-auto group-hover:right-auto group-hover:-translate-y-20">
+          <div className="flex items-center justify-between gap-1 sm:gap-3 mb-2">
+            <h3 className="font-display text-base sm:text-2xl font-bold text-foreground leading-tight min-w-0 truncate">
               {artist.name}
             </h3>
             
@@ -93,7 +93,7 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
           </div>
           
           <div className="flex items-center gap-2 mb-0.5">
-            <span className="text-xs uppercase tracking-luxury text-gold-light">
+            <span className="text-xs uppercase tracking-luxury text-gold-light truncate">
               {artist.category}
             </span>
             <span className="text-xs text-muted-foreground">•</span>
@@ -103,7 +103,7 @@ export const ArtistCard: React.FC<ArtistCardProps> = ({
             </div>
           </div>
           
-          <p className="text-sm text-muted-foreground">
+          <p className="text-xs sm:text-sm text-muted-foreground truncate">
             {artist.genre}
           </p>
         </div>

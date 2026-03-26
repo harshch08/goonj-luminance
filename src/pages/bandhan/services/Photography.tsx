@@ -5,7 +5,7 @@ import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import ServiceHero from '@/components/bandhan/services/ServiceHero';
 import PhotographyServices from '@/components/bandhan/services/PhotographyServices';
-import PhotographyInclusions from '@/components/bandhan/services/PhotographyInclusions';
+import PhotographyPackages from '@/components/bandhan/services/PhotographyPackages';
 import ServiceCTA from '@/components/bandhan/services/ServiceCTA';
 import ServiceEnquiryForm from '@/components/bandhan/services/ServiceEnquiryForm';
 import { servicesData } from '@/components/bandhan/data/servicesData';
@@ -27,10 +27,11 @@ const Photography = () => {
           images={service.heroImages}
         />
         <PhotographyServices />
-        <PhotographyInclusions />
+        <PhotographyPackages />
         <ServiceEnquiryForm
           serviceName="Photography & Videography"
           extraFields={[
+            { name: 'package', label: 'Package', options: ['Silver Package (2 Days)', 'Gold Package (2 Days)', 'Custom / Not Sure'] },
             { name: 'shootType', label: 'Shoot Type', options: ['Wedding Photography', 'Pre-Wedding Shoot', 'Cinematic Film', 'Drone Coverage', 'Full Package'] },
             { name: 'duration', label: 'Event Duration', options: ['1 Day', '2 Days', '3 Days', 'More than 3 Days'] },
           ]}

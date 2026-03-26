@@ -84,20 +84,20 @@ const BandhanAbout = () => {
               <div className="animate-fade-in">
                 <div className="w-16 h-1 bg-accent mb-6" />
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6 tracking-tight leading-tight">
-                  Bandhan by Cardinal Revolution
+                  About Us
                 </h2>
-                <p className="text-accent text-lg font-medium mb-6">
-                  Crafting timeless wedding experiences since 2020
-                </p>
                 <div className="space-y-4 text-foreground/90 leading-relaxed text-lg">
                   <p>
-                    Bandhan was born from a simple yet powerful belief — that every wedding deserves to be extraordinary. We are a luxury wedding planning company dedicated to transforming your most cherished moments into memories that last a lifetime.
+                    <strong>Bandhan by Cardinal Revolution</strong> is a luxury destination wedding planning company born out of a passion for celebrating love, culture, and unforgettable moments. We specialize in curating dream weddings across scenic locations in India and beyond, turning every couple's vision into a beautifully orchestrated reality.
                   </p>
                   <p>
-                    From intimate riverside ceremonies in Rishikesh to grand destination celebrations in Corbett, we bring the same level of passion, precision, and artistry to every event we touch.
+                    From grand royal affairs to intimate beach ceremonies, our team ensures every detail is flawlessly managed—right from venue selection and premium décor to guest hospitality, logistics, entertainment, and culinary experiences.
                   </p>
                   <p>
-                    Our team of experienced planners, designers, and coordinators work tirelessly behind the scenes so you can be fully present in every magical moment of your celebration.
+                    <strong>At Bandhan</strong>, we believe a wedding is not just an event; it's an emotion. Our in-house creatives, designers, and hospitality experts work hand-in-hand with couples to reflect their story through personalized themes, elegant setups, and immersive experiences.
+                  </p>
+                  <p>
+                    With roots in tradition and eyes on innovation, <strong>Bandhan by Cardinal Revolution</strong> is your trusted partner in crafting weddings that are heartfelt, hassle-free, and truly spectacular.
                   </p>
                 </div>
               </div>
@@ -150,22 +150,22 @@ const BandhanAbout = () => {
               <div className="text-center mb-16 animate-fade-in">
                 <div className="w-16 h-1 bg-accent mx-auto mb-6" />
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary tracking-tight">
-                  What We Stand For
+                  Our Values
                 </h2>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {values.map((value, index) => (
+              <div className="grid md:grid-cols-3 gap-8">
+                {[
+                  '"Crafting one-of-a-kind experiences tailored to each couple\'s unique story."',
+                  '"Delivering flawless execution with the highest standards of quality and luxury."',
+                  '"Building heartfelt relationships to create joyful, stress-free celebrations."',
+                ].map((quote, index) => (
                   <div
-                    key={value.title}
-                    className="animate-fade-in-up bg-background/50 backdrop-blur-sm p-6 rounded-xl border border-border/30 hover:border-accent/30 transition-all duration-300 group text-center"
+                    key={index}
+                    className="animate-fade-in-up bg-background/50 backdrop-blur-sm p-8 rounded-xl border border-border/30 hover:border-accent/30 transition-all duration-300 flex items-center justify-center"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors duration-300">
-                      <value.icon size={24} className="text-accent" />
-                    </div>
-                    <h3 className="text-lg font-heading font-semibold text-primary mb-3">{value.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{value.description}</p>
+                    <p className="text-lg text-foreground/80 leading-relaxed italic text-center font-body">{quote}</p>
                   </div>
                 ))}
               </div>
@@ -182,19 +182,28 @@ const BandhanAbout = () => {
               <div className="text-center mb-16 animate-fade-in">
                 <div className="w-16 h-1 bg-accent mx-auto mb-6" />
                 <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary tracking-tight">
-                  Our Journey
+                  Why Choose Us?
                 </h2>
               </div>
 
               <div className="space-y-4 animate-fade-in-up">
-                {milestones.map((milestone, index) => (
+                {[
+                  { text: <>We are <strong>customer satisfaction oriented</strong> business.</> },
+                  { text: <>We provide an <strong>early-bird</strong> flat <strong>discount of 10%</strong> for all.</> },
+                  { text: <>We provide <strong>complimentary services</strong> if you book the entire wedding with us.</> },
+                  { text: <>We have <strong>customizable premium packages</strong> that can be swapped from our add-on services.</> },
+                  { text: <>We offer a range of <strong>Pre-Wedding</strong> shoot types and locations.</> },
+                  { text: <>We maintain high standards by using <strong>brand-new linens</strong>, ensuring premium <strong>quality and hygiene</strong>.</> },
+                  { text: <>Our photographic services are top notch, as we give the album and edited material in just <strong>30-45 days</strong> period.</> },
+                  { text: <>We have realistic and moderate costs, and we offer branded food stalls, i.e., <strong>Bikaner, Haldirams, Barista</strong>, etc.</> },
+                ].map((item, index) => (
                   <div
                     key={index}
                     className="flex items-start space-x-4 bg-background/50 backdrop-blur-sm p-5 rounded-xl border border-border/30 hover:border-accent/30 transition-all duration-300 group"
                     style={{ animationDelay: `${index * 80}ms` }}
                   >
                     <CheckCircle size={20} className="text-accent mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
-                    <p className="text-foreground/90 leading-relaxed">{milestone}</p>
+                    <p className="text-foreground/90 leading-relaxed">{item.text}</p>
                   </div>
                 ))}
               </div>

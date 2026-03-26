@@ -49,6 +49,7 @@ const DestinationWeddings = () => {
           extraFields={[
             { name: 'weddingType', label: 'Wedding Type', options: ['Riverside', 'Indoor', 'Outdoor', 'Beach', 'Mountain', 'Palace'] },
             { name: 'guestCount', label: 'Approximate Guest Count' },
+            { name: 'additionalServices', label: 'Other Services on Demand', multiSelect: true, options: ['Make-Up Artist', 'Mehndi Artist', 'DJ Artist', 'Pandit Ji', 'Acharya Ji', 'Dance Performance', 'Live Music', 'Anchoring', 'Invitation Cards (Physical/Digital/Video)', 'Musical Phere', 'Jaimala Fireworks', 'Return Gift', 'Haldi/Mehndi Games', 'Barat Band', 'Bridal Theme Entry', 'Pyro Fireworks', 'Mirror Ramp Walk', 'Bollywood Night', 'Pre-Wedding Shoot', 'Venue Collection (3/4/5 Star)'] },
           ]}
         />
         <ServiceCTA />
