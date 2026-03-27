@@ -68,7 +68,7 @@ export const BandhanNav = () => {
                 <img 
                   src="/bandhanlogo.png" 
                   alt="Bandhan Logo" 
-                  className="h-28 w-auto object-contain drop-shadow-md"
+                  className="h-20 w-auto object-contain drop-shadow-md"
                 />
                 <div className="flex flex-col leading-tight">
                   <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2rem', fontWeight: 400, color: '#1a1008', lineHeight: 1.1 }}>

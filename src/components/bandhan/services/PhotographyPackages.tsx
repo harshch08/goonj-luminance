@@ -6,6 +6,7 @@ const packages = [
     label: 'Silver Package',
     duration: '2 Days',
     badge: null,
+    price: '₹80,000 – ₹1,20,000',
     accent: 'from-slate-400 to-slate-300',
     borderColor: 'border-slate-300/60',
     badgeBg: 'bg-slate-100 text-slate-600',
@@ -24,6 +25,7 @@ const packages = [
     label: 'Gold Package',
     duration: '2 Days',
     badge: 'Most Popular',
+    price: '₹1,05,000 – ₹2,00,000',
     accent: 'from-amber-500 to-yellow-300',
     borderColor: 'border-amber-400/60',
     badgeBg: 'bg-amber-50 text-amber-700',
@@ -90,6 +92,7 @@ const PhotographyPackages = () => {
                     <h3 className={`text-2xl font-heading font-bold bg-gradient-to-r ${pkg.accent} bg-clip-text text-transparent`}>
                       {pkg.label}
                     </h3>
+                    <p className="text-sm font-semibold text-foreground/70 mt-1">{pkg.price}</p>
                   </div>
 
                   {/* Divider */}

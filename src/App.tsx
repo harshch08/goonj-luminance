@@ -28,7 +28,7 @@ const BandhanServices = lazy(() => import("./pages/bandhan/Services"));
 const BandhanContact = lazy(() => import("./pages/bandhan/Contact"));
 const BandhanGallery = lazy(() => import("./pages/bandhan/Gallery"));
 const CorporateEvents = lazy(() => import("./pages/bandhan/services/CorporateEvents"));
-const TalentFashion = lazy(() => import("./pages/bandhan/services/TalentFashion"));
+const OtherServices = lazy(() => import("./pages/bandhan/services/OtherServices"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("./pages/TermsOfService"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -86,7 +86,7 @@ const AnimatedRoutes = () => {
         <Route path="/bandhan/contact" element={<BandhanContact />} />
         <Route path="/bandhan/gallery" element={<BandhanGallery />} />
         <Route path="/bandhan/corporate-events" element={<CorporateEvents />} />
-        <Route path="/bandhan/talent-fashion" element={<TalentFashion />} />
+        <Route path="/bandhan/other-services" element={<OtherServices />} />
         <Route path="/bandhan/destination-weddings" element={<DestinationWeddings />} />
         <Route path="/bandhan/catering" element={<Catering />} />
         <Route path="/bandhan/photography" element={<Photography />} />

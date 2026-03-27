@@ -14,7 +14,7 @@ const services = [
   { label: 'Photography', href: '/bandhan/photography' },
   { label: 'Stage Setup', href: '/bandhan/stage-setup' },
   { label: 'Corporate Events', href: '/bandhan/corporate-events' },
-  { label: 'Talent & Fashion', href: '/bandhan/talent-fashion' },
+  { label: 'Other Services', href: '/bandhan/other-services' },
 ];
 
 export const BandhanFooter = () => {

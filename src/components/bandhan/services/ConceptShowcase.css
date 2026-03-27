@@ -22,7 +22,7 @@
 
 .polaroid-frame.small {
   position: absolute;
-  width: 260px;
+  width: 320px;
 }
 
 .polaroid-inner {
@@ -56,7 +56,7 @@
 /* Polaroid Cluster Layout - 4 polaroids dispersed */
 .polaroid-cluster {
   position: relative;
-  min-height: 650px;
+  min-height: 750px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -72,21 +72,21 @@
 
 .polaroid-2 {
   top: 60px;
-  right: 260px;
+  right: 320px;
   transform: rotate(-4deg);
   z-index: 5;
 }
 
 .polaroid-3 {
-  top: 320px;
-  right: 40px;
+  top: 360px;
+  right: 20px;
   transform: rotate(3deg);
   z-index: 3;
 }
 
 .polaroid-4 {
-  top: 380px;
-  right: 300px;
+  top: 400px;
+  right: 340px;
   transform: rotate(-5deg);
   z-index: 2;
 }
@@ -95,7 +95,7 @@
 @media (max-width: 1280px) {
   .polaroid-cluster {
     padding-right: 20px;
-    min-height: 600px;
+    min-height: 700px;
   }
 
   .polaroid-1 {
@@ -103,15 +103,15 @@
   }
 
   .polaroid-2 {
-    right: 200px;
+    right: 260px;
   }
 
   .polaroid-3 {
-    right: 30px;
+    right: 20px;
   }
 
   .polaroid-4 {
-    right: 240px;
+    right: 280px;
   }
 }
 

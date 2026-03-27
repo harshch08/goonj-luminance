@@ -47,10 +47,6 @@ const allImages: GalleryImage[] = [
   { src: '/gallery/Corporate/corporate-1.jpg', category: 'Corporate', title: 'Corporate Event' },
   { src: '/gallery/Corporate/corporate-2.jpg', category: 'Corporate', title: 'Corporate Gala' },
   { src: '/gallery/Corporate/corporate-3.jpg', category: 'Corporate', title: 'Corporate Setup' },
-  // Fashion
-  { src: '/gallery/Fashion/fashion-1.jpg', category: 'Fashion', title: 'Fashion Show' },
-  { src: '/gallery/Fashion/fashion-2.jpg', category: 'Fashion', title: 'Fashion Event' },
-  { src: '/gallery/Fashion/fashion-3.jpg', category: 'Fashion', title: 'Fashion Showcase' },
   // Fest
   { src: '/gallery/Fest/Fest-design-2.png', category: 'Fest', title: 'Fest Design' },
   { src: '/gallery/Fest/Fest-design.png', category: 'Fest', title: 'Fest Setup' },
@@ -60,6 +56,36 @@ const allImages: GalleryImage[] = [
   { src: '/gallery/Live Music/Concert.png', category: 'Live Music', title: 'Concert Night' },
   { src: '/gallery/Live Music/live-band.png', category: 'Live Music', title: 'Live Band' },
   { src: '/gallery/Live Music/live-duet.png', category: 'Live Music', title: 'Live Duet' },
+
+  // Sangeet
+  { src: '/gallery/Others/sangeet/1.jpg', category: 'Sangeet', title: 'Sangeet Night' },
+  { src: '/gallery/Others/sangeet/2.jpg', category: 'Sangeet', title: 'Sangeet Decor' },
+  { src: '/gallery/Others/sangeet/3.jpg', category: 'Sangeet', title: 'Sangeet Stage' },
+  { src: '/gallery/Others/sangeet/4.jpg', category: 'Sangeet', title: 'Sangeet Setup' },
+
+  // Haldi Mehendi
+  { src: '/gallery/Others/Haldi mehendi/haldi-1.jpg', category: 'Haldi Mehendi', title: 'Haldi Ceremony' },
+  { src: '/gallery/Others/Haldi mehendi/haldi-2.jpg', category: 'Haldi Mehendi', title: 'Haldi Setup' },
+  { src: '/gallery/Others/Haldi mehendi/haldi-3.jpg', category: 'Haldi Mehendi', title: 'Mehendi Decor' },
+  { src: '/gallery/Others/Haldi mehendi/haldi-4.jpg', category: 'Haldi Mehendi', title: 'Haldi Vibes' },
+
+  // Pre Wedding
+  { src: '/gallery/Others/Pre wedding/Pre wedding.jpg', category: 'Pre Wedding', title: 'Pre Wedding' },
+  { src: '/gallery/Others/Pre wedding/Pre wedding  helicopter.jpg', category: 'Pre Wedding', title: 'Helicopter Shoot' },
+  { src: '/gallery/Others/Pre wedding/Pre wedding luxary car.png', category: 'Pre Wedding', title: 'Luxury Car Shoot' },
+  { src: '/gallery/Others/Pre wedding/Pre wedding Shoot in Jaipur.jpg', category: 'Pre Wedding', title: 'Jaipur Shoot' },
+
+  // Entrance & Selfie Point
+  { src: '/gallery/Others/Entrance/entrance 1.png', category: 'Entrance & Selfie Point', title: 'Entrance 1' },
+  { src: '/gallery/Others/Entrance/entrance 2.png', category: 'Entrance & Selfie Point', title: 'Entrance 2' },
+  { src: '/gallery/Others/selfie point/selfie point 1.jpg', category: 'Entrance & Selfie Point', title: 'Selfie Point' },
+  { src: '/gallery/Others/selfie point/selfie point 2.png', category: 'Entrance & Selfie Point', title: 'Selfie Setup' },
+
+  // Fireworks
+  { src: '/gallery/Others/Pyrodry-Fireworks/1.png', category: 'Fireworks', title: 'Pyrodry Effect' },
+  { src: '/gallery/Others/Pyrodry-Fireworks/2.jpg', category: 'Fireworks', title: 'Fireworks Display' },
+  { src: '/gallery/Others/Jaimala fireworks/1.jpg', category: 'Fireworks', title: 'Jaimala Fireworks' },
+  { src: '/gallery/Others/Jaimala fireworks/2.jpg', category: 'Fireworks', title: 'Jaimala Ceremony' },
 ];
 
 const categories = ['All', ...Array.from(new Set(allImages.map(i => i.category)))];
@@ -67,6 +93,11 @@ const categories = ['All', ...Array.from(new Set(allImages.map(i => i.category))
 const BandhanGallery = () => {
   const [active, setActive] = useState('All');
   const [lightbox, setLightbox] = useState<number | null>(null);
+
+  const handleCategoryChange = (cat: string) => {
+    setActive(cat);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const filtered = useMemo(() =>
     active === 'All' ? allImages : allImages.filter(i => i.category === active),
@@ -105,13 +136,13 @@ const BandhanGallery = () => {
         </section>
 
         {/* ── Filter Bar ── */}
-        <section className="py-4 bg-gradient-to-b from-background to-secondary/10 sticky top-[140px] z-30 border-b border-accent/20">
+        <section className="py-4 bg-white/40 backdrop-blur-xl sticky top-[128px] z-30 border-b border-white/30 shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex overflow-x-auto no-scrollbar gap-2 md:flex-wrap md:justify-center">
               {categories.map(cat => (
                 <button
                   key={cat}
-                  onClick={() => setActive(cat)}
+                  onClick={() => handleCategoryChange(cat)}
                   className={`flex-shrink-0 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs font-semibold uppercase tracking-wider md:tracking-widest transition-all duration-300 border ${
                     active === cat
                       ? 'bg-accent text-white border-accent shadow-md'

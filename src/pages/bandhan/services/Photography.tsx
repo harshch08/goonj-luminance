@@ -33,7 +33,7 @@ const Photography = () => {
           extraFields={[
             { name: 'package', label: 'Package', options: ['Silver Package (2 Days)', 'Gold Package (2 Days)', 'Custom / Not Sure'] },
             { name: 'shootType', label: 'Shoot Type', options: ['Wedding Photography', 'Pre-Wedding Shoot', 'Cinematic Film', 'Drone Coverage', 'Full Package'] },
-            { name: 'duration', label: 'Event Duration', options: ['1 Day', '2 Days', '3 Days', 'More than 3 Days'] },
+            { name: 'duration', label: 'Event Duration', options: ['1 Day', '2 Days', '3 Days', '4 Days'] },
           ]}
         />
         <ServiceCTA />

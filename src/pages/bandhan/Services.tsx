@@ -5,9 +5,7 @@ import { BandhanFooter } from '@/components/bandhan/BandhanFooter';
 import BandhanPageTransition from '@/components/bandhan/BandhanPageTransition';
 import FloatingFlowers from '@/components/bandhan/decorative/FloatingFlowers';
 import FloralDecor from '@/components/bandhan/services/FloralDecor';
-import { Heart, Camera, Utensils, Mic2, ArrowRight } from 'lucide-react';
-import weddingDecor from '@/assets/bandhan/wedding-decor.jpg';
-import destinationSetup from '@/assets/bandhan/destination-setup.jpg';
+import { Heart, Camera, Utensils, Mic2, Briefcase, MoreHorizontal, ArrowRight } from 'lucide-react';
 import '@/components/bandhan/bandhan-theme.css';
 
 const services = [
@@ -17,7 +15,7 @@ const services = [
     subtitle: 'Create unforgettable experiences in breathtaking locations',
     description: 'From riverside ceremonies in Rishikesh to grand celebrations in Corbett, we transform stunning destinations into the perfect backdrop for your love story.',
     href: '/bandhan/destination-weddings',
-    image: weddingDecor,
+    image: '/gallery/Destination-Wedding/Destination-wedding-rishikesh.png',
     highlights: ['Venue scouting & selection', 'Travel & accommodation', 'Local vendor coordination', 'Guest management'],
   },
   {
@@ -26,7 +24,7 @@ const services = [
     subtitle: 'Exquisite cuisine and stunning aesthetics',
     description: 'Delight your guests with world-class culinary experiences and breathtaking decor. We combine gourmet cuisine with artistic presentation for unforgettable dining.',
     href: '/bandhan/catering',
-    image: destinationSetup,
+    image: '/gallery/Wedding/sangeet-decor.png',
     highlights: ['Premium branded food stalls', 'Custom menu design', 'Floral arrangements', 'Live cooking stations'],
   },
   {
@@ -35,7 +33,7 @@ const services = [
     subtitle: 'Capture every precious moment with artistry',
     description: 'Preserve your memories with our expert photography and cinematic videography. Our team captures the emotion and beauty of your special day with artistic vision.',
     href: '/bandhan/photography',
-    image: weddingDecor,
+    image: '/gallery/Photography&Videography/Couple-1.png',
     highlights: ['Pre-wedding shoots', 'Cinematic wedding films', 'Drone photography', 'Same-day editing'],
   },
   {
@@ -44,8 +42,26 @@ const services = [
     subtitle: 'State-of-the-art audio-visual production',
     description: 'Transform your venue with professional stage design, lighting, and sound systems. Our technical expertise ensures perfect ambiance and flawless audio-visual experiences.',
     href: '/bandhan/stage-setup',
-    image: destinationSetup,
+    image: '/gallery/Fest/Fest-design.png',
     highlights: ['Professional sound systems', 'Ambient & dramatic lighting', 'Custom stage design', 'LED screens & projections'],
+  },
+  {
+    icon: Briefcase,
+    title: 'Corporate Events',
+    subtitle: 'Elevating professional gatherings with precision',
+    description: 'From high-profile conferences and product launches to award ceremonies and corporate galas, we deliver seamless, impactful events that reflect your brand prestige.',
+    href: '/bandhan/corporate-events',
+    image: '/gallery/Corporate/corporate-1.jpg',
+    highlights: ['End-to-end event planning', 'Professional AV production', 'Corporate branding', 'Guest management'],
+  },
+  {
+    icon: MoreHorizontal,
+    title: 'Other Services',
+    subtitle: 'Everything else to make your celebration complete',
+    description: 'Sangeet, Pyrodry, Fireworks, Live Music, Mehendi Artist, Makeup Artist, Anchoring, Haldi Mehendi, Entrance Selfie Point, Pre Wedding, Wedding Stationary — all under one roof.',
+    href: '/bandhan/other-services',
+    image: '/gallery/Others/sangeet/1.jpg',
+    highlights: ['Sangeet & Haldi setups', 'Mehendi & Makeup artists', 'Fireworks & Pyrodry', 'Pre-wedding shoots'],
   },
 ];
 

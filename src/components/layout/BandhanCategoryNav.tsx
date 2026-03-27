@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Heart, Camera, Utensils, Mic2, Briefcase, Sparkles } from 'lucide-react';
+import { Heart, Camera, Utensils, Mic2, Briefcase, MoreHorizontal } from 'lucide-react';
 
 const categories = [
   { label: 'Destination Weddings', icon: Heart, href: '/bandhan/destination-weddings' },
@@ -8,7 +8,7 @@ const categories = [
   { label: 'Photography', icon: Camera, href: '/bandhan/photography' },
   { label: 'Stage Setup', icon: Mic2, href: '/bandhan/stage-setup' },
   { label: 'Corporate Events', icon: Briefcase, href: '/bandhan/corporate-events' },
-  { label: 'Talent & Fashion', icon: Sparkles, href: '/bandhan/talent-fashion' },
+  { label: 'Other Services', icon: MoreHorizontal, href: '/bandhan/other-services' },
 ];
 
 export const BandhanCategoryNav = () => {
