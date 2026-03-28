@@ -62,7 +62,7 @@ const OtherServices = () => (
                 'Multiple Services',
               ],
             },
-            { name: 'eventDate', label: 'Event Date' },
+            
             { name: 'guestCount', label: 'Approximate Guest Count' },
           ]}
         />
