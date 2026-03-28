@@ -25,7 +25,7 @@ const packages = [
     label: 'Gold Package',
     duration: '2 Days',
     badge: 'Most Popular',
-    price: '₹1,05,000 – ₹2,00,000',
+    price: '₹1,50,000 – ₹2,00,000',
     accent: 'from-amber-500 to-yellow-300',
     borderColor: 'border-amber-400/60',
     badgeBg: 'bg-amber-50 text-amber-700',

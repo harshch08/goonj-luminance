@@ -13,7 +13,7 @@ interface InstagramPostGridProps {
   error?: Error | null;
   maxPosts?: number;
   className?: string;
-  columns?: 2 | 3 | 4 | 6;
+  columns?: 2 | 3 | 4 | 5 | 6;
   showEmptyState?: boolean;
   aspectRatio?: 'square' | 'portrait' | 'landscape';
 }
@@ -43,6 +43,7 @@ export function InstagramPostGrid({
     2: 'grid-cols-2',
     3: 'grid-cols-2 sm:grid-cols-3',
     4: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+    5: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5',
     6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6'
   };
 
@@ -158,6 +159,7 @@ export function InstagramPostGridSkeleton({
     2: 'grid-cols-2',
     3: 'grid-cols-2 sm:grid-cols-3',
     4: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+    5: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5',
     6: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-6'
   };
 

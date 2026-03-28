@@ -18,7 +18,7 @@ const BandhanWhatsAppSection = () => {
   };
 
   const handleEmail = () => {
-    window.location.href = 'mailto:goonjentertainment3@gmail.com?subject=Wedding Planning Inquiry';
+    window.location.href = 'mailto:bandhan.cr@gmail.com?subject=Wedding Planning Inquiry';
   };
 
   return (
@@ -122,7 +122,7 @@ const BandhanWhatsAppSection = () => {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-8 text-sm text-muted-foreground">
             <p>Call us: <span className="text-primary font-medium">+91 98976 42145</span></p>
             <span className="hidden sm:inline text-accent/40">•</span>
-            <p>Email: <span className="text-primary font-medium">goonjentertainment3@gmail.com</span></p>
+            <p>Email: <span className="text-primary font-medium">bandhan.cr@gmail.com</span></p>
           </div>
         </motion.div>
       </div>

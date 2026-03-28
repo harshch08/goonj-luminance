@@ -71,7 +71,7 @@ export const BandhanNav = () => {
                   className="h-20 w-auto object-contain drop-shadow-md"
                 />
                 <div className="flex flex-col leading-tight">
-                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2rem', fontWeight: 400, color: '#1a1008', lineHeight: 1.1 }}>
+                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2rem', fontWeight: 700, color: '#1a1008', lineHeight: 1.1, textTransform: 'uppercase' }}>
                     Bandhan
                   </span>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '0.6rem', letterSpacing: '0.3em', color: '#92400e', fontWeight: 600, textTransform: 'uppercase' }}>

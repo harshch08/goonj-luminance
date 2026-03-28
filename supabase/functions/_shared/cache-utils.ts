@@ -391,7 +391,7 @@ export class InstagramCacheManager {
             throw new CacheValidationError(`Post at index ${i} must be an object`, postContext)
           }
 
-          const requiredFields = ['id', 'media_url', 'permalink', 'media_type', 'timestamp']
+          const requiredFields = ['id', 'permalink', 'media_type', 'timestamp']
           for (const field of requiredFields) {
             if (!post[field] || typeof post[field] !== 'string') {
               throw new CacheValidationError(
@@ -409,9 +409,10 @@ export class InstagramCacheManager {
             )
           }
 
-          // Validate URLs
+          // Validate URLs (only if present)
           try {
-            new URL(post.media_url)
+            if (post.media_url) new URL(post.media_url)
+            if (post.thumbnail_url) new URL(post.thumbnail_url)
             new URL(post.permalink)
           } catch (urlError) {
             throw new CacheValidationError(

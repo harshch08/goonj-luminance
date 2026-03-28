@@ -101,6 +101,11 @@ interface InstagramPost {
 
 interface InstagramFollowerData {
   followers_count: number
+  follows_count?: number
+  media_count?: number
+  username?: string
+  name?: string
+  profile_picture_url?: string
   last_updated: string
 }
 
@@ -246,6 +251,11 @@ serve(async (req: Request) => {
         logger.warn('Using fallback follower data due to API error', error)
         followerData = {
           followers_count: fallbackData.follower_count.followers_count,
+          follows_count: fallbackData.follower_count.follows_count,
+          media_count: fallbackData.follower_count.media_count,
+          username: fallbackData.follower_count.username,
+          name: fallbackData.follower_count.name,
+          profile_picture_url: fallbackData.follower_count.profile_picture_url,
           id: requiredEnvVars.INSTAGRAM_BUSINESS_ACCOUNT_ID!
         }
       } else {
@@ -258,7 +268,7 @@ serve(async (req: Request) => {
     try {
       logger.info('Fetching Instagram posts')
       const postsResponse = await fetchWithRetry(
-        `https://graph.facebook.com/v18.0/${requiredEnvVars.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media?fields=id,media_url,thumbnail_url,permalink,caption,media_type,timestamp&limit=6&access_token=${requiredEnvVars.INSTAGRAM_ACCESS_TOKEN}`,
+        `https://graph.facebook.com/v18.0/${requiredEnvVars.INSTAGRAM_BUSINESS_ACCOUNT_ID}/media?fields=id,media_url,thumbnail_url,permalink,caption,media_type,timestamp&limit=10&access_token=${requiredEnvVars.INSTAGRAM_ACCESS_TOKEN}`,
         logger
       )
 

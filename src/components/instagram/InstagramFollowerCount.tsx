@@ -124,21 +124,20 @@ export function InstagramFollowerCount({
                     className="w-full h-full rounded-full object-cover"
                     onLoad={() => console.log('Profile picture loaded successfully')}
                     onError={(e) => {
-                      console.log('Profile picture failed to load (likely CORS), showing initials');
-                      // Hide the image and show initials
+                      console.log('Profile picture failed to load (likely CORS), showing logo');
                       e.currentTarget.style.display = 'none';
-                      const initialsDiv = e.currentTarget.nextElementSibling as HTMLElement | null;
-                      if (initialsDiv) {
-                        initialsDiv.style.display = 'flex';
+                      const logoDiv = e.currentTarget.nextElementSibling as HTMLElement | null;
+                      if (logoDiv) {
+                        logoDiv.style.display = 'flex';
                       }
                     }}
                   />
                 ) : null}
                 <div 
-                  className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white font-bold text-2xl"
+                  className="w-full h-full rounded-full bg-black flex items-center justify-center"
                   style={{ display: profilePictureUrl ? 'none' : 'flex' }}
                 >
-                  {username ? username.charAt(0).toUpperCase() : 'I'}
+                  <img src="/logo.png" alt="Goonj Logo" className="w-12 h-12 object-contain" />
                 </div>
               </div>
             </div>
@@ -170,7 +169,7 @@ export function InstagramFollowerCount({
             <div className="flex items-center gap-3 sm:gap-6 text-sm flex-wrap">
               <div className="flex items-center gap-1">
                 <span className="font-semibold text-foreground">
-                  {postsCount || 0}
+                  {postsCount != null ? postsCount : '—'}
                 </span>
                 <span className="text-muted-foreground">
                   {postsCount === 1 ? 'post' : 'posts'}
@@ -186,7 +185,7 @@ export function InstagramFollowerCount({
               </div>
               <div className="flex items-center gap-1">
                 <span className="font-semibold text-foreground">
-                  {followingCount || 0}
+                  {followingCount != null ? followingCount : '—'}
                 </span>
                 <span className="text-muted-foreground">following</span>
               </div>

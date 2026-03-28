@@ -99,7 +99,7 @@ const CateringEnquiryForm = () => {
     name: '', phone: '', email: '', date: '', venue: '', guestCount: '', message: '',
     eventType: '',
   });
-  const [diet, setDiet] = useState<'veg' | 'nonveg'>('veg');
+  const [diet, setDiet] = useState<'veg' | 'nonveg' | null>(null);
   const [vegPlatter, setVegPlatter] = useState<string[]>([]);
   const [nonVegPlatter, setNonVegPlatter] = useState<string[]>([]);
 
@@ -117,7 +117,7 @@ const CateringEnquiryForm = () => {
       form.date ? `*Event Date:* ${form.date}` : '',
       form.venue ? `*Venue / Location:* ${form.venue}` : '',
       form.guestCount ? `*Guest Count:* ${form.guestCount}` : '',
-      `*Diet Preference:* ${diet === 'veg' ? '🟢 Veg' : '🔴 Non-Veg'}`,
+      `*Diet Preference:* ${diet === 'veg' ? '🟢 Veg' : diet === 'nonveg' ? '🔴 Non-Veg' : 'Not specified'}`,
       vegPlatter.length ? `*Veg Platter:* ${vegPlatter.join(', ')}` : '',
       diet === 'nonveg' && nonVegPlatter.length ? `*Non-Veg Platter:* ${nonVegPlatter.join(', ')}` : '',
       form.message ? `*Message:* ${form.message}` : '',
@@ -187,22 +187,22 @@ const CateringEnquiryForm = () => {
             <div>
               <label className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">Diet Preference</label>
               <div className="flex gap-3">
-                <button type="button" onClick={() => setDiet('veg')}
+                <button type="button" onClick={() => setDiet(diet === 'veg' ? null : 'veg')}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 ${
                     diet === 'veg' ? 'bg-green-50 border-green-500 text-green-700 shadow-sm' : 'border-accent/20 text-muted-foreground hover:border-green-400'
                   }`}>
-                  <span className="w-4 h-4 rounded-sm border-2 border-green-600 flex items-center justify-center">
-                    <span className="w-2 h-2 rounded-full bg-green-600" />
+                  <span className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center ${diet === 'veg' ? 'border-green-600' : 'border-muted-foreground/40'}`}>
+                    {diet === 'veg' && <span className="w-2 h-2 rounded-full bg-green-600" />}
                   </span>
                   Veg
                   {diet === 'veg' && <Check size={14} className="text-green-600" />}
                 </button>
-                <button type="button" onClick={() => setDiet('nonveg')}
+                <button type="button" onClick={() => setDiet(diet === 'nonveg' ? null : 'nonveg')}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 ${
                     diet === 'nonveg' ? 'bg-red-50 border-red-500 text-red-700 shadow-sm' : 'border-accent/20 text-muted-foreground hover:border-red-400'
                   }`}>
-                  <span className="w-4 h-4 rounded-sm border-2 border-red-600 flex items-center justify-center">
-                    <span className="w-2 h-2 rounded-full bg-red-600" />
+                  <span className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center ${diet === 'nonveg' ? 'border-red-600' : 'border-muted-foreground/40'}`}>
+                    {diet === 'nonveg' && <span className="w-2 h-2 rounded-full bg-red-600" />}
                   </span>
                   Non-Veg
                   {diet === 'nonveg' && <Check size={14} className="text-red-600" />}
@@ -211,11 +211,13 @@ const CateringEnquiryForm = () => {
             </div>
 
             {/* Veg Platter */}
-            <div>
-              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Veg Platter</label>
-              <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
-              <ChipSelect items={VEG_ITEMS} values={vegPlatter} onChange={setVegPlatter} />
-            </div>
+            {diet && (
+              <div>
+                <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Veg Platter</label>
+                <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
+                <ChipSelect items={VEG_ITEMS} values={vegPlatter} onChange={setVegPlatter} />
+              </div>
+            )}
 
             {/* Non-Veg Platter */}
             {diet === 'nonveg' && (

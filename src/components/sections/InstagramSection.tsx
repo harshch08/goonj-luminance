@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Instagram, ExternalLink, AlertCircle, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { InstagramFollowerCount } from '@/components/instagram/InstagramFollowerCount';
@@ -20,7 +20,7 @@ interface InstagramSectionProps {
 
 export const InstagramSection = ({
   className,
-  maxPosts = 6,
+  maxPosts = 10,
   showHeader = true,
   showFollowerCount = true,
   showInstagramLink = true
@@ -28,6 +28,7 @@ export const InstagramSection = ({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const hasAutoRefreshed = useRef(false);
   const { toast } = useToast();
 
   // Fetch Instagram data using the combined hook
@@ -66,6 +67,16 @@ export const InstagramSection = ({
   const handleRetry = () => {
     refetch();
   };
+
+  // Auto-refresh once if cached data is missing follows_count or media_count
+  useEffect(() => {
+    if (!isLoading && followerData && !hasAutoRefreshed.current &&
+        (followerData.follows_count == null || followerData.media_count == null)) {
+      hasAutoRefreshed.current = true;
+      handleRefresh();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, followerData]);
 
   // Handle refresh action - calls Edge Function to update database
   const handleRefresh = async () => {
@@ -233,7 +244,7 @@ export const InstagramSection = ({
               loading={isLoadingPosts}
               error={postsError}
               maxPosts={maxPosts}
-              columns={3}
+              columns={5}
               showEmptyState={true}
               aspectRatio="square"
               className="mb-4 sm:mb-6"

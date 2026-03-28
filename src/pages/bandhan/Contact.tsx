@@ -16,13 +16,13 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    title: 'Ms. Sapna Das — Manager',
+    title: 'Ms. Sapna Das — Partner',
     details: ['+91 8923192218'],
   },
   {
     icon: Mail,
     title: 'Email Us',
-    details: ['goonjentertainment3@gmail.com', 'ceo@goonjentertainment.com'],
+    details: ['bandhan.cr@gmail.com','ceo@goonjentertainment.com'],
   },
   {
     icon: Clock,

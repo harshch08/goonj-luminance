@@ -13,7 +13,7 @@ const contactInfo = [
   },
   {
     icon: Phone,
-    title: 'Ms. Sapna Das - Manager',
+    title: 'Ms. Sapna Das - Partner',
     details: ['+91 8923192218'],
   },
   {

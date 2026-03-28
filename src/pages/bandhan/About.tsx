@@ -10,10 +10,10 @@ import destinationSetup from '@/assets/bandhan/destination-setup.jpg';
 import '@/components/bandhan/bandhan-theme.css';
 
 const stats = [
-  { number: '200+', label: 'Weddings Crafted' },
-  { number: '50+', label: 'Destinations Covered' },
+  { number: '50+', label: 'Weddings Crafted' },
+  { number: '20+', label: 'Destinations Covered' },
   { number: '5+', label: 'Years of Excellence' },
-  { number: '1000+', label: 'Happy Families' },
+  { number: '200+', label: 'Happy Families' },
 ];
 
 const values = [
@@ -210,6 +210,37 @@ const BandhanAbout = () => {
             </div>
           </div>
           <FloralDecor />
+        </section>
+
+        {/* ── Our Team ── */}
+        <section className="py-24 md:py-32 bg-gradient-to-b from-secondary/20 to-background relative overflow-hidden">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16 animate-fade-in">
+              <div className="w-16 h-1 bg-accent mx-auto mb-6" />
+              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary tracking-tight">Our Team</h2>
+              <p className="text-muted-foreground mt-4 text-lg">The passionate professionals behind every unforgettable wedding</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+              {[
+                '/Team/bandhan/WhatsApp Image 2026-03-29 at 12.02.32 AM.jpeg',
+                '/Team/bandhan/WhatsApp Image 2026-03-29 at 12.02.31 AM.jpeg',
+              ].map((src, index) => (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden shadow-2xl animate-fade-in-up rounded-xl"
+                  style={{ animationDelay: `${index * 150}ms` }}
+                >
+                  <img
+                    src={src}
+                    alt={`Team member ${index + 1}`}
+                    className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 border-2 border-accent/20 group-hover:border-accent/50 transition-colors duration-500 pointer-events-none rounded-xl" />
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* ── CTA ── */}

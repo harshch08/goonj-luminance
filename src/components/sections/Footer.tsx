@@ -188,7 +188,7 @@ export const Footer = () => {
                 <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
                 <div className="text-body text-sm">
                   <div className="border-b border-gold/50 pb-1 mb-2">
-                    <span className="text-gold font-medium">Ms. Sapna Das - Manager</span>
+                    <span className="text-gold font-medium">Ms. Sapna Das - Partner</span>
                   </div>
                   <div>+91 8923192218</div>
                 </div>

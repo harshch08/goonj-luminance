@@ -89,7 +89,8 @@ export const BandhanFooter = () => {
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-yellow-700 mt-1 flex-shrink-0" />
                 <div className="text-sm text-[hsl(25,20%,45%)]">
-                  <div>goonjentertainment3@gmail.com</div>
+                  <div>bandhan.cr@gmail.com</div>
+                  <div>ceo@goonjentertainment.com</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">

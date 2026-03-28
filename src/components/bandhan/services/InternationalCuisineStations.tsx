@@ -153,6 +153,62 @@ const FlowerDecor = ({ size = 90, rotate = 0, opacity = 0.85 }: { size?: number;
 
 
 
+// ── Mobile card: stacked image → parchment menu ──
+const MobileStationCard = ({ station }: { station: Station }) => (
+  <div className="rounded-2xl overflow-hidden shadow-lg" style={{ background: 'hsl(46,60%,94%)' }}>
+    {/* Image with origin overlay */}
+    <div className="relative w-full" style={{ height: 200 }}>
+      <img
+        src={station.image}
+        alt={station.name}
+        className="w-full h-full object-cover"
+      />
+      {/* Bottom gradient scrim */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%)' }} />
+      {/* Origin badge */}
+      <div className="absolute bottom-3 left-4 flex items-center gap-2">
+        <img
+          src={`https://flagcdn.com/w40/${station.origin.code}.png`}
+          alt={station.origin.country}
+          className="rounded shadow"
+          style={{ width: 28, height: 'auto' }}
+        />
+        <div>
+          <p className="text-white text-xs font-bold uppercase tracking-widest leading-none">{station.origin.city}</p>
+          <p className="text-white/70 text-[10px] uppercase tracking-widest">{station.origin.country}</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Parchment menu */}
+    <div className="px-5 py-5 text-center">
+      <h3 className="font-heading font-bold tracking-[0.2em] uppercase text-base mb-2" style={{ color: '#8B6914' }}>
+        {station.name}
+      </h3>
+      <div className="w-12 h-px mx-auto mb-4" style={{ background: '#C4952A' }} />
+      <ul className="space-y-2">
+        {station.items.map((item, i) => (
+          <li
+            key={i}
+            className={`text-[11px] tracking-wider uppercase leading-snug ${item.highlight ? 'font-semibold' : 'text-stone-600'}`}
+            style={item.highlight ? { color: '#c0392b' } : {}}
+          >
+            {item.text}
+          </li>
+        ))}
+      </ul>
+      {station.accompaniments && (
+        <div className="mt-4 pt-3 border-t border-stone-200">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-stone-500 mb-1">Accompaniments</p>
+          {station.accompaniments.map((a, i) => (
+            <p key={i} className="text-[10px] uppercase tracking-widest text-stone-400">{a.text}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+);
+
 const StationCard = ({ station, reverse }: { station: Station; reverse: boolean }) => {
   const flowerSide = reverse ? 'left' : 'right';
   const clipId = `torn-${station.id}`;
@@ -322,25 +378,33 @@ const InternationalCuisineStations = () => (
       <FlowerDecor size={300} rotate={8} opacity={1} />
     </div>
 
-    <div className="container mx-auto px-4 relative z-10">
+    <div className="container mx-auto px-4 pl-8 md:pl-14 relative z-10">
       {/* Header */}
-      <div className="mb-16 animate-fade-in">
+      <div className="mb-10 md:mb-16 animate-fade-in">
         <div className="w-16 h-1 bg-accent mb-6" />
-        <h2 className="text-5xl md:text-6xl font-heading font-bold text-primary tracking-tight leading-none">
+        <h2 className="text-4xl md:text-6xl font-heading font-bold text-primary tracking-tight leading-none">
           International<br />Cuisine Stations
         </h2>
       </div>
 
-      {/* Zigzag off-grid */}
-      <div className="flex flex-col gap-10">
+      {/* ── Mobile: single-column cards ── */}
+      <div className="flex flex-col gap-6 md:hidden">
+        {stations.map((station, i) => (
+          <div key={station.id} className="animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
+            <MobileStationCard station={station} />
+          </div>
+        ))}
+      </div>
+
+      {/* ── Desktop: zigzag off-grid ── */}
+      <div className="hidden md:flex flex-col gap-10">
         {stations.map((station, i) => {
           const isReverse = i % 2 !== 0;
           return (
             <div key={station.id} className="relative flex items-center gap-4 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms` }}>
-
               {/* Origin tag — fills the empty side */}
               <div
-                className={`hidden md:flex flex-col items-center justify-center gap-2 flex-shrink-0 ${isReverse ? 'order-first' : 'order-last'}`}
+                className={`flex flex-col items-center justify-center gap-2 flex-shrink-0 ${isReverse ? 'order-first' : 'order-last'}`}
                 style={{ width: '18%' }}
               >
                 <img
@@ -359,7 +423,6 @@ const InternationalCuisineStations = () => (
                 </div>
                 <div className="w-8 h-px" style={{ background: '#C4952A', opacity: 0.5 }} />
               </div>
-
               {/* Card */}
               <div style={{ width: '82%', maxWidth: 900 }}>
                 <StationCard station={station} reverse={isReverse} />
