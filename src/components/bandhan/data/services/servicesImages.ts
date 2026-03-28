@@ -75,17 +75,17 @@ export const serviceImages = {
 
   stageSetup: {
     hero: [
-      { src: '/gallery/Concert/Fest.png', alt: 'Concert fest stage' },
-      { src: '/gallery/Live Music/Concert.png', alt: 'Live concert' },
-      { src: '/gallery/Fest/Fest-design.png', alt: 'Fest stage design' },
+      { src: '/gallery/stage&sound/stagebanner.jpg', alt: 'Stage setup banner' },
+      { src: '/gallery/stage&sound/stage1.jpg', alt: 'Stage setup 1' },
+      { src: '/gallery/stage&sound/stage 2.jpg', alt: 'Stage setup 2' },
     ],
     conceptShowcase: [
-      { src: '/gallery/Concert/Fest.png', alt: 'Fest stage' },
-      { src: '/gallery/Concert/University-fest.png', alt: 'University fest' },
-      { src: '/gallery/Live Music/Concert.png', alt: 'Concert night' },
-      { src: '/gallery/Live Music/live-band.png', alt: 'Live band setup' },
-      { src: '/gallery/Live Music/live-duet.png', alt: 'Live duet' },
-      { src: '/gallery/Fest/Fest-design-2.png', alt: 'Fest design' },
+      { src: '/gallery/stage&sound/stagebanner.jpg', alt: 'Stage banner' },
+      { src: '/gallery/stage&sound/stage1.jpg', alt: 'Stage 1' },
+      { src: '/gallery/stage&sound/stage 2.jpg', alt: 'Stage 2' },
+      { src: '/gallery/stage&sound/stage3.jpg', alt: 'Stage 3' },
+      { src: '/gallery/stage&sound/stage4.jpg', alt: 'Stage 4' },
+      { src: '/gallery/stage&sound/stage5.jpg', alt: 'Stage 5' },
     ],
   },
 };

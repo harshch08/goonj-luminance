@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
 const slides = [
-  { src: "/gallery/Destination-Wedding/Destination-wedding-rishikesh.png", label: "Destination Weddings", heading: ["Where Love Meets", "Breathtaking Horizons"], sub: "Riverside ceremonies, mountain retreats, and resort celebrations crafted just for you", href: "/bandhan/destination-weddings" },
+  { src: "/gallery/Destination-Wedding/Dest Wedding.jpeg", label: "Destination Weddings", heading: ["Where Love Meets", "Breathtaking Horizons"], sub: "Riverside ceremonies, mountain retreats, and resort celebrations crafted just for you", href: "/bandhan/destination-weddings" },
   { src: "/gallery/Wedding/sangeet-decor.png", label: "Catering & Decor", heading: ["Every Detail,", "Perfectly Adorned"], sub: "World-class cuisine and breathtaking decor that transform your venue into a dream", href: "/bandhan/catering" },
-  { src: "/gallery/Photography&Videography/Couple-1.png", label: "Photography & Videography", heading: ["Moments Frozen", "In Time, Forever"], sub: "Cinematic films and candid portraits that tell your love story beautifully", href: "/bandhan/photography" },
-  { src: "/gallery/Fest/Fest-design.png", label: "Stage Setup & Sound", heading: ["The Stage Is Set", "For Your Story"], sub: "Professional lighting, sound, and stage design that set the perfect ambiance", href: "/bandhan/stage-setup" },
+  { src: "/gallery/Photography&Videography/photographybanner.jpg", label: "Photography & Videography", heading: ["Moments Frozen", "In Time, Forever"], sub: "Cinematic films and candid portraits that tell your love story beautifully", href: "/bandhan/photography" },
+  { src: "/gallery/stage&sound/stagebanner.jpg", label: "Stage Setup & Sound", heading: ["The Stage Is Set", "For Your Story"], sub: "Professional lighting, sound, and stage design that set the perfect ambiance", href: "/bandhan/stage-setup" },
   { src: "/gallery/Corporate/corporate-1.jpg", label: "Corporate Events", heading: ["Elevating Every", "Professional Gathering"], sub: "From conferences to galas, seamless execution that reflects your brand prestige", href: "/bandhan/corporate-events" },
   { src: "/gallery/Wedding/haldi-concept.png", label: "Haldi, Mehendi & Sangeet", heading: ["Celebrate Every", "Ritual With Joy"], sub: "Sangeet, Mehendi, Anchoring, Fireworks and more, all under one roof", href: "/bandhan/other-services" },
 ];

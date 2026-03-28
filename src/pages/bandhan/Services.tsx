@@ -42,7 +42,7 @@ const services = [
     subtitle: 'State-of-the-art audio-visual production',
     description: 'Transform your venue with professional stage design, lighting, and sound systems. Our technical expertise ensures perfect ambiance and flawless audio-visual experiences.',
     href: '/bandhan/stage-setup',
-    image: '/gallery/Fest/Fest-design.png',
+    image: '/gallery/stage&sound/stagebanner.jpg',
     highlights: ['Professional sound systems', 'Ambient & dramatic lighting', 'Custom stage design', 'LED screens & projections'],
   },
   {

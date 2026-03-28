@@ -39,6 +39,14 @@ const allImages: GalleryImage[] = [
   { src: '/gallery/Photography&Videography/Mandap-2.png', category: 'Photography', title: 'Mandap Shot' },
   { src: '/gallery/Photography&Videography/Mandap-couple.png', category: 'Photography', title: 'Mandap Couple' },
   { src: '/gallery/Photography&Videography/Mandap.png', category: 'Photography', title: 'Mandap' },
+  // Stage & Sound
+  { src: '/gallery/stage&sound/stagebanner.jpg', category: 'Stage & Sound', title: 'Stage Banner' },
+  { src: '/gallery/stage&sound/stage1.jpg', category: 'Stage & Sound', title: 'Stage Setup 1' },
+  { src: '/gallery/stage&sound/stage 2.jpg', category: 'Stage & Sound', title: 'Stage Setup 2' },
+  { src: '/gallery/stage&sound/stage3.jpg', category: 'Stage & Sound', title: 'Stage Setup 3' },
+  { src: '/gallery/stage&sound/stage4.jpg', category: 'Stage & Sound', title: 'Stage Setup 4' },
+  { src: '/gallery/stage&sound/stage5.jpg', category: 'Stage & Sound', title: 'Stage Setup 5' },
+
   // Concert
   { src: '/gallery/Concert/Fest.png', category: 'Concert', title: 'Fest' },
   { src: '/gallery/Concert/University-fest..png', category: 'Concert', title: 'University Fest' },
