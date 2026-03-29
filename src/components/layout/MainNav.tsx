@@ -91,7 +91,7 @@ export const MainNav = () => {
         style={isBandhanPage && !isScrolled ? { backgroundColor: 'transparent !important' } : {}}
       >
         <div className="container mx-auto px-6 lg:px-12">
-          <nav className="flex items-center justify-between h-20">
+          <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to={isBandhanPage ? "/bandhan" : "/"} className="flex items-center gap-3">
               {isBandhanPage ? (
@@ -110,10 +110,10 @@ export const MainNav = () => {
                   <img 
                     src="/logo.png" 
                     alt="Goonj Logo" 
-                    className="h-28 w-auto"
+                    className="h-14 w-auto lg:h-28"
                   />
                   <div className="flex flex-col">
-                    <span className="font-display text-2xl font-bold tracking-wide text-foreground">
+                    <span className="font-display text-xl lg:text-2xl font-bold tracking-wide text-foreground">
                       GOONJ
                     </span>
                     <span className="text-xs text-gold-light tracking-luxury uppercase">
@@ -187,9 +187,21 @@ export const MainNav = () => {
               </Link>
             </div>
 
-            {/* Mobile Search + Menu Toggle */}
+            {/* Mobile Search + Bandhan circle + Menu Toggle */}
             <div className="flex items-center gap-2 lg:hidden">
               <NavSearch isMobile />
+              {/* Bandhan mini circle button */}
+              <Link
+                to="/bandhan"
+                className="w-9 h-9 rounded-full overflow-hidden border-2 border-amber-300 flex items-center justify-center bg-gradient-to-br from-amber-50 to-yellow-100 shadow-sm flex-shrink-0"
+                title="Bandhan Weddings"
+              >
+                <img
+                  src="/bandhanlogo.png"
+                  alt="Bandhan"
+                  className="w-full h-full object-cover"
+                />
+              </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`p-2 ${isBandhanPage ? 'text-white' : 'text-foreground'}`}
