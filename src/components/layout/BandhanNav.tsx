@@ -131,7 +131,7 @@ export const BandhanNav = () => {
               {/* Goonj mini circle button */}
               <Link
                 to="/"
-                className="w-9 h-9 rounded-full overflow-hidden border-2 border-purple-300 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 shadow-sm flex-shrink-0"
+                className="w-9 h-9 rounded-full overflow-hidden border-2 border-purple-400 flex items-center justify-center bg-gray-900 shadow-sm flex-shrink-0"
                 title="Goonj Entertainment"
               >
                 <img
@@ -139,7 +139,6 @@ export const BandhanNav = () => {
                   alt="Goonj"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    // fallback to emoji if logo missing
                     (e.currentTarget as HTMLImageElement).style.display = 'none';
                     (e.currentTarget.parentElement as HTMLElement).innerHTML = '<span style="font-size:16px">🎵</span>';
                   }}
