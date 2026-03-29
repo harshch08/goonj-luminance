@@ -100,13 +100,28 @@ const CateringEnquiryForm = () => {
     eventType: '',
   });
   const [diet, setDiet] = useState<'veg' | 'nonveg' | null>(null);
+  const [dietError, setDietError] = useState(false);
   const [vegPlatter, setVegPlatter] = useState<string[]>([]);
   const [nonVegPlatter, setNonVegPlatter] = useState<string[]>([]);
 
   const set = (k: string, v: string) => setForm(p => ({ ...p, [k]: v }));
 
+  const handleDietChange = (value: 'veg' | 'nonveg') => {
+    const scrollY = window.scrollY;
+    setDiet(prev => prev === value ? null : value);
+    setDietError(false);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior });
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!diet) {
+      setDietError(true);
+      return;
+    }
+    setDietError(false);
     const lines = [
       `Hi Bandhan! I'd like to enquire about *Catering & Decor*.`,
       '',
@@ -136,7 +151,7 @@ const CateringEnquiryForm = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-primary tracking-tight mb-3">Enquire Now</h2>
             <p className="text-muted-foreground">Fill in your details and we'll get back to you on WhatsApp within 24 hours.</p>
           </div>
-          <form onSubmit={handleSubmit} className="bg-background/50 backdrop-blur-sm p-8 rounded-2xl border border-accent/20 space-y-5 animate-fade-in-up">
+          <form onSubmit={handleSubmit} className="bg-background/50 backdrop-blur-sm p-8 rounded-2xl border border-accent/20 space-y-5 animate-fade-in-up" style={{ overflowAnchor: 'none' }}>
 
             {/* Name & Phone */}
             <div className="grid sm:grid-cols-2 gap-4">
@@ -185,11 +200,14 @@ const CateringEnquiryForm = () => {
 
             {/* Diet toggle */}
             <div>
-              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">Diet Preference</label>
+              <label className="text-xs uppercase tracking-widest text-muted-foreground mb-3 block">
+                Diet Preference *
+                {dietError && <span className="ml-2 text-red-500 normal-case tracking-normal">Please select a diet preference</span>}
+              </label>
               <div className="flex gap-3">
-                <button type="button" onClick={() => setDiet(diet === 'veg' ? null : 'veg')}
+                <button type="button" onClick={(e) => { e.preventDefault(); handleDietChange('veg'); }}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 ${
-                    diet === 'veg' ? 'bg-green-50 border-green-500 text-green-700 shadow-sm' : 'border-accent/20 text-muted-foreground hover:border-green-400'
+                    diet === 'veg' ? 'bg-green-50 border-green-500 text-green-700 shadow-sm' : dietError ? 'border-red-400 text-muted-foreground' : 'border-accent/20 text-muted-foreground hover:border-green-400'
                   }`}>
                   <span className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center ${diet === 'veg' ? 'border-green-600' : 'border-muted-foreground/40'}`}>
                     {diet === 'veg' && <span className="w-2 h-2 rounded-full bg-green-600" />}
@@ -197,9 +215,9 @@ const CateringEnquiryForm = () => {
                   Veg
                   {diet === 'veg' && <Check size={14} className="text-green-600" />}
                 </button>
-                <button type="button" onClick={() => setDiet(diet === 'nonveg' ? null : 'nonveg')}
+                <button type="button" onClick={(e) => { e.preventDefault(); handleDietChange('nonveg'); }}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 ${
-                    diet === 'nonveg' ? 'bg-red-50 border-red-500 text-red-700 shadow-sm' : 'border-accent/20 text-muted-foreground hover:border-red-400'
+                    diet === 'nonveg' ? 'bg-red-50 border-red-500 text-red-700 shadow-sm' : dietError ? 'border-red-400 text-muted-foreground' : 'border-accent/20 text-muted-foreground hover:border-red-400'
                   }`}>
                   <span className={`w-4 h-4 rounded-sm border-2 flex items-center justify-center ${diet === 'nonveg' ? 'border-red-600' : 'border-muted-foreground/40'}`}>
                     {diet === 'nonveg' && <span className="w-2 h-2 rounded-full bg-red-600" />}
@@ -210,23 +228,26 @@ const CateringEnquiryForm = () => {
               </div>
             </div>
 
-            {/* Veg Platter */}
-            {diet && (
-              <div>
-                <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Veg Platter</label>
-                <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
-                <ChipSelect items={VEG_ITEMS} values={vegPlatter} onChange={setVegPlatter} />
-              </div>
-            )}
+            {/* Platter sections - wrapped to prevent scroll jump */}
+            <div>
+              {/* Veg Platter */}
+              {diet && (
+                <div className="mb-5">
+                  <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Veg Platter</label>
+                  <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
+                  <ChipSelect items={VEG_ITEMS} values={vegPlatter} onChange={setVegPlatter} />
+                </div>
+              )}
 
-            {/* Non-Veg Platter */}
-            {diet === 'nonveg' && (
-              <div>
-                <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Non-Veg Platter</label>
-                <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
-                <ChipSelect items={NON_VEG_ITEMS} values={nonVegPlatter} onChange={setNonVegPlatter} />
-              </div>
-            )}
+              {/* Non-Veg Platter */}
+              {diet === 'nonveg' && (
+                <div>
+                  <label className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5 block">Non-Veg Platter</label>
+                  <p className="text-xs text-muted-foreground mb-1">Tap to select items</p>
+                  <ChipSelect items={NON_VEG_ITEMS} values={nonVegPlatter} onChange={setNonVegPlatter} />
+                </div>
+              )}
+            </div>
 
             {/* Message */}
             <div>
