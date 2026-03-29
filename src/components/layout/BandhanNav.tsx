@@ -58,7 +58,8 @@ export const BandhanNav = () => {
       </AnimatePresence>
 
       <header
-        className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200/50 shadow-sm"
+        className="fixed left-0 right-0 z-50 bg-white border-b border-gray-200/50 shadow-sm"
+        style={{ top: '38px' }}
       >
         <div className="container mx-auto px-6 lg:px-12">
           <nav className="flex items-center justify-between h-20">

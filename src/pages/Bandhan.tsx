@@ -8,6 +8,7 @@ import IntroSection from '@/components/bandhan/home/IntroSection';
 import TestimonialSection from '@/components/bandhan/home/TestimonialSection';
 import PartnersSection from '@/components/bandhan/home/PartnersSection';
 import BandhanWhatsAppSection from '@/components/bandhan/home/WhatsAppSection';
+import { AnnouncementBar } from '@/components/bandhan/home/AnnouncementBar';
 import '@/components/bandhan/bandhan-theme.css';
 
 const Bandhan = () => {
@@ -30,6 +31,7 @@ const Bandhan = () => {
   return (
     <BandhanPageTransition>
     <div className="min-h-screen bandhan-theme" style={{ backgroundColor: 'hsl(40, 40%, 97%)' }}>
+      <AnnouncementBar />
       <BandhanNav />
       <BandhanCategoryNav />
       <main>
