@@ -61,18 +61,18 @@ export const BandhanNav = () => {
         className="fixed left-0 right-0 z-50 bg-white border-b border-gray-200/50 shadow-sm"
         style={{ top: '38px' }}
       >
-        <div className="container mx-auto px-6 lg:px-12">
-          <nav className="flex items-center justify-between h-20">
+        <div className="container mx-auto px-3 lg:px-12">
+          <nav className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/bandhan" className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <img 
                   src="/bandhanlogo.png" 
                   alt="Bandhan Logo" 
-                  className="h-20 w-auto object-contain drop-shadow-md"
+                  className="h-12 w-auto lg:h-20 object-contain drop-shadow-md"
                 />
                 <div className="flex flex-col leading-tight">
-                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: '2rem', fontWeight: 700, color: '#1a1008', lineHeight: 1.1, textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: "'Great Vibes', cursive", fontSize: 'clamp(1.2rem, 4vw, 2rem)', fontWeight: 700, color: '#1a1008', lineHeight: 1.1, textTransform: 'uppercase' }}>
                     Bandhan
                   </span>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '0.6rem', letterSpacing: '0.3em', color: '#92400e', fontWeight: 600, textTransform: 'uppercase' }}>
@@ -126,8 +126,25 @@ export const BandhanNav = () => {
               </Link>
             </div>
 
-            {/* Mobile Search + Menu Toggle */}
+            {/* Mobile: Goonj circle + Menu Toggle */}
             <div className="flex items-center gap-2 lg:hidden">
+              {/* Goonj mini circle button */}
+              <Link
+                to="/"
+                className="w-9 h-9 rounded-full overflow-hidden border-2 border-purple-300 flex items-center justify-center bg-gradient-to-br from-purple-100 to-pink-100 shadow-sm flex-shrink-0"
+                title="Goonj Entertainment"
+              >
+                <img
+                  src="/logo.png"
+                  alt="Goonj"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // fallback to emoji if logo missing
+                    (e.currentTarget as HTMLImageElement).style.display = 'none';
+                    (e.currentTarget.parentElement as HTMLElement).innerHTML = '<span style="font-size:16px">🎵</span>';
+                  }}
+                />
+              </Link>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-gray-800"

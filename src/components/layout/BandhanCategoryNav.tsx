@@ -15,7 +15,7 @@ export const BandhanCategoryNav = () => {
   const location = useLocation();
 
   return (
-    <div className="sticky top-[118px] z-40 bg-white border-b border-gray-200/50">
+    <div className="sticky top-[102px] lg:top-[118px] z-40 bg-white border-b border-gray-200/50">
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center py-3 overflow-x-auto overflow-y-hidden no-scrollbar md:justify-center scroll-smooth">
           <div className="flex items-center gap-2 md:gap-6 pl-2 pr-4 md:px-0">
