@@ -183,12 +183,14 @@ export function InstagramFollowerCount({
                   {count === 1 ? 'follower' : 'followers'}
                 </span>
               </div>
-              <div className="flex items-center gap-1">
-                <span className="font-semibold text-foreground">
-                  {followingCount != null ? followingCount : '—'}
-                </span>
-                <span className="text-muted-foreground">following</span>
-              </div>
+              {followingCount != null && (
+                <div className="flex items-center gap-1">
+                  <span className="font-semibold text-foreground">
+                    {followingCount}
+                  </span>
+                  <span className="text-muted-foreground">following</span>
+                </div>
+              )}
             </div>
 
             {/* Last Updated Indicator */}

@@ -123,18 +123,27 @@ export class InstagramCacheManager {
       this.validateContent(dataType, content)
       this.logger.info('Content validation passed', { data_type: dataType })
 
+      // Delete existing entry for this data_type first
+      const { error: deleteError } = await this.supabase
+        .from('instagram_cache')
+        .delete()
+        .eq('data_type', dataType)
+
+      if (deleteError) {
+        this.logger.warn('Failed to delete existing cache entry, attempting insert anyway', deleteError)
+      }
+
+      // Insert fresh entry
       const { error } = await this.supabase
         .from('instagram_cache')
-        .upsert({
+        .insert({
           data_type: dataType,
           content: content,
           last_updated: timestamp
-        }, {
-          onConflict: 'data_type'
         })
 
       if (error) {
-        this.logger.error('Database upsert operation failed', error, {
+        this.logger.error('Database insert operation failed', error, {
           data_type: dataType,
           error_code: error.code,
           error_details: error.details
