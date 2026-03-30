@@ -93,29 +93,32 @@ export const BandhanFooter = () => {
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-yellow-700 mt-1 flex-shrink-0" />
                 <div className="text-sm text-[hsl(25,20%,45%)]">
-                  <div className="font-medium text-[hsl(25,30%,20%)] mb-0.5">Mr. Ayush Gupta</div>
-                  <div className="text-xs text-yellow-700 mb-1">CEO</div>
-                  <div>+91 9760813704 / +91 9897642145</div>
+                  <div className="font-medium text-[hsl(25,30%,20%)] mb-1">Mr. Ayush Gupta — CEO</div>
+                  <div className="border-t border-[hsl(38,20%,85%)] pt-1 space-y-0.5">
+                    <div>Personal — +91 9760813704</div>
+                    <div>Office — +91 9897642145</div>
+                  </div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone size={16} className="text-yellow-700 mt-1 flex-shrink-0" />
                 <div className="text-sm text-[hsl(25,20%,45%)]">
-                  <div className="font-medium text-[hsl(25,30%,20%)] mb-0.5">Ms. Sapna Das</div>
-                  <div className="text-xs text-yellow-700 mb-1">Partner</div>
-                  <div>+91 8923192218</div>
+                  <div className="font-medium text-[hsl(25,30%,20%)] mb-1">Ms. Sapna Das — Partner</div>
+                  <div className="border-t border-[hsl(38,20%,85%)] pt-1">
+                    <div>+91 8923192218</div>
+                  </div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail size={16} className="text-yellow-700 mt-1 flex-shrink-0" />
                 <div className="text-sm text-[hsl(25,20%,45%)]">
-                  <div>bandhan.cr@gmail.com</div>
+                  <div>goonjentertainment3@gmail.com</div>
                   <div>ceo@goonjentertainment.com</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="text-yellow-700 mt-1 flex-shrink-0" />
-                <span className="text-sm text-[hsl(25,20%,45%)]">78/2 Chukhuwala, Dehradun, Uttarakhand 248001</span>
+                <span className="text-sm text-[hsl(25,20%,45%)]">78/2 Chukhuwala Behind GPO, Near Madhav Niwas, Dehradun, Uttarakhand 248001</span>
               </li>
             </ul>
             <button
