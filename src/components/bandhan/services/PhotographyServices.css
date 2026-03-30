@@ -191,11 +191,24 @@
 
 @media (max-width: 640px) {
   .photo-cluster {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .large-photo-frame {
+    padding: 8px;
+    padding-bottom: 28px;
+    transform: rotate(-0.5deg);
+  }
+
+  .photo-polaroid {
+    padding: 8px;
+    padding-bottom: 28px;
   }
 
   .photo-cluster .polaroid-5 {
     max-width: 100%;
+    grid-column: span 1;
   }
 }
 

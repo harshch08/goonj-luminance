@@ -60,7 +60,7 @@ const PhotographyServices = () => {
   const service = photoServices[activeService];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-secondary/10 to-background relative overflow-hidden">
+    <section className="py-14 md:py-24 bg-gradient-to-b from-secondary/10 to-background relative overflow-hidden">
       {/* Decorative floral accent */}
       <div className="absolute bottom-20 left-10 opacity-20 pointer-events-none hidden lg:block">
         <svg width="120" height="140" viewBox="0 0 120 140" fill="none">
@@ -75,23 +75,23 @@ const PhotographyServices = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div className="mb-16 animate-fade-in">
-            <div className="w-16 h-1 bg-accent mb-6" />
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-primary tracking-tight mb-6">
+          <div className="mb-8 md:mb-16 animate-fade-in">
+            <div className="w-16 h-1 bg-accent mb-4 md:mb-6" />
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-primary tracking-tight mb-3 md:mb-6">
               Our Photography Services
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-base md:text-xl text-muted-foreground max-w-2xl">
               Capturing Your Special Moments
             </p>
           </div>
 
-          {/* Service Tabs */}
-          <div className="flex flex-wrap gap-3 mb-12">
+          {/* Service Tabs — 3 in a row on mobile */}
+          <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-2 sm:gap-3 mb-8 md:mb-12">
             {photoServices.map((srv, index) => (
               <button
                 key={srv.id}
                 onClick={() => setActiveService(index)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-2 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-base font-medium transition-all duration-300 text-center ${
                   activeService === index
                     ? 'bg-accent text-white shadow-lg scale-105'
                     : 'bg-white text-foreground hover:bg-accent/10 border border-border'

@@ -24,7 +24,7 @@ const BandhanWhatsAppSection = () => {
   return (
     <section
       ref={ref}
-      className="py-24 md:py-32 bg-gradient-to-b from-secondary/30 via-accent/5 to-background relative overflow-hidden"
+      className="py-16 md:py-32 bg-gradient-to-b from-secondary/30 via-accent/5 to-background relative overflow-hidden"
     >
       {/* Soft blur orbs — matches Bandhan ServiceCTA */}
       <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
@@ -72,49 +72,49 @@ const BandhanWhatsAppSection = () => {
             <MessageCircle size={36} className="text-accent" />
           </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-3 md:mb-4 tracking-tight">
             Book on WhatsApp
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm md:text-xl text-muted-foreground mb-7 md:mb-10 leading-relaxed max-w-xs md:max-w-2xl mx-auto">
             Get instant responses, personalised wedding recommendations, and quick quotations directly on WhatsApp. Our team is available 24/7 to assist you.
           </p>
 
-          {/* Feature pills */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-10">
+          {/* Feature pills — 3 in a row on mobile */}
+          <div className="grid grid-cols-3 sm:flex sm:flex-wrap justify-center gap-2 md:gap-8 mb-8 md:mb-10">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 16 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20"
+                className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-2 rounded-xl sm:rounded-full bg-accent/10 border border-accent/20 text-center"
               >
-                <feature.icon size={15} className="text-accent" />
-                <span className="text-sm text-primary font-medium">{feature.text}</span>
+                <feature.icon size={14} className="text-accent flex-shrink-0" />
+                <span className="text-[10px] sm:text-sm text-primary font-medium leading-tight">{feature.text}</span>
               </motion.div>
             ))}
           </div>
 
-          {/* CTA buttons */}
+          {/* CTA buttons — side by side on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-row gap-3 justify-center items-center sm:gap-4"
           >
             <button
               onClick={handleWhatsApp}
-              className="flex items-center gap-3 bg-accent hover:bg-accent/90 text-white font-semibold px-10 py-4 rounded-xl shadow-elegant hover:shadow-soft transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 group"
+              className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white font-semibold px-5 sm:px-10 py-3 sm:py-4 rounded-xl shadow-elegant hover:shadow-soft transition-all duration-300 hover:scale-105 group text-sm sm:text-base"
             >
-              <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
-              Chat with Us Now
+              <MessageCircle size={18} className="group-hover:scale-110 transition-transform flex-shrink-0" />
+              <span>Chat Now</span>
             </button>
             <button
               onClick={handleEmail}
-              className="flex items-center gap-3 border border-accent/40 hover:border-accent text-primary hover:bg-accent/10 font-semibold px-10 py-4 rounded-xl shadow-soft transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 group"
+              className="flex items-center gap-2 border border-accent/40 hover:border-accent text-primary hover:bg-accent/10 font-semibold px-5 sm:px-10 py-3 sm:py-4 rounded-xl shadow-soft transition-all duration-300 hover:scale-105 group text-sm sm:text-base"
             >
-              <Mail size={20} className="group-hover:scale-110 transition-transform text-accent" />
-              Email Us
+              <Mail size={18} className="group-hover:scale-110 transition-transform text-accent flex-shrink-0" />
+              <span>Email Us</span>
             </button>
           </motion.div>
 

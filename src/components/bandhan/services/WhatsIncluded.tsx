@@ -46,7 +46,7 @@ const inclusions = [
 
 const WhatsIncluded = () => {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-14 md:py-24 bg-background relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.015]" style={{
         backgroundImage: 'radial-gradient(circle, #D4AF37 1px, transparent 1px)',
@@ -56,20 +56,20 @@ const WhatsIncluded = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-fade-in">
-            <div className="inline-block mb-6">
-              <div className="w-16 h-1 bg-accent mx-auto mb-6" />
+          <div className="text-center mb-8 md:mb-16 animate-fade-in">
+            <div className="inline-block mb-4 md:mb-6">
+              <div className="w-16 h-1 bg-accent mx-auto mb-4 md:mb-6" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary tracking-tight mb-3 md:mb-4">
               What's Included
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-sm md:text-lg text-muted-foreground max-w-2xl mx-auto">
               Comprehensive catering and décor services for an unforgettable experience
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Grid — 2 cols on mobile, 3 on desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
             {inclusions.map((item, index) => (
               <div
                 key={item.title}
@@ -79,15 +79,15 @@ const WhatsIncluded = () => {
                 <div className="inclusion-card-inner">
                   {/* Icon */}
                   <div className="inclusion-icon">
-                    <item.icon size={28} strokeWidth={1.5} />
+                    <item.icon size={20} strokeWidth={1.5} />
                   </div>
 
                   {/* Content */}
                   <div>
-                    <h3 className="text-xl font-heading font-semibold text-primary mb-2">
+                    <h3 className="text-sm md:text-xl font-heading font-semibold text-primary mb-1 md:mb-2 leading-tight">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed hidden sm:block">
                       {item.description}
                     </p>
                   </div>

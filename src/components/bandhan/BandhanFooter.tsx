@@ -6,6 +6,7 @@ const quickLinks = [
   { label: 'About Us', href: '/bandhan/about' },
   { label: 'Services', href: '/bandhan/services' },
   { label: 'Contact', href: '/bandhan/contact' },
+  { label: 'Goonj Entertainment', href: '/' },
 ];
 
 const services = [
@@ -47,14 +48,23 @@ export const BandhanFooter = () => {
             </div>
           </div>
 
+          {/* Quick Links + Services — 2 col on mobile, separate cols on desktop */}
+          <div className="grid grid-cols-2 md:contents gap-8 md:gap-0">
           {/* Quick Links */}
           <div>
             <h4 className="text-xs uppercase tracking-widest text-[hsl(25,30%,20%)] font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map(link => (
                 <li key={link.label}>
-                  <Link to={link.href} className="text-sm text-[hsl(25,20%,45%)] hover:text-yellow-700 transition-colors duration-300">
-                    {link.label}
+                  <Link
+                    to={link.href}
+                    className={`text-sm transition-colors duration-300 ${
+                      link.href === '/'
+                        ? 'text-yellow-700 font-semibold hover:text-yellow-600'
+                        : 'text-[hsl(25,20%,45%)] hover:text-yellow-700'
+                    }`}
+                  >
+                    {link.href === '/' ? '' : ''}{link.label}
                   </Link>
                 </li>
               ))}
@@ -73,6 +83,7 @@ export const BandhanFooter = () => {
                 </li>
               ))}
             </ul>
+          </div>
           </div>
 
           {/* Contact */}

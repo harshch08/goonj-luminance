@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NavSearch } from './NavSearch';
+import { AnnouncementBar } from '@/components/bandhan/home/AnnouncementBar';
 
 const navLinks = [
   { label: 'Home', href: '/bandhan' },
@@ -44,6 +45,9 @@ export const BandhanNav = () => {
 
   return (
     <>
+      {/* Announcement bar — shown on all Bandhan pages */}
+      <AnnouncementBar />
+
       {/* Backdrop blur overlay when mobile menu is open */}
       <AnimatePresence>
         {isMobileMenuOpen && (

@@ -12,7 +12,7 @@ interface ConceptShowcaseProps {
 
 const ConceptShowcase = ({ title, subtitle, images, layout = "default" }: ConceptShowcaseProps) => {
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-secondary/30 relative overflow-hidden">
+    <section className="py-14 md:py-20 bg-gradient-to-b from-background to-secondary/30 relative overflow-hidden">
       {/* Decorative floral element - bottom left */}
       <div className="absolute bottom-12 left-8 opacity-50 pointer-events-none z-10">
         <svg width="120" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,12 +60,12 @@ const ConceptShowcase = ({ title, subtitle, images, layout = "default" }: Concep
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-6xl mx-auto">
           {/* Title Section */}
-          <div className="mb-12 animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-2">
+          <div className="mb-8 md:mb-12 animate-fade-in">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-2">
               {title}
             </h2>
             {subtitle && (
-              <p className="text-lg text-muted-foreground whitespace-pre-line uppercase tracking-wide">
+              <p className="text-sm md:text-lg text-muted-foreground whitespace-pre-line uppercase tracking-wide">
                 {subtitle}
               </p>
             )}

@@ -150,7 +150,21 @@
 
 @media (max-width: 640px) {
   .polaroid-cluster {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .polaroid-frame.large {
+    max-width: 100%;
+    transform: rotate(-1deg);
+  }
+
+  .polaroid-frame.small {
+    width: 100%;
+  }
+
+  .polaroid-frame {
+    padding: 8px;
+    padding-bottom: 28px;
   }
 }

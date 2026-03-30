@@ -10,7 +10,7 @@ interface ServiceHeroProps {
 
 const ServiceHero = ({ title, subtitle, description, images }: ServiceHeroProps) => {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-background via-secondary/20 to-background relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-gradient-to-b from-background via-secondary/20 to-background relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-20 right-10 w-40 h-40 bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-10 w-48 h-48 bg-accent/5 rounded-full blur-3xl" />
@@ -23,13 +23,13 @@ const ServiceHero = ({ title, subtitle, description, images }: ServiceHeroProps)
               <div className="inline-block mb-6">
                 <div className="w-16 h-1 bg-accent mb-6" />
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-primary mb-6 tracking-tight leading-tight">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-bold text-primary mb-4 md:mb-6 tracking-tight leading-tight">
                 {title}
               </h1>
               {subtitle && (
-                <p className="text-lg md:text-xl text-accent mb-8 font-medium">{subtitle}</p>
+                <p className="text-base md:text-xl text-accent mb-4 md:mb-8 font-medium">{subtitle}</p>
               )}
-              <p className="text-foreground/90 leading-relaxed text-lg md:text-xl">
+              <p className="text-foreground/90 leading-relaxed text-sm md:text-xl">
                 {description}
               </p>
             </div>

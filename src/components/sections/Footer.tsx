@@ -100,9 +100,13 @@ export const Footer = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-body text-sm hover:text-gold-light transition-colors duration-300"
+                      className={`text-sm transition-colors duration-300 ${
+                        link.href === '/bandhan'
+                          ? 'text-gold-light font-semibold hover:text-yellow-400'
+                          : 'text-body hover:text-gold-light'
+                      }`}
                     >
-                      {link.label}
+                      {link.href === '/bandhan' ? '💍 ' : ''}{link.label}
                     </Link>
                   </li>
                 ))}

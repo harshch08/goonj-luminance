@@ -32,7 +32,7 @@ const IntroSection = () => {
     {
       icon: Music,
       image: stageSetupImg,
-      title: "Stage Setup & Lighting / Sound",
+      title: "Stage Setup & Sound",
       description: "State-of-the-art audio-visual production",
       link: "/bandhan/stage-setup",
     },
@@ -54,7 +54,7 @@ const IntroSection = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {services.map((service, index) => (
               <Link 
                 key={service.title}
@@ -65,7 +65,7 @@ const IntroSection = () => {
                   className="shadow-soft hover:shadow-elegant transition-all duration-500 animate-fade-in-up border-0 cursor-pointer overflow-hidden relative rounded-3xl h-full"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-52 sm:h-80 overflow-hidden">
                     {/* Background Image */}
                     <img
                       src={service.image}
@@ -77,26 +77,25 @@ const IntroSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                     
                     {/* Icon Badge */}
-                    <div className="absolute top-5 right-5">
-                      <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                        <service.icon className="text-accent" size={20} />
+                    <div className="absolute top-3 right-3 sm:top-5 sm:right-5">
+                      <div className="w-8 h-8 sm:w-12 sm:h-12 bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <service.icon className="text-accent" size={14} />
                       </div>
                     </div>
 
                     {/* Content at Bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <CardTitle className="text-xl font-heading text-white drop-shadow-lg leading-tight mb-2">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6">
+                      <CardTitle className="text-[11px] leading-snug sm:text-xl font-heading text-white drop-shadow-lg mb-1 sm:mb-2 line-clamp-2">
                         {service.title}
                       </CardTitle>
                       
-                      <CardDescription className="text-sm leading-relaxed text-white/85 drop-shadow-md mb-3 line-clamp-2">
+                      <CardDescription className="hidden sm:block text-sm leading-relaxed text-white/85 drop-shadow-md mb-3 line-clamp-2">
                         {service.description}
                       </CardDescription>
 
                       {/* CTA Link */}
-                      <div className="flex items-center text-accent font-semibold text-xs group-hover:gap-1.5 transition-all duration-300">
-                        <span className="drop-shadow-md">Explore Service</span>
-                        <span className="transform group-hover:translate-x-1 transition-transform duration-300 drop-shadow-md">→</span>
+                      <div className="flex items-center text-accent font-semibold text-[10px] sm:text-xs group-hover:gap-1.5 transition-all duration-300">
+                        <span className="drop-shadow-md">Explore →</span>
                       </div>
                     </div>
                   </div>

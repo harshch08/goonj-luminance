@@ -1,6 +1,6 @@
 const ServiceCTA = () => {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-secondary/30 via-accent/5 to-background relative overflow-hidden">
+    <section className="py-14 md:py-32 bg-gradient-to-b from-secondary/30 via-accent/5 to-background relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent/5 rounded-full blur-3xl" />
@@ -20,23 +20,23 @@ const ServiceCTA = () => {
           <div className="inline-block mb-6">
             <div className="w-16 h-1 bg-accent mx-auto mb-6" />
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary mb-6 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-heading font-bold text-primary mb-4 md:mb-6 tracking-tight">
             Ready to Get Started?
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm md:text-xl text-muted-foreground mb-7 md:mb-10 leading-relaxed max-w-2xl mx-auto">
             Let's create something extraordinary together. Contact us today for a consultation 
             and let us bring your vision to life.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row gap-3 justify-center sm:gap-4">
             <a
               href="/bandhan/contact"
-              className="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-10 py-5 rounded-xl shadow-elegant hover:shadow-soft transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer text-center"
+              className="flex-1 sm:flex-none inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-6 sm:px-10 py-3 sm:py-5 rounded-xl shadow-elegant hover:shadow-soft transition-all duration-300 hover:scale-105 cursor-pointer text-center text-sm sm:text-base"
             >
               Get in Touch
             </a>
             <a
               href="/bandhan"
-              className="inline-block border border-accent/40 hover:border-accent text-primary hover:bg-accent/10 font-semibold px-10 py-5 rounded-xl shadow-soft transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer text-center"
+              className="flex-1 sm:flex-none inline-block border border-accent/40 hover:border-accent text-primary hover:bg-accent/10 font-semibold px-6 sm:px-10 py-3 sm:py-5 rounded-xl shadow-soft transition-all duration-300 hover:scale-105 cursor-pointer text-center text-sm sm:text-base"
             >
               Back to Home
             </a>
