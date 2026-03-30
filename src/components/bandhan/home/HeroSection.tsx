@@ -35,31 +35,31 @@ const HeroSection = () => {
           <motion.div key={current} className="sm:max-w-4xl sm:mx-auto" initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -60 }} transition={{ duration: 0.7, ease: "easeInOut" }}>
 
             {/* Label pill */}
-            <div className="inline-block mb-3 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-[10px] uppercase tracking-widest font-semibold">
+            <div className="inline-block mb-3 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white/90 text-[10px] sm:text-xs uppercase tracking-widest font-semibold">
               {slides[current].label}
             </div>
 
-            {/* Heading — tight on mobile */}
+            {/* Heading */}
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-heading font-bold text-white mb-3 sm:mb-5 leading-tight">
               {slides[current].heading[0]}<br />{slides[current].heading[1]}
             </h1>
 
-            {/* Subtitle — shorter on mobile */}
-            <p className="text-sm sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-10 font-body max-w-xs sm:max-w-2xl leading-relaxed">
+            {/* Subtitle */}
+            <p className="text-sm sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-10 font-body max-w-xs sm:max-w-2xl sm:mx-auto leading-relaxed">
               {slides[current].sub}
             </p>
 
-            {/* Buttons — side by side on mobile */}
-            <div className="flex flex-row gap-3 sm:flex-col sm:items-center sm:gap-4 sm:flex-row sm:justify-center">
+            {/* Buttons — row on mobile, row centered on desktop */}
+            <div className="flex flex-row gap-3 sm:gap-4 sm:justify-center">
               <button
                 onClick={() => navigate(slides[current].href)}
-                className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-primary font-semibold px-5 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg shadow-lg transition-all duration-200"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 bg-accent hover:bg-accent/90 text-primary font-semibold px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-lg shadow-lg transition-all duration-200"
               >
-                Explore <ArrowRight size={16} className="sm:hidden" /><ArrowRight size={20} className="hidden sm:block" />
+                Explore <ArrowRight size={16} />
               </button>
               <button
                 onClick={() => navigate("/bandhan/gallery")}
-                className="flex-1 sm:flex-none flex items-center justify-center bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm px-5 py-3 sm:px-8 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg font-medium transition-all duration-200"
+                className="flex-1 sm:flex-none flex items-center justify-center bg-white/15 hover:bg-white/25 text-white border border-white/30 backdrop-blur-sm px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-lg font-medium transition-all duration-200"
               >
                 Our Work
               </button>

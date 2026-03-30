@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -16,13 +16,18 @@ const navLinks = [
 export const BandhanNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [barVisible, setBarVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const y = window.scrollY;
+      setIsScrolled(y > 50);
+      setBarVisible(y < lastScrollY.current || y < 10);
+      lastScrollY.current = y;
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -63,7 +68,7 @@ export const BandhanNav = () => {
 
       <header
         className="fixed left-0 right-0 z-50 bg-white border-b border-gray-200/50 shadow-sm"
-        style={{ top: '38px' }}
+        style={{ top: barVisible ? '38px' : '0px', transition: 'top 0.3s ease' }}
       >
         <div className="container mx-auto px-3 lg:px-12">
           <nav className="flex items-center justify-between h-16 lg:h-20">

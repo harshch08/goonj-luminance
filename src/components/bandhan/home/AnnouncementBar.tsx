@@ -8,7 +8,20 @@ const messages = [
 export const AnnouncementBar = () => {
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Hide on scroll down, show on scroll up
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setVisible(y < lastScrollY.current || y < 10);
+      lastScrollY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
@@ -39,7 +52,11 @@ export const AnnouncementBar = () => {
   return (
     <div
       className="fixed top-0 left-0 right-0 z-[60] flex items-center overflow-hidden"
-      style={barStyle}
+      style={{
+        ...barStyle,
+        transform: visible ? 'translateY(0)' : 'translateY(-100%)',
+        transition: 'transform 0.3s ease',
+      }}
     >
       {/* Shimmer sweep */}
       <div

@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { Heart, Camera, Utensils, Mic2, Briefcase, MoreHorizontal } from 'lucide-react';
 
 const categories = [
@@ -13,9 +14,29 @@ const categories = [
 
 export const BandhanCategoryNav = () => {
   const location = useLocation();
+  const [barVisible, setBarVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setBarVisible(y < lastScrollY.current || y < 10);
+      lastScrollY.current = y;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // nav height: 64px mobile / 80px desktop. bar: 38px when visible.
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+  const navHeight = isDesktop ? 80 : 64;
+  const top = barVisible ? navHeight + 38 : navHeight;
 
   return (
-    <div className="sticky top-[102px] lg:top-[118px] z-40 bg-white border-b border-gray-200/50">
+    <div
+      className="sticky z-40 bg-white border-b border-gray-200/50"
+      style={{ top: `${top}px`, transition: 'top 0.3s ease' }}
+    >
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center py-3 overflow-x-auto overflow-y-hidden no-scrollbar md:justify-center scroll-smooth">
           <div className="flex items-center gap-2 md:gap-6 pl-2 pr-4 md:px-0">
