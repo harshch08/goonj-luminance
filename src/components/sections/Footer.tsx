@@ -7,10 +7,10 @@ const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Bandhan', href: '/bandhan' },
   { label: 'Contact', href: '/contact' },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: '✨ Bandhan Weddings', href: '/bandhan' },
 ];
 
 const services = [
@@ -102,11 +102,11 @@ export const Footer = () => {
                       to={link.href}
                       className={`text-sm transition-colors duration-300 ${
                         link.href === '/bandhan'
-                          ? 'text-gold-light font-semibold hover:text-yellow-400'
+                          ? 'text-amber-400 font-semibold hover:text-amber-300'
                           : 'text-body hover:text-gold-light'
                       }`}
                     >
-                      {link.href === '/bandhan' ? '💍 ' : ''}{link.label}
+                      {link.label}
                     </Link>
                   </li>
                 ))}
@@ -144,7 +144,11 @@ export const Footer = () => {
                 <li key={link.label}>
                   <Link
                     to={link.href}
-                    className="text-body text-sm hover:text-gold-light transition-colors duration-300"
+                    className={`text-sm transition-colors duration-300 ${
+                      link.href === '/bandhan'
+                        ? 'text-amber-400 font-semibold hover:text-amber-300'
+                        : 'text-body hover:text-gold-light'
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -227,7 +231,7 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex flex-col items-center md:items-start gap-2">
               <p className="text-xs text-muted-foreground">
-                © 2026 {isBandhanPage ? 'Bandhan by Cardinal Revolution' : 'Goonj Entertainment'}. All rights reserved.
+                © 2026 {isBandhanPage ? 'Bandhan' : 'Goonj Entertainment'}. All rights reserved.
               </p>
               <p className="text-xs text-muted-foreground">
                 MSME: UDYAM-UK-05-0097096
